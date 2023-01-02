@@ -88,6 +88,10 @@ Route::group(['as'=>'finance.','prefix' => 'Finance','middleware'=>['finance','a
     Route::get('createPayslip', [FinanceDashboardController::class, 'createPayslip'])->name('createPayslip');
     // PaySlip View
     Route::post('paySlipView',[FinanceDashboardController::class, 'paySlipView'])->name('paySlipView');
+    // Employess
+    Route::get('allEmployess', [FinanceDashboardController:: class, 'allEmployess'])->name('allEmployess');
+    // View Details Employee
+   Route::get('view-details', [FinanceDashboardController:: class, 'viewDetails'])->name('viewDetails');
 
 });
 // ********************************************* Finance Route End ********************************************* //

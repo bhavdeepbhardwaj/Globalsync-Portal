@@ -4,6 +4,7 @@
         <div>
             <div>
                 <ul class="site-menu" data-plugin="menu">
+                    @if (Auth::user()->role_id == 4)
                     <li class="site-menu-category">General</li>
                     <li class="site-menu-item {{ set_active('Finance/dashboard') }}">
                         <a class="animsition-link" href="javascript:void(0)">
@@ -31,6 +32,24 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon icon wb-users md-view-compact" aria-hidden="true"></i>
+                            <span class="site-menu-title">Employees</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item {{ active('finance.allEmployess') }}">
+                                <a class="animsition-link" href="{{ route('finance.allEmployess')}}">
+                                    <span class="site-menu-title">All Employess</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endif
+
+
+
                     {{-- <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>

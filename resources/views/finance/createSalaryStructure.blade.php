@@ -230,10 +230,10 @@
                                                     <td class="text-muted annual_si" style="text-align:right;"></td>
                                                 </tr>
                                                 <!-- <tr>
-                                              <td >Earnings</td>
-                                              <td class="text-muted earn" style="text-align:right;"></td>
-                                              <td class="text-muted annual_earn" style="text-align:right;"></td>
-                                            </tr> -->
+                                                  <td >Earnings</td>
+                                                  <td class="text-muted earn" style="text-align:right;"></td>
+                                                  <td class="text-muted annual_earn" style="text-align:right;"></td>
+                                                </tr> -->
                                                 <tr>
                                                     <td><strong class="in-hand">In Hand</strong></td>
                                                     <td class="text-muted inhand"
@@ -268,28 +268,14 @@
                 </div>
             </div>
             <div class="container-xl mt-3">
-                <div class="row g-2 align-items-center d-print-none">
+                <div class="row g-4 align-items-center d-print-none">
                     <div class="col-md-12 text-center">
                         <button type="button" class="btn btn-outline-primary" onclick="javascript:window.print();">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/printer -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2">
-                                </path>
-                                <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
-                                <rect x="7" y="13" width="10" height="8" rx="2">
-                                </rect>
-                            </svg>
+                            <i class="icon wb-print" aria-hidden="true"></i>
                             Print Salary Slip
                         </button>
                         <button type="button" class="btn btn-primary" onclick="generatePDF();">
-                            
-                            <div class="icondemo vertical-align-middle">
-                                <i class="icon fa-file-pdf-o" aria-hidden="true"></i>
-                                <div class="icon-title">Download Salary Structure</div>
-                              </div>
+                            <i class="icon wb-download" aria-hidden="true"></i> Download Salary Structure
                         </button>
                     </div>
                 </div>
@@ -303,7 +289,8 @@
 @section('js')
     <script src="{{ asset('global/js/custom.js ') }}"></script>
     <script src="{{ asset('global/js/html2pdf.js ') }}" defer></script>
- 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" defer></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" defer>
+    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" defer></script>
 @endsection
