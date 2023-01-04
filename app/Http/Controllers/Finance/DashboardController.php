@@ -102,10 +102,21 @@ class DashboardController extends Controller
     public function viewDetails()
     {
         try {
+            $tmpCount = 0;
 
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong !");
         }
-        return view('finance.view_details');
+        return view('finance.view_details', ['tmpCount' => $tmpCount]);
+    }
+    // Download Payslip Employess
+    public function downloadPayslip()
+    {
+        try {
+
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->back()->with("error", "Something is wrong !");
+        }
+        return view('finance.downloadPayslip');
     }
 }

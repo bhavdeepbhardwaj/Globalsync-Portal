@@ -4,28 +4,28 @@
         <div>
             <div>
                 <ul class="site-menu" data-plugin="menu">
-                    @if (Auth::user()->role_id == 4)
+                    {{-- @if (Auth::user()->role_id == 4) --}}
                     <li class="site-menu-category">General</li>
-                    <li class="site-menu-item ">
+                    <li class="site-menu-item {{ set_active('Finance/dashboard') }}">
                         <a class="animsition-link" href="javascript:void(0)">
                             <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
                             <span class="site-menu-title">Dashboard</span>
                         </a>
                     </li>
                     {{-- <li class="site-menu-category">Payroll</li> --}}
-                    <li class="site-menu-item has-sub ">
-                        <a href="javascript:void(0)" class="">
+                    <li class="site-menu-item has-sub {{ Route::is('createSalaryStructure') || Route::is('createPayslip') || Route::is('paySlipView') ? 'active' : '' }}">
+                        <a href="javascript:void(0)" class="active">
                             <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
                             <span class="site-menu-title">Payroll</span>
                             <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub" id="">
-                            <li class="site-menu-item ">
+                            <li class="site-menu-item {{ active('finance.createSalaryStructure') }}">
                                 <a class="animsition-link" href="{{ route('finance.createSalaryStructure') }}">
                                     <span class="site-menu-title ">Create Salary Structure</span>
                                 </a>
                             </li>
-                            <li class="site-menu-item ">
+                            <li class="site-menu-item {{ active('finance.createPayslip') }}">
                                 <a class="animsition-link" href="{{ route('finance.createPayslip') }}">
                                     <span class="site-menu-title">Generate Pay Slip</span>
                                 </a>
@@ -39,7 +39,7 @@
                             <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
-                            <li class="site-menu-item ">
+                            <li class="site-menu-item {{ active('finance.allEmployess') }}">
                                 <a class="animsition-link" href="{{ route('finance.allEmployess')}}">
                                     <span class="site-menu-title">All Employess</span>
                                 </a>

@@ -8331,6 +8331,10 @@ body.site-navbar-small {
   width: 50px;
 }
 
+.avatar-lg-p {
+    width: 25%;
+  }
+
 .avatar-lg i {
   width: 12px;
   height: 12px;

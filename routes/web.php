@@ -91,7 +91,9 @@ Route::group(['as'=>'finance.','prefix' => 'Finance','middleware'=>['finance','a
     // Employess
     Route::get('allEmployess', [FinanceDashboardController:: class, 'allEmployess'])->name('allEmployess');
     // View Details Employee
-   Route::get('view-details', [FinanceDashboardController:: class, 'viewDetails'])->name('viewDetails');
+    Route::get('view-details', [FinanceDashboardController:: class, 'viewDetails'])->name('viewDetails');
+    // Download PaySlip
+    Route::get('Download-PaySlip', [FinanceDashboardController:: class, 'downloadPayslip'])->name('downloadPayslip');
 
 });
 // ********************************************* Finance Route End ********************************************* //
