@@ -17,6 +17,7 @@
     <!-- {{-- <link rel="stylesheet" href="{{ asset('global/css/bootstrap-extend.min.css ') }}"> --}} -->
     <link rel="stylesheet" href="{{ asset('assets/css/site.css ') }}">
     <!-- {{-- <link rel="stylesheet" href="{{ asset('assets/css/site.min.css ') }}"> --}} -->
+
     <!-- Plugins -->
     <link rel="stylesheet" href="{{ asset('global/vendor/animsition/animsition.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/asscrollable/asScrollable.css ') }}">
@@ -25,11 +26,16 @@
     <link rel="stylesheet" href="{{ asset('global/vendor/slidepanel/slidePanel.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/flag-icon-css/flag-icon.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/waves/waves.css ') }}">
+    <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
+    <link rel="stylesheet" href="../../assets/examples/css/forms/validation.css">
 
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist/chartist.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/jvectormap/jquery-jvectormap.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css ') }}">
     <link rel="stylesheet" href="{{ asset('assets/examples/css/dashboard/v1.css ') }}">
+
+    <link rel="stylesheet" href="../../../global/vendor/blueimp-file-upload/jquery.fileupload.css">
+        <link rel="stylesheet" href="../../../global/vendor/dropify/dropify.css">
 
 
 
@@ -88,6 +94,7 @@
     <script src="{{ asset('global/vendor/asscrollable/jquery-asScrollable.js ') }}"></script>
     <script src="{{ asset('global/vendor/ashoverscroll/jquery-asHoverScroll.js ') }}"></script>
     <script src="{{ asset('global/vendor/waves/waves.js ') }}"></script>
+
     <!-- Plugins -->
     <script src="{{ asset('global/vendor/switchery/switchery.js ') }}"></script>
     <script src="{{ asset('global/vendor/intro-js/intro.js ') }}"></script>
@@ -101,10 +108,6 @@
     <script src="{{ asset('global/vendor/jvectormap/maps/jquery-jvectormap-world-mill-en.js ') }}"></script>
     <script src="{{ asset('global/vendor/matchheight/jquery.matchHeight-min.js ') }}"></script>
     <script src="{{ asset('global/vendor/peity/jquery.peity.min.js ') }}"></script>
-    <script src="{{ asset('global/vendor/switchery/switchery.js ') }}"></script>
-    <script src="{{ asset('global/vendor/intro-js/intro.js ') }}"></script>
-    <script src="{{ asset('global/vendor/screenfull/screenfull.js ') }}"></script>
-    <script src="{{ asset('global/vendor/slidepanel/jquery-slidePanel.js ') }}"></script>
     <script src="{{ asset('global/vendor/datatables.net/jquery.dataTables.js ') }}"></script>
     <script src="{{ asset('global/vendor/datatables.net-bs4/dataTables.bootstrap4.js ') }}"></script>
     <script src="{{ asset('global/vendor/datatables.net-fixedheader/dataTables.fixedHeader.js ') }}"></script>
@@ -121,6 +124,24 @@
     <script src="{{ asset('global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.js ') }}"></script>
     <script src="{{ asset('global/vendor/asrange/jquery-asRange.min.js ') }}"></script>
     <script src="{{ asset('global/vendor/bootbox/bootbox.js ') }}"></script>
+    <script src="../../../global/vendor/slidepanel/jquery-slidePanel.js"></script>
+    <script src="../../../global/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="../../../global/vendor/blueimp-tmpl/tmpl.js"></script>
+    <script src="../../../global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+    <script src="../../../global/vendor/blueimp-load-image/load-image.all.min.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
+    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
+    <script src="../../../global/vendor/dropify/dropify.min.js"></script>
+    <script src="../../../global/vendor/formatter/jquery.formatter.js"></script>
+
+
+
+
     <!-- Scripts -->
     <script src="{{ asset('global/js/Component.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin.js ') }}"></script>
@@ -136,6 +157,7 @@
     <script>
         Config.set('assets', '../assets');
     </script>
+
     <!-- Page -->
     <script src="{{ asset('assets/js/Site.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/asscrollable.js ') }}"></script>
@@ -149,6 +171,11 @@
     <script src="{{ asset('assets/examples/js/tables/datatable.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/uikit/icon.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/tabs.js ') }}"></script>
+    <script src="../../../global/js/Plugin/dropify.js"></script>
+
+    <script src="../../assets/examples/js/forms/uploads.js"></script>
+    <script src="../../../global/js/Plugin/formatter.js"></script>
+
 
 
     {{-- Custom js --}}

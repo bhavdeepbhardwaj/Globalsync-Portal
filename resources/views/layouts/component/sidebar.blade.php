@@ -5,47 +5,70 @@
             <div>
                 <ul class="site-menu" data-plugin="menu">
                     @if (Auth::user()->role_id == 4)
-                    <li class="site-menu-category">General</li>
-                    <li class="site-menu-item ">
-                        <a class="animsition-link" href="javascript:void(0)">
-                            <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
-                            <span class="site-menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    {{-- <li class="site-menu-category">Payroll</li> --}}
-                    <li class="site-menu-item has-sub ">
-                        <a href="javascript:void(0)" class="">
-                            <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Payroll</span>
-                            <span class="site-menu-arrow"></span>
-                        </a>
-                        <ul class="site-menu-sub" id="">
-                            <li class="site-menu-item ">
-                                <a class="animsition-link" href="{{ route('finance.createSalaryStructure') }}">
-                                    <span class="site-menu-title ">Create Salary Structure</span>
-                                </a>
-                            </li>
-                            <li class="site-menu-item ">
-                                <a class="animsition-link" href="{{ route('finance.createPayslip') }}">
-                                    <span class="site-menu-title">Generate Pay Slip</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="site-menu-item has-sub">
-                        <a href="javascript:void(0)">
-                            <i class="site-menu-icon icon wb-users md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Employees</span>
-                            <span class="site-menu-arrow"></span>
-                        </a>
-                        <ul class="site-menu-sub">
-                            <li class="site-menu-item ">
-                                <a class="animsition-link" href="{{ route('finance.allEmployess')}}">
-                                    <span class="site-menu-title">All Employess</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="site-menu-category">General</li>
+                        <li class="site-menu-item ">
+                            <a class="animsition-link" href="javascript:void(0)">
+                                <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
+                                <span class="site-menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        {{-- <li class="site-menu-category">Payroll</li> --}}
+                        <li class="site-menu-item has-sub ">
+                            <a href="javascript:void(0)" class="">
+                                <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
+                                <span class="site-menu-title">Payroll</span>
+                                <span class="site-menu-arrow"></span>
+                            </a>
+                            <ul class="site-menu-sub" id="">
+                                <li class="site-menu-item ">
+                                    <a class="animsition-link" href="{{ route('finance.createSalaryStructure') }}">
+                                        <span class="site-menu-title ">Create Salary Structure</span>
+                                    </a>
+                                </li>
+                                <li class="site-menu-item ">
+                                    <a class="animsition-link" href="{{ route('finance.createPayslip') }}">
+                                        <span class="site-menu-title">Generate Pay Slip</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="site-menu-item has-sub">
+                            <a href="javascript:void(0)">
+                                <i class="site-menu-icon icon wb-users md-view-compact" aria-hidden="true"></i>
+                                <span class="site-menu-title">Employees</span>
+                                <span class="site-menu-arrow"></span>
+                            </a>
+                            <ul class="site-menu-sub">
+                                <li class="site-menu-item ">
+                                    <a class="animsition-link" href="{{ route('finance.allEmployess') }}">
+                                        <span class="site-menu-title">All Employess</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->role_id == 3)
+                        <li class="site-menu-category">General</li>
+                        <li class="site-menu-item ">
+                            <a class="animsition-link" href="javascript:void(0)">
+                                <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
+                                <span class="site-menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="site-menu-category">Employees</li>
+                        <li class="site-menu-item ">
+                            <a class="animsition-link" href="{{ route('hr.employee-list') }}">
+                                <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
+                                <span class="site-menu-title ">All Employees</span>
+                            </a>
+                        </li>
+                        <li class="site-menu-item ">
+                            <a class="animsition-link" href="{{ route('hr.employee-add') }}">
+                                <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
+                                <span class="site-menu-title">Add Employee</span>
+                            </a>
+                        </li>
                     @endif
 
 
@@ -871,7 +894,7 @@
                             </li>
                         </ul>
                     </li> --}}
-                    <li class="site-menu-category">Apps</li>
+                    {{-- <li class="site-menu-category">Apps</li>
                     <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                             <i class="site-menu-icon md-apps" aria-hidden="true"></i>
@@ -963,7 +986,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
                 {{-- <div class="site-menubar-section">
                     <h5>
