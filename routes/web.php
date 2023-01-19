@@ -7,6 +7,7 @@ use App\Http\Controllers\Finance\DashboardController as FinanceDashboardControll
 use App\Http\Controllers\Manager\DashboardController as ManagerDashboardController;
 use App\Http\Controllers\Employee\DashboardController as EmployeeDashboardController;
 use App\Http\Controllers\Demo\DashboardController as DemoDashboardController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,7 +69,7 @@ Route::group(['as'=>'hr.','prefix' => 'HR','middleware'=>['hr','auth','PreventBa
     Route::get('employee-list', [HrDashboardController::class, 'employeeList'])->name('employee-list');
     // Employee Add
     Route::get('employee-add', [HrDashboardController::class, 'employeeAdd'])->name('employee-add');
-    // Employee Data Add 
+    // Employee Data Add
     Route::post('employee-data-save', [HrDashboardController::class, 'employeeDataSave'])->name('employee-data-save');
 });
 // ********************************************* HR Route End ********************************************* //
@@ -136,4 +137,9 @@ Route::group(['as'=>'demo.','prefix' => 'Demo','middleware'=>['demo','auth','Pre
     Route::get('dashboard', [DemoDashboardController::class, 'index'])->name('dashboard');
 });
 // ********************************************* Demo Route End ********************************************* //
+
+// ********************************************* Pages Route Start ********************************************* //
+Route::get('approval', [HomeController::class, 'approvalEmployee'])->name('approval');
+// ********************************************* Pages Route End ********************************************* //
+
 

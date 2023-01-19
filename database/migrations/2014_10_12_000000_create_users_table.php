@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('emp_id');
             $table->bigInteger('role_id');
             $table->bigInteger('emp_status')->default('0');
-            $table->bigInteger('country_type')->default('In');
+            $table->string('country_type')->default('In');
             $table->string('email')->unique();
             $table->string('password');
             $table->tinyInteger('is_deleted')->default('0');

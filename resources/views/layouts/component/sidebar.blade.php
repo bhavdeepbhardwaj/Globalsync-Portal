@@ -66,7 +66,7 @@
                         <li class="site-menu-item ">
                             <a class="animsition-link" href="{{ route('hr.employee-add') }}">
                                 <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
-                                <span class="site-menu-title">Add Employee</span>
+                                <span class="site-menu-title">Add Emp</span>
                             </a>
                         </li>
                     @endif

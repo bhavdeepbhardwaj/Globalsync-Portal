@@ -110,25 +110,25 @@ class DashboardController extends Controller
                 // 'emp_uan'                           => 'required',
                 // 'emp_esi'                           => 'required',
                 // 'nick_name'                         => 'required',
-                'joining_month'                     => 'required',
+                // 'joining_month'                     => 'required',
                 // 'date_of_hitting'                   => 'required',
                 // 'rejoing_on'                        => 'required',
                 // 'date_of_confirmation'              => 'required',
                 // 'ageing'                            => 'required',
 
                 // Payment Details
-                'emp_paymode'                       => 'required',
-                'emp_bank'                          => 'required',
-                'emp_ifsc'                          => 'required',
+                // 'emp_paymode'                       => 'required',
+                // 'emp_bank'                          => 'required',
+                // 'emp_ifsc'                          => 'required',
                 // 'transport_r_a'                     => 'required',
-                'emp_acc'                           => 'required',
-                'emp_gsal'                          => 'required',
-                'annual_ctc'                        => 'required',
-                'in_hand_salary_with_stack'         => 'required',
+                // 'emp_acc'                           => 'required',
+                // 'emp_gsal'                          => 'required',
+                // 'annual_ctc'                        => 'required',
+                // 'in_hand_salary_with_stack'         => 'required',
 
                 // Employee Journey
                 // 'performer_month'                   => 'required',
-                'line_manager'                      => 'required',
+                // 'line_manager'                      => 'required',
                 // 'type_of_attrition'                 => 'required',
                 // 'pip_issue_date'                    => 'required',
                 // 'date_of_verbal_warning'            => 'required',
@@ -151,24 +151,24 @@ class DashboardController extends Controller
                 // 'experience_relieving'              => 'required',
 
                 // Employee Family Details
-                'father_name'                       => 'required',
-                'nominee_details'                   => 'required',
-                'relation'                          => 'required',
-                'address'                           => 'required',
+                // 'father_name'                       => 'required',
+                // 'nominee_details'                   => 'required',
+                // 'relation'                          => 'required',
+                // 'address'                           => 'required',
                 // 'total_member'                      => 'required',
 
 
                 // Employee Personal Details
-                'marital_status'                    => 'required',
-                'dob'                               => 'required',
-                'primary_email'                     => 'required',
+                // 'marital_status'                    => 'required',
+                // 'dob'                               => 'required',
+                // 'primary_email'                     => 'required',
 
-                'per_address_h_no'                  => 'required',
-                'per_lacality_building'             => 'required',
-                'per_area'                          => 'required',
-                'per_district'                      => 'required',
-                'per_state'                         => 'required',
-                'per_post_code'                     => 'required',
+                // 'per_address_h_no'                  => 'required',
+                // 'per_lacality_building'             => 'required',
+                // 'per_area'                          => 'required',
+                // 'per_district'                      => 'required',
+                // 'per_state'                         => 'required',
+                // 'per_post_code'                     => 'required',
 
                 // 'present_address_h_no'              => 'required',
                 // 'lacality_building'                 => 'required',
@@ -177,18 +177,18 @@ class DashboardController extends Controller
                 // 'state'                             => 'required',
                 // 'post_code'                         => 'required',
 
-                'aadhaar'                           => 'required',
-                'blood_group'                       => 'required',
+                // 'aadhaar'                           => 'required',
+                // 'blood_group'                       => 'required',
 
-                'emy_contact_no'                    => 'required',
-                'emy_contact_relation'              => 'required',
-                'emy_contact_email'                 => 'required',
+                // 'emy_contact_no'                    => 'required',
+                // 'emy_contact_relation'              => 'required',
+                // 'emy_contact_email'                 => 'required',
 
                 // 'total_bank'                        => 'required',
 
-                'phone'                             => 'required',
-                'mobile'                            => 'required',
-                'mob_link_uan_no'                   => 'required',
+                // 'phone'                             => 'required',
+                // 'mobile'                            => 'required',
+                // 'mob_link_uan_no'                   => 'required',
 
                 // file
                 // 'salary_slip'                       => 'required',

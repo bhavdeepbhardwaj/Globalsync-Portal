@@ -80,12 +80,12 @@ class LoginController extends Controller
                 return redirect()->route('finance.dashboard');
             } elseif (Auth()->user()->role_id == 5) {
                 return redirect()->route('manager.dashboard');
-            } elseif (Auth()->user()->role_id == 6) {
+            } elseif (Auth()->user()->role_id == 6 && Auth()->user()->emp_users == 1) {
                 return redirect()->route('employee.dashboard');
             } elseif (Auth()->user()->role_id == 0) {
                 return redirect()->route('demo.dashboard');
             } else {
-                return redirect()->route('login')->with(dd('Either Email or Password is wrong'));
+                return redirect()->route('approval');
             }
         }
         return redirect()->route('login')->with(dd('Either Email or Password is wrong'));

@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('global/vendor/waves/waves.css ') }}">
     <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
     <link rel="stylesheet" href="../../assets/examples/css/forms/validation.css">
+    <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
+
 
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist/chartist.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/jvectormap/jquery-jvectormap.css ') }}">
@@ -175,6 +177,9 @@
 
     <script src="../../assets/examples/js/forms/uploads.js"></script>
     <script src="../../../global/js/Plugin/formatter.js"></script>
+    <script src="../../../global/js/Plugin/jquery-wizard.js"></script>
+
+        <script src="../../assets/examples/js/forms/wizard.js"></script>
 
 
 

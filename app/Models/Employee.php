@@ -9,14 +9,16 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $table = 'users';
+    protected $table = 'employees';
 
 
     protected $fillable = [
         'user_id',
+        'emp_id',
         'emp_name',
         'emp_email',
         'emp_desg',
+        'emp_desp',
         'emp_doj',
         'emp_dept',
         'emp_pan',
@@ -38,6 +40,7 @@ class Employee extends Model
         'emp_other',
         'emp_exitdate',
         'emp_status',
+        'dob',
         'country_type',
         'nick_name',
         'line_manager',
@@ -50,10 +53,8 @@ class Employee extends Model
         'fnf',
         'reason_of_leaving',
         'type_of_attrition',
-        'annual_ctc_in',
-        'annual_ctc_new',
+        'annual_ctc',
         'in_hand_salary_with_stack',
-        'final_ctc_all',
         'transport_r_a',
         'gender',
         'marital_status',
@@ -63,7 +64,7 @@ class Employee extends Model
         'district',
         'state',
         'post_code',
-        'permanent_address_h_no',
+        'per_address_h_no',
         'per_lacality_building',
         'per_area',
         'per_district',
@@ -80,12 +81,12 @@ class Employee extends Model
         'emy_contact_no',
         'emy_contact_relation',
         'emy_contact_email',
-        'no_of_bank',
-        'no_of_family_member',
+        'total_bank',
+        'total_member',
         'mob_link_uan_no',
         'blood_group',
         'performer_month',
-        'verbal_warning',
+        'no_verbal_warning',
         'reason_of_verbal_warning',
         'date_of_verbal_warning',
         'no_of_warning',
