@@ -7,7 +7,7 @@
                     @if (Auth::user()->role_id == 4)
                         <li class="site-menu-category">General</li>
                         <li class="site-menu-item ">
-                            <a class="animsition-link" href="javascript:void(0)">
+                            <a class="animsition-link" href="{{ route('finance.dashboard') }}">
                                 <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
                                 <span class="site-menu-title">Dashboard</span>
                             </a>
@@ -51,7 +51,7 @@
                     @if (Auth::user()->role_id == 3)
                         <li class="site-menu-category">General</li>
                         <li class="site-menu-item ">
-                            <a class="animsition-link" href="javascript:void(0)">
+                            <a class="animsition-link" href="{{ route('hr.dashboard') }}">
                                 <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
                                 <span class="site-menu-title">Dashboard</span>
                             </a>

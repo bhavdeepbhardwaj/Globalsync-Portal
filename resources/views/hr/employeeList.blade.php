@@ -43,61 +43,66 @@
                     <div class="panel-actions"></div>
                     <h3 class="panel-title">Basic</h3>
                 </header>
-                <div class="panel-body">
+                <div class="panel-body  table-responsive">
                     <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Date</th>
-                                <th>Salary</th>
+                                <th>EMPLOYEE ID</th>
+                                <th>NAME</th>
+                                <th>DESIGNATION</th>
+                                <th>DEPARTMENT</th>
+                                <th>DOJ</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Date</th>
-                                <th>Salary</th>
+                                <th>EMPLOYEE ID</th>
+                                <th>NAME</th>
+                                <th>DESIGNATION</th>
+                                <th>DEPARTMENT</th>
+                                <th>DOJ</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            <tr>
-                                <td>Damon</td>
-                                <td>5516 Adolfo Green</td>
-                                <td>Littelhaven</td>
-                                <td>85</td>
-                                <td>2014/06/13</td>
-                                <td>$553,536</td>
-                            </tr>
-                            <tr>
-                                <td>Torrey</td>
-                                <td>1995 Richie Neck</td>
-                                <td>West Sedrickstad</td>
-                                <td>77</td>
-                                <td>2014/09/12</td>
-                                <td>$243,577</td>
-                            </tr>
-                            <tr>
-                                <td>Miracle</td>
-                                <td>176 Hirthe Squares</td>
-                                <td>Ryleetown</td>
-                                <td>82</td>
-                                <td>2013/09/27</td>
-                                <td>$784,802</td>
-                            </tr>
-                            <tr>
-                                <td>Wilhelmine</td>
-                                <td>44727 O&#x27;Hara Union</td>
-                                <td>Dibbertfurt</td>
-                                <td>68</td>
-                                <td>2013/06/28</td>
-                                <td>$207,291</td>
-                            </tr>
+                            @foreach ($emplist as $emp)
+                                <tr>
+
+                                    <td>{{ $emp->emp_id }}</td>
+                                    <td>{{ $emp->emp_name }}</td>
+                                    <td>{{ $emp->emp_desg }}</td>
+                                    <td>
+                                        <?php $deptName = \App\Models\Department::where('id', $emp->emp_dept)->first(); ?>
+                                        {{ $deptName->name }}
+                                    </td>
+                                    <td>{{ $emp->emp_doj }}</td>
+                                    <td>
+                                        @if ($emp->emp_status == '1')
+                                            <span class="badge badge-outline badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-outline badge-warning">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('hr.edit-details', [$emp->emp_id]) }}" class="">
+                                            <div class="icondemo vertical-align-middle">
+                                                <i class="icon wb-edit" aria-hidden="true" style="font-size: 24px;"></i>
+                                            </div>
+                                        </a>
+                                        &nbsp;&nbsp;
+                                        <a href="{{ route('hr.view-details', [$emp->emp_id]) }}" class="">
+                                            <div class="icondemo vertical-align-middle">
+                                                <i class="icon wb-eye" aria-hidden="true" style="font-size: 24px;"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+
+
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

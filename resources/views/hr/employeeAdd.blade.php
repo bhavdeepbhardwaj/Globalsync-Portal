@@ -231,7 +231,9 @@
                                             <div class="checkbox-custom checkbox-primary">
                                                 <input type="checkbox" id="emp_meal" name="emp_meal"
                                                     data-fv-notempty="true" data-fv-notempty-message="This is required"
-                                                    checked>
+                                                    checked value="1">
+                                                <input type="hidden" value="0" name="emp_meal" />
+
                                                 <label for="emp_meal">Meal Service Availed</label>
                                             </div>
                                         </div>
@@ -241,7 +243,9 @@
                                             <div class="checkbox-custom checkbox-primary">
                                                 <input type="checkbox" id="emp_cab" name="emp_cab"
                                                     data-fv-notempty="true" data-fv-notempty-message="This is required"
-                                                    checked>
+                                                    checked value="1">
+                                                <input type="hidden" value="0" name="emp_cab" />
+
                                                 <label for="emp_cab">Travel Service Availed</label>
                                             </div>
                                         </div>
@@ -971,7 +975,7 @@
                                     <label class="col-xl-6 col-md-4 form-control-label">No Of Family Member
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
-                                        <input type="text" class="form-control" name="no_of_family_member"
+                                        <input type="text" class="form-control" name="total_member"
                                             placeholder="No Of Family Member">
                                     </div>
                                 </div>

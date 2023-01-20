@@ -71,6 +71,12 @@ Route::group(['as'=>'hr.','prefix' => 'HR','middleware'=>['hr','auth','PreventBa
     Route::get('employee-add', [HrDashboardController::class, 'employeeAdd'])->name('employee-add');
     // Employee Data Add
     Route::post('employee-data-save', [HrDashboardController::class, 'employeeDataSave'])->name('employee-data-save');
+    // Employee Data View Details
+    Route::get('view-details/{id}', [HrDashboardController::class, 'employeeView'])->name('view-details');
+    // Employee Data Edit Details
+    Route::get('edit-details/{id}', [HrDashboardController::class, 'employeeEdit'])->name('edit-details');
+    // Employee Data Update Details
+    Route::post('employee-update', [HrDashboardController::class, 'employeeUpdate'])->name('update-details');
 });
 // ********************************************* HR Route End ********************************************* //
 

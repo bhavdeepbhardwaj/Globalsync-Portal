@@ -17,22 +17,22 @@ class DepartmentTableSeeder extends Seeder
     {
         DB::table('departments')->insert([
             [
-                'dep_name' => 'IT',
+                'name' => 'IT',
             ],
             [
-                'dep_name' => 'Sales',
+                'name' => 'Sales',
             ],
             [
-                'dep_name' => 'HR',
+                'name' => 'HR',
             ],
             [
-                'dep_name' => 'Projects',
+                'name' => 'Projects',
             ],
             [
-                'dep_name' => 'Finance',
+                'name' => 'Finance',
             ],
             [
-                'dep_name' => 'Marketing',
+                'name' => 'Marketing',
             ]
         ]);
     }

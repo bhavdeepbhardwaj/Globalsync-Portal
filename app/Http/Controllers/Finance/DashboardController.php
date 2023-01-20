@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -92,11 +93,13 @@ class DashboardController extends Controller
     public function allEmployess()
     {
         try {
+            $emplist = Employee::where('is_deleted', '0')->select('emp_id', 'emp_name', 'emp_desg', 'emp_dept', 'emp_doj', 'emp_status')->get();
+            // dd($empList);
 
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong !");
         }
-        return view('finance.allEmployess');
+        return view('finance.allEmployess',['emplist' => $emplist]);
     }
     // View Details Employess
     public function viewDetails()

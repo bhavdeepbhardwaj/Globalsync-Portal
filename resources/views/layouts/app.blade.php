@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
 
 
+
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist/chartist.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/jvectormap/jquery-jvectormap.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css ') }}">
@@ -38,6 +39,10 @@
 
     <link rel="stylesheet" href="../../../global/vendor/blueimp-file-upload/jquery.fileupload.css">
         <link rel="stylesheet" href="../../../global/vendor/dropify/dropify.css">
+  <link rel="stylesheet" href="../../assets/examples/css/pages/profile.css">
+  <link rel="stylesheet" href="../../../global/vendor/toastr/toastr.css">
+  <link rel="stylesheet" href="../../assets/examples/css/advanced/toastr.css">
+
 
 
 
@@ -67,7 +72,9 @@
     </script>
 </head>
 
-<body class="animsition dashboard">
+{{-- <body class="animsition page-profile"> --}}
+{{-- <body class="animsition dashboard"> --}}
+    <body class="animsition page-profile">
 
     {{--  Navbar  --}}
     @include('layouts.component.navbar')
@@ -180,6 +187,11 @@
     <script src="../../../global/js/Plugin/jquery-wizard.js"></script>
 
         <script src="../../assets/examples/js/forms/wizard.js"></script>
+  <script src="../../../global/js/Plugin/responsive-tabs.js"></script>
+  <script src="../../../global/js/Plugin/toastr.js"></script>
+  <script src="../../../global/vendor/toastr/toastr.js"></script>
+
+
 
 
 

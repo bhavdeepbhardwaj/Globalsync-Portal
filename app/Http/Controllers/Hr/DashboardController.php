@@ -28,10 +28,12 @@ class DashboardController extends Controller
     public function employeeList()
     {
         try {
+            $emplist = Employee::where('is_deleted', '0')->select('emp_id', 'emp_desg', 'emp_dept', 'emp_doj', 'emp_status')->get();
+            // dd($emplist);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('hr.employeeList');
+        return view('hr.employeeList', ['emplist' => $emplist]);
     }
 
     // Employee Add
@@ -80,7 +82,7 @@ class DashboardController extends Controller
                 'country_type'                      => 'required',
 
                 'user_id'                           => 'required',
-                'emp_id'                            => 'required',
+                // 'emp_id'                            => 'required',
                 // 'emp_email'                         => 'required',
                 // 'emp_status'                        => 'required',
                 // 'country_type'                      => 'required',
@@ -388,6 +390,64 @@ class DashboardController extends Controller
             return redirect()->back()->with("success", "Admin detail is updated !");
 
             // dd($user);
+
+
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+    }
+
+    // Employee Data View
+    public function employeeView($empID)
+    {
+        try {
+            $empView = Employee::where('emp_id', $empID)->first();
+            $empRoles = User::where('emp_id', $empID)->first();
+            $roleName = Role::where('id', $empRoles->role_id)->select('role_name')->first();
+            // dd($roleName);
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('hr.employeeView', ['empView' => $empView, 'roleName' => $roleName]);
+    }
+    // Employee Data Edit
+    public function employeeEdit($empID)
+    {
+        try {
+            $empEdit = Employee::where('emp_id', $empID)->first();
+            $userEdit = User::where('id', $empEdit->user_id)->first();
+            // dd($userEdit);
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('hr.employeeEdit', ['empEdit' => $empEdit, 'userEdit' => $userEdit]);
+    }
+
+    // Employee Data Update
+    public function employeeUpdate(Request $request)
+    {
+        try {
+            dd($request->all());
+
+            $this->validate($request, [
+                'email'                             => 'required',
+                // 'password'                          => 'required',
+                'emp_id'                            => 'required',
+                'role_id'                           => 'required',
+                'emp_status'                        => 'required',
+                'country_type'                      => 'required',
+                'user_id'                           => 'required',
+            ]);
+
+            User::where('id', $request->user_id)->update([
+                'email'                     => $request->email,
+                // 'password'                  => bcrypt($request->password),
+                'role_id'                   => $request->role_id,
+                'emp_id'                    => $request->emp_id,
+                'emp_status'                => $request->emp_status,
+                'country_type'              => $request->country_type,
+            ]);
+
 
 
         } catch (ModelNotFoundException $exception) {

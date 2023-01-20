@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('global/vendor/datatables.net-bs4/dataTables.bootstrap4.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/datatables.net-bs4/dataTables.bootstrap4.css ') }}">
     <link rel="stylesheet"
         href="{{ asset('global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css ') }}">
     <link rel="stylesheet"
@@ -10,8 +10,7 @@
         href="{{ asset('global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css ') }}">
     <link rel="stylesheet"
         href="{{ asset('global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css ') }}">
-    <link rel="stylesheet"
-        href="{{ asset('global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css ') }}">
     <link rel="stylesheet"
         href="{{ asset('global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css ') }}">
     <link rel="stylesheet"
@@ -48,8 +47,8 @@
                     <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                         <thead>
                             <tr>
-                                <th>EMP ID</th>
-                                <th>Name</th>
+                                <th>EMPLOYEE ID</th>
+                                <th>NAME</th>
                                 <th>DESIGNATION</th>
                                 <th>DEPARTMENT</th>
                                 <th>DOJ</th>
@@ -59,8 +58,8 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>EMP ID</th>
-                                <th>Name</th>
+                                <th>EMPLOYEE ID</th>
+                                <th>NAME</th>
                                 <th>DESIGNATION</th>
                                 <th>DEPARTMENT</th>
                                 <th>DOJ</th>
@@ -69,6 +68,44 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach ($emplist as $emp)
+                                <tr>
+
+                                    <td>{{ $emp->emp_id }}</td>
+                                    <td>{{ $emp->emp_name }}</td>
+                                    <td>{{ $emp->emp_desg }}</td>
+                                    <td>
+                                        <?php $deptName = \App\Models\Department::where('id', $emp->emp_dept)->first(); ?>
+                                        {{ $deptName->name }}
+                                    </td>
+                                    <td>{{ $emp->emp_doj }}</td>
+                                    <td>
+                                        @if ($emp->emp_status == '1')
+                                            <span class="badge badge-outline badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-outline badge-warning">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('hr.edit-details', [$emp->emp_id]) }}" class="">
+                                            <div class="icondemo vertical-align-middle">
+                                                <i class="icon wb-edit" aria-hidden="true" style="font-size: 24px;"></i>
+                                            </div>
+                                        </a>
+                                        &nbsp;&nbsp;
+                                        {{-- <a href="{{ route('hr.view-details', [$emp->emp_id]) }}" class=""> --}}
+                                        <a href="{{ route('finance.viewDetails')}}" class="">
+                                            <div class="icondemo vertical-align-middle">
+                                                <i class="icon wb-eye" aria-hidden="true" style="font-size: 24px;"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        {{-- <tbody>
                             <tr>
                                 <td>Damon</td>
                                 <td>5516 Adolfo Green</td>
@@ -91,53 +128,11 @@
                                 </td>
                             </tr>
 
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
             </div>
             <!-- End Panel Basic -->
-
-            <!-- Panel Table Tools -->
-            {{-- <div class="panel">
-                <header class="panel-heading">
-                    <h3 class="panel-title">Table Tools</h3>
-                </header>
-                <div class="panel-body">
-                    <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
-                        <thead>
-                            <tr>
-                                <th>EMP ID</th>
-                                <th>Name</th>
-                                <th>DESIGNATION</th>
-                                <th>DEPARTMENT</th>
-                                <th>DOJ</th>
-                                <th>STATUS</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>EMP ID</th>
-                                <th>Name</th>
-                                <th>DESIGNATION</th>
-                                <th>DEPARTMENT</th>
-                                <th>DOJ</th>
-                                <th>STATUS</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <td>Torrey</td>
-                                <td>3658 Richie Street</td>
-                                <td>West Sedrickstad</td>
-                                <td>28</td>
-                                <td>2014/09/12</td>
-                                <td>$243,577</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> --}}
-            <!-- End Panel Table Tools -->
 
         </div>
     </div>
