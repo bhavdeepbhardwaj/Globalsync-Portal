@@ -1466,7 +1466,6 @@
                 <!-- End Employee Exit & Description Details Panel Full Example -->
 
 
-
                 {{-- Submit Button --}}
                 <div class="form-group col-xl-12 text-center padding-top-m">
                     {{-- <button type="submit" class="btn btn-primary" id="validateButton1">Submit</button> --}}

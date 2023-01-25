@@ -36,11 +36,12 @@
             @include('flush.alert')
             {{-- Message  --}}
 
-            <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employee-data-save') }}"
+            {{-- <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employee-data-save') }}" --}}
+            <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employeeDataJsonSave') }}"
                 enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{-- hidden Item --}}
-                <input type="text" name="user_id" class="form-control" value="{{ $employeeID }}" hidden />
+                <input type="text" name="user_id" class="form-control" value="{{ $user_id }}" hidden />
                 {{-- hidden Item --}}
 
                 <!-- Employee Employee Credentials Details Panel Full Example -->
@@ -85,7 +86,7 @@
                                             <span class="input-group-addon">
                                                 <i class="icon wb-lock" aria-hidden="true"></i>
                                             </span>
-                                            <input type="password" class="form-control" name="password"
+                                            <input type="password" class="form-control" id="pwd" name="password"
                                                 placeholder="Min length 8" required="">
                                         </div>
                                     </div>
@@ -1401,7 +1402,8 @@
                 {{-- Submit Button --}}
                 <div class="form-group col-xl-12 text-center padding-top-m">
                     {{-- <button type="submit" class="btn btn-primary" id="validateButton1">Submit</button> --}}
-                    <button type="submit" class="btn btn-primary" id="">Submit</button>
+                    <button type="submit" class="btn btn-primary" id=""
+                        onclick="mySubmit(this)">Submit</button>
                 </div>
                 {{-- Submit Button --}}
 
@@ -1414,4 +1416,22 @@
 
 @section('js')
     <!-- Page -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+    <script>
+        function mySubmit(obj) {
+            var pwdObj = document.getElementById('pwd');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {
+                numRounds: 1
+                // alert(hashObj);
+            });
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+        }
+    </script>
+    <script>
+        $.getJSON('http://ip-api.com/json', function(data) {
+            console.log(JSON.stringify(data, null, 2));
+        });
+    </script>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\Role;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Json;
 use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
@@ -44,6 +45,8 @@ class DashboardController extends Controller
             $roles = Role::where('is_deleted', '0')->get();
             // $getdata = User::where('is_deleted', '0')->where('role_id', '6')->select('id','emp_id')->first();
             $getdata = User::count();
+            $user_id = User::all()->last()->id;
+            // dd($user_id);
             // dd($getdata);
 
             if (isset($getdata) && $getdata) {
@@ -62,7 +65,7 @@ class DashboardController extends Controller
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('hr.employeeAdd', ['employeeID' => $employeeID,  'departments' => $departments, 'roles' => $roles]);
+        return view('hr.employeeAdd', ['employeeID' => $employeeID,  'departments' => $departments, 'roles' => $roles, 'user_id' => $user_id]);
     }
 
     // Employee Data Save
@@ -395,6 +398,38 @@ class DashboardController extends Controller
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
+    }
+
+    // Employee Save Data Json Format
+    public function employeeDataJsonSave(Request $request)
+    {
+        // dd($request->all());
+
+        // $data = [
+        //     $request->email,
+        //     bcrypt($request->password),
+        //     $request->role_id,
+        //     $request->emp_id,
+        //     $request->emp_status,
+        //     $request->country_type,
+        // ];
+
+        $data = $request->all();
+
+        $input['token'] = date('Y-m-d H:i:s');
+        $input['data'] = json_encode($data);
+
+        // foreach (json_decode($data) as $key => $value) {
+        //     if($key=="value")
+        //         $obj['password'] = $value;
+        //     else
+        //         $obj[$key] = $value;s
+        // }
+        Json::create($input);
+
+        return redirect()->back()->with("success", "Admin detail is updated !");
+
+        // dd($input);
     }
 
     // Employee Data View
