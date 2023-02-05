@@ -87,10 +87,11 @@
                                             <h5>Employee Department</h5>
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{-- {{ $empView->emp_dept }} --}}
-                                            <?php $deptName = \App\Models\Department::where('id', $empView->emp_dept)
-                                                ->select('name')
-                                                ->first(); ?>
+                                            @php
+                                                // $fetchFormArr = json_decode($empView->formdata, true);
+                                                $deptName = \App\Models\Department::where('id', $fetchFormArr['emp_dept'])->first();
+
+                                            @endphp
                                             {{ $deptName->name }}
                                         </div>
                                     </div>

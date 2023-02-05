@@ -77,6 +77,8 @@ Route::group(['as'=>'hr.','prefix' => 'HR','middleware'=>['hr','auth','PreventBa
     Route::get('edit-details/{id}', [HrDashboardController::class, 'employeeEdit'])->name('edit-details');
     // Employee Data Update Details
     Route::post('employee-update', [HrDashboardController::class, 'employeeUpdate'])->name('update-details');
+    // Bulk Employee Upload
+    Route::post('emp-import', [HrDashboardController::class, 'importEmployee'])->name('importEmployee');
 
 
     // JSON Formated save data

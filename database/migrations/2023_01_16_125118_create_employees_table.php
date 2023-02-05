@@ -19,13 +19,30 @@ class CreateEmployeesTable extends Migration
             $table->text('emp_id');
             $table->text('emp_name')->nullable();
             $table->text('emp_email')->nullable();
+            $table->text('formdata')->nullable();
+            $table->text('emp_pic')->nullable();
+            $table->text('emp_status')->nullable()->default('0');
+            $table->text('country_type')->nullable()->default('In');
+            $table->text('appraisal_letter')->nullable();
+            $table->text('appraisal_1')->nullable();
+            $table->text('appraisal_2')->nullable();
+            $table->text('appraisal_3')->nullable();
+            $table->text('appraisal_4')->nullable();
+            $table->text('ssc')->nullable();
+            $table->text('hsc')->nullable();
+            $table->text('graduation')->nullable();
+            $table->text('experience_relieving')->nullable();
+            $table->text('salary_slip')->nullable();
+            $table->text('bank_statement')->nullable();
+            $table->text('cancel_cheque')->nullable();
+            $table->tinyInteger('is_deleted')->default('0');
+            $table->timestamps();
             $table->text('emp_desg')->nullable();
             $table->text('emp_doj')->nullable();
             $table->text('emp_dept')->nullable();
             $table->text('emp_pan')->nullable();
             $table->text('emp_uan')->nullable();
             $table->text('emp_esi')->nullable();
-            $table->text('emp_pic')->nullable();
             $table->text('emp_paymode')->nullable();
             $table->text('emp_bank')->nullable();
             $table->text('emp_ifsc')->nullable();
@@ -41,8 +58,6 @@ class CreateEmployeesTable extends Migration
             $table->text('emp_other')->nullable();
             $table->text('emp_exitdate')->nullable();
             $table->text('emp_desp')->nullable();
-            $table->text('emp_status')->nullable()->default('0');
-            $table->text('country_type')->nullable()->default('In');
             $table->text('nick_name')->nullable();
             $table->text('line_manager')->nullable();
             $table->text('joining_month')->nullable();
@@ -95,20 +110,7 @@ class CreateEmployeesTable extends Migration
             $table->text('reason_of_warning')->nullable();
             $table->text('pip_issue_date')->nullable();
             $table->text('date_of_written_warning')->nullable();
-            $table->text('appraisal_letter')->nullable();
-            $table->text('appraisal_1')->nullable();
-            $table->text('appraisal_2')->nullable();
-            $table->text('appraisal_3')->nullable();
-            $table->text('appraisal_4')->nullable();
-            $table->text('ssc')->nullable();
-            $table->text('hsc')->nullable();
-            $table->text('graduation')->nullable();
-            $table->text('experience_relieving')->nullable();
-            $table->text('salary_slip')->nullable();
-            $table->text('bank_statement')->nullable();
-            $table->text('cancel_cheque')->nullable();
-            $table->tinyInteger('is_deleted')->default('0');
-            $table->timestamps();
+
         });
     }
 

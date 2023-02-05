@@ -36,7 +36,7 @@
             @include('flush.alert')
             {{-- Message  --}}
 
-            <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.update-details' )}}"
+            <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.update-details') }}"
                 enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{-- hidden Item --}}
@@ -206,7 +206,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_food"
-                                            placeholder="Search..." value="{{ $empEdit->emp_food }}">
+                                            placeholder="Search..." value="{{ $fetchFormArr['emp_food'] }}">
                                     </div>
                                 </div>
 
@@ -216,7 +216,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_spl"
-                                            placeholder="Search..." value="{{ $empEdit->emp_spl }}">
+                                            placeholder="Search..." value="{{ $fetchFormArr['emp_spl'] }}">
                                     </div>
                                 </div>
 
@@ -230,7 +230,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_travel"
-                                            placeholder="Search..." value="{{ $empEdit->emp_travel }}">
+                                            placeholder="Search..." value="{{ $fetchFormArr['emp_travel'] }}">
                                     </div>
                                 </div>
 
@@ -238,9 +238,10 @@
                                     <div class=" col-xl-6 col-md-9">
                                         <div class="input-group">
                                             <div class="checkbox-custom checkbox-primary">
+
                                                 <input type="checkbox" id="emp_meal" name="emp_meal" value="1"
                                                     data-fv-notempty="true" data-fv-notempty-message="This is required"
-                                                    <?= $empEdit->emp_meal == '1' ? 'checked' : '' ?>>
+                                                    @if ($fetchFormArr['emp_meal'] == '1') Checked @endif>
                                                 <input type="hidden" value="0" name="emp_meal" />
 
                                                 <label for="emp_meal">Meal Service Availed</label>
@@ -252,7 +253,7 @@
                                             <div class="checkbox-custom checkbox-primary">
                                                 <input type="checkbox" id="emp_cab" name="emp_cab" value="1"
                                                     data-fv-notempty="true" data-fv-notempty-message="This is required"
-                                                    <?= $empEdit->emp_cab == '1' ? 'checked' : '' ?>>
+                                                    @if ($fetchFormArr['emp_cab'] == '1') Checked @endif>
                                                 <input type="hidden" value="0" name="emp_cab" />
 
                                                 <label for="emp_cab">Travel Service Availed</label>
@@ -289,7 +290,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_stinc"
-                                            placeholder="Search..." value="{{ $empEdit->emp_stinc }}">
+                                            placeholder="Search..." value="{{ $fetchFormArr['emp_stinc'] }}">
                                     </div>
                                 </div>
 
@@ -299,7 +300,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_inc"
-                                            placeholder="Search..." value="{{ $empEdit->emp_inc }}">
+                                            placeholder="Search..." value="{{ $fetchFormArr['emp_inc'] }}">
                                     </div>
                                 </div>
 
@@ -313,7 +314,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_other"
-                                            placeholder="Search..." value="{{ $empEdit->emp_other }}">
+                                            placeholder="Search..." value="{{ $fetchFormArr['emp_other'] }}">
                                     </div>
                                 </div>
 
@@ -345,7 +346,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="emp_pic" />
+                                                    data-max-file-size="10M" name="emp_pic" value="{{$empEdit->emp_pic}}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -368,7 +369,8 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="emp_doj"
-                                            placeholder="YYYY/MM/DD" required="" value="{{ $empEdit->emp_doj }}" />
+                                            placeholder="YYYY/MM/DD" required=""
+                                            value="{{ $fetchFormArr['emp_doj'] }}" />
                                     </div>
                                 </div>
 
@@ -378,7 +380,7 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_desg"
-                                            placeholder="Designation" value="{{ $empEdit->emp_desg }}">
+                                            placeholder="Designation" value="{{ $fetchFormArr['emp_desg'] }}">
                                     </div>
                                 </div>
 
@@ -388,9 +390,13 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <select class="form-control" id="department" name="emp_dept" required="">
-                                            <?php $department = \App\Models\Department::where('id', $empEdit->emp_dept)->first(); ?>
-                                            <option value="{{ $empEdit->emp_dept }}">{{ $department->name }}</option>
+                                            @foreach ($deptData as $dData)
+                                                <option value="{{ $dData->id }}"
+                                                    @if ($fetchFormArr['emp_dept'] == $dData->id) selected @endif>{{ $dData->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
+
                                     </div>
                                 </div>
 
@@ -400,7 +406,13 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <select class="form-control" id="gen" name="gender" required="">
-                                            <option value="{{ $empEdit->gender }}">{{ $empEdit->gender }}</option>
+                                            <option value="">Choose a Gender</option>
+                                            <option value="Male" @if ($fetchFormArr['gender'] == 'Male') Selected @endif>Male
+                                            </option>
+                                            <option value="Female" @if ($fetchFormArr['gender'] == 'Female') Selected @endif>Female
+                                            </option>
+                                            <option value="Other" @if ($fetchFormArr['gender'] == 'Other') Selected @endif>Other
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -413,7 +425,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_pan"
-                                            placeholder="PAN Number" required="" value="{{ $empEdit->emp_pan }}">
+                                            placeholder="PAN Number" required=""
+                                            value="{{ $fetchFormArr['emp_pan'] }}">
                                     </div>
                                 </div>
 
@@ -425,7 +438,7 @@
                                             <input type="text" class="form-control" name="emp_uan"
                                                 data-fv-stringlength="true" data-fv-stringlength-max="12"
                                                 data-fv-stringlength-message="UAN is a 12-digit identification number"
-                                                placeholder="UAN Number" value="{{ $empEdit->emp_uan }}" />
+                                                placeholder="UAN Number" value="{{ $fetchFormArr['emp_uan'] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -438,7 +451,7 @@
                                             <input type="text" class="form-control" name="emp_esi"
                                                 data-fv-stringlength="true" data-fv-stringlength-max="17"
                                                 data-fv-stringlength-message="ESI is a 17-digit identification number"
-                                                placeholder="ESI Number" value="{{ $empEdit->emp_esi }}" />
+                                                placeholder="ESI Number" value="{{ $fetchFormArr['emp_esi'] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -448,7 +461,8 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="nick_name"
-                                            placeholder="Nick Name" required="" value="{{ $empEdit->nick_name }}" />
+                                            placeholder="Nick Name" required=""
+                                            value="{{ $fetchFormArr['nick_name'] }}" />
                                     </div>
                                 </div>
 
@@ -456,7 +470,7 @@
                                     <label class="col-xl-6 col-md-4 form-control-label">Joining Month</label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="month" class="form-control" name="joining_month"
-                                            placeholder="Joining Month" value="{{ $empEdit->joining_month }}">
+                                            placeholder="Joining Month" value="{{ $fetchFormArr['joining_month'] }}">
                                     </div>
                                 </div>
 
@@ -465,7 +479,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="date_of_hitting"
                                             placeholder="YYYY/MM/DD" required=""
-                                            value="{{ $empEdit->date_of_hitting }}" />
+                                            value="{{ $fetchFormArr['date_of_hitting'] }}" />
                                     </div>
                                 </div>
 
@@ -474,7 +488,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="rejoing_on"
                                             placeholder="YYYY/MM/DD" required=""
-                                            value="{{ $empEdit->rejoing_on }}" />
+                                            value="{{ $fetchFormArr['rejoing_on'] }}" />
                                     </div>
                                 </div>
 
@@ -483,7 +497,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="date_of_confirmation"
                                             placeholder="YYYY/MM/DD" required=""
-                                            value="{{ $empEdit->date_of_confirmation }}" />
+                                            value="{{ $fetchFormArr['date_of_confirmation'] }}" />
                                     </div>
                                 </div>
 
@@ -493,7 +507,7 @@
                                         <input type="text" class="form-control" name="ageing"
                                             data-fv-lessthan="true" data-fv-lessthan-value="72"
                                             data-fv-greaterthan-message="please enter less than 72" placeholder="Ageing"
-                                            data-fv-field="ageing" value="{{ $empEdit->ageing }}">
+                                            data-fv-field="ageing" value="{{ $fetchFormArr['ageing'] }}">
                                         <small class="invalid-feedback" data-fv-validator="lessThan" data-fv-for="ageing"
                                             data-fv-result="NOT_VALIDATED" style="display: none;">Please enter a value
                                             less than or equal to
@@ -528,34 +542,14 @@
                                     <div class="col-xl-6 col-md-9">
                                         <select class="form-control" id="pay_mode" name="emp_paymode" required="">
                                             {{-- <option value="">Choose a Payment Mode</option> --}}
-                                            @if ($empEdit->emp_paymode == 'Bank Transfer')
-                                                {
-                                                <option value="{{ $empEdit->emp_paymode }}">{{ $empEdit->emp_paymode }}
-                                                </option>
-                                                <option value="Wire Transfer">Wire Transfer</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Cheque">Cheque</option>}
-                                            @elseif ($empEdit->emp_paymode == 'Wire Transfer')
-                                                {
-                                                <option value="{{ $empEdit->emp_paymode }}">{{ $empEdit->emp_paymode }}
-                                                </option>
-                                                <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Cheque">Cheque</option>}
-                                            @elseif ($empEdit->emp_paymode == 'Cash')
-                                                {
-                                                <option value="{{ $empEdit->emp_paymode }}">{{ $empEdit->emp_paymode }}
-                                                </option>
-                                                <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Wire Transfer">Wire Transfer</option>
-                                                <option value="Cheque">Cheque</option>}
-                                            @else{
-                                                <option value="{{ $empEdit->emp_paymode }}">{{ $empEdit->emp_paymode }}
-                                                </option>
-                                                <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Wire Transfer">Wire Transfer</option>
-                                                <option value="Cash">Cash</option>}
-                                            @endif
+                                            <option value="Bank Transfer"
+                                                @if ($fetchFormArr['emp_paymode'] == 'Bank Transfer') Selected @endif>Bank Transfer</option>
+                                            <option value="Wire Transfer"
+                                                @if ($fetchFormArr['emp_paymode'] == 'Wire Transfer') Selected @endif>Wire Transfer</option>
+                                            <option value="Cash Transfer"
+                                                @if ($fetchFormArr['emp_paymode'] == 'Cash Transfer') Selected @endif>Cash Transfer</option>
+                                            <option value="Bank Transfer"
+                                                @if ($fetchFormArr['emp_paymode'] == 'Bank Transfer') Selected @endif>Bank Transfer</option>
                                         </select>
                                     </div>
                                 </div>
@@ -566,7 +560,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_bank" placeholder="Bank"
-                                            required="" value="{{ $empEdit->emp_bank }}">
+                                            required="" value="{{ $fetchFormArr['emp_bank'] }}">
                                     </div>
                                 </div>
 
@@ -576,7 +570,8 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emp_ifsc"
-                                            placeholder="IFSC Code" required="" value="{{ $empEdit->emp_ifsc }}" />
+                                            placeholder="IFSC Code" required=""
+                                            value="{{ $fetchFormArr['emp_ifsc'] }}" />
                                     </div>
                                 </div>
 
@@ -586,7 +581,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="transport_r_a"
                                             placeholder="Transport Reimbursement Applicable." required=""
-                                            value="{{ $empEdit->transport_r_a }}" />
+                                            value="{{ $fetchFormArr['transport_r_a'] }}" />
                                     </div>
                                 </div>
 
@@ -603,7 +598,7 @@
                                             data-fv-stringlength-min="12"
                                             data-fv-stringlength-message="Please enter valid Account No."
                                             placeholder="Account No" data-fv-field="emp_acc"
-                                            value="{{ $empEdit->emp_acc }}">
+                                            value="{{ $fetchFormArr['emp_acc'] }}">
                                         <small class="invalid-feedback" data-fv-validator="stringLength"
                                             data-fv-for="emp_acc" data-fv-result="INVALID" style="display: none;">Please
                                             enter valid Account No.</small>
@@ -617,7 +612,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="emp_gsal"
-                                                placeholder="Gross Salary" value="{{ $empEdit->emp_gsal }}" />
+                                                placeholder="Gross Salary" value="{{ $fetchFormArr['emp_gsal'] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -628,7 +623,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="annual_ctc"
-                                                placeholder="Annual CTC" value="{{ $empEdit->annual_ctc }}" />
+                                                placeholder="Annual CTC" value="{{ $fetchFormArr['annual_ctc'] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -640,7 +635,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="in_hand_salary_with_stack"
                                             placeholder="IN Hand" required=""
-                                            value="{{ $empEdit->in_hand_salary_with_stack }}" />
+                                            value="{{ $fetchFormArr['in_hand_salary_with_stack'] }}" />
                                     </div>
                                 </div>
 
@@ -672,7 +667,7 @@
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="month" class="form-control" name="performer_month"
                                             placeholder="Performer Month" required=""
-                                            value="{{ $empEdit->performer_month }}">
+                                            value="{{ $fetchFormArr['performer_month'] }}">
                                     </div>
                                 </div>
 
@@ -683,7 +678,7 @@
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="line_manager"
                                             placeholder="Line Manager" required=""
-                                            value="{{ $empEdit->line_manager }}" />
+                                            value="{{ $fetchFormArr['line_manager'] }}" />
                                     </div>
                                 </div>
 
@@ -691,7 +686,8 @@
                                     <label class="col-xl-6 col-md-4 form-control-label">Type Of Attrition</label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="type_of_attrition"
-                                            placeholder="Type Of Attrition" value="{{ $empEdit->type_of_attrition }}">
+                                            placeholder="Type Of Attrition"
+                                            value="{{ $fetchFormArr['type_of_attrition'] }}">
                                     </div>
                                 </div>
 
@@ -701,7 +697,8 @@
                                     <div class="col-xl-6 col-md-9">
                                         <div class="input-group">
                                             <input type="date" class="form-control" name="pip_issue_date"
-                                                placeholder="PIP Issue Date" value="{{ $empEdit->pip_issue_date }}" />
+                                                placeholder="PIP Issue Date"
+                                                value="{{ $fetchFormArr['pip_issue_date'] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -711,7 +708,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <textarea class="form-control" name="reason_of_verbal_warning" rows="3" placeholder="Type something…"
-                                            required="" data-fv-field="reason_of_verbal_warning" va>{{ $empEdit->reason_of_verbal_warning }}</textarea>
+                                            required="" data-fv-field="reason_of_verbal_warning">{{ $fetchFormArr['reason_of_verbal_warning'] }}</textarea>
                                         <small class="invalid-feedback" data-fv-validator="notEmpty"
                                             data-fv-for="reason_of_verbal_warning" data-fv-result="NOT_VALIDATED"
                                             style="display: none;">Type something…</small><small class="invalid-feedback"
@@ -729,7 +726,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="appraisal_letter" />
+                                                    data-max-file-size="10M" name="appraisal_letter" value="{{ $empEdit->appraisal_letter }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -744,7 +741,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="appraisal_2" />
+                                                    data-max-file-size="10M" name="appraisal_2"  value="{{ $empEdit->appraisal_2 }}"/>
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -759,7 +756,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="appraisal_4" />
+                                                    data-max-file-size="10M" name="appraisal_4" value="{{ $empEdit->appraisal_4 }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -775,7 +772,7 @@
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="date_of_verbal_warning"
                                             placeholder="Date Of Verbal Warning"
-                                            value="{{ $empEdit->date_of_verbal_warning }}">
+                                            value="{{ $fetchFormArr['date_of_verbal_warning'] }}">
                                     </div>
                                 </div>
 
@@ -784,7 +781,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="no_verbal_warning"
-                                            placeholder="Total Verbal Warning" value="{{ $empEdit->no_verbal_warning }}">
+                                            placeholder="Total Verbal Warning"
+                                            value="{{ $fetchFormArr['no_verbal_warning'] }}">
                                     </div>
                                 </div>
 
@@ -795,7 +793,7 @@
                                         <div class="input-group">
                                             <input type="date" class="form-control" name="date_of_written_warning"
                                                 placeholder="Date Of Written Warning"
-                                                value="{{ $empEdit->date_of_written_warning }}" />
+                                                value="{{ $fetchFormArr['date_of_written_warning'] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -805,7 +803,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="no_of_warning"
-                                            placeholder="Total Written Warning" value="{{ $empEdit->no_of_warning }}">
+                                            placeholder="Total Written Warning"
+                                            value="{{ $fetchFormArr['no_of_warning'] }}">
                                     </div>
                                 </div>
 
@@ -814,7 +813,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <textarea class="form-control" name="reason_of_warning" rows="3" placeholder="Type something…" required=""
-                                            data-fv-field="reason_of_warning">{{ $empEdit->reason_of_warning }}</textarea>
+                                            data-fv-field="reason_of_warning">{{ $fetchFormArr['reason_of_warning'] }}</textarea>
                                         <small class="invalid-feedback" data-fv-validator="notEmpty"
                                             data-fv-for="reason_of_warning" data-fv-result="NOT_VALIDATED"
                                             style="display: none;">Type something…</small><small class="invalid-feedback"
@@ -832,7 +831,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="appraisal_1" />
+                                                    data-max-file-size="10M" name="appraisal_1" value="{{ $empEdit->appraisal_1 }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -847,7 +846,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="appraisal_3" />
+                                                    data-max-file-size="10M" name="appraisal_3" value="{{ $empEdit->appraisal_3 }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -884,7 +883,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="ssc" />
+                                                    data-max-file-size="10M" name="ssc" value="{{ $empEdit->ssc }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -899,7 +898,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="hsc" />
+                                                    data-max-file-size="10M" name="hsc" value="{{ $empEdit->hsc }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -918,7 +917,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="graduation" />
+                                                    data-max-file-size="10M" name="graduation" value="{{ $empEdit->graduation }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -933,7 +932,7 @@
                                         <div class="example-wrap">
                                             <div class="example">
                                                 <input type="file" id="input-file-max-fs" data-plugin="dropify"
-                                                    data-max-file-size="10M" name="experience_relieving" />
+                                                    data-max-file-size="10M" name="experience_relieving" value="{{ $empEdit->experience_relieving }}" />
                                             </div>
                                         </div>
                                         <!-- End Example max file size -->
@@ -967,7 +966,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="father_name"
-                                            placeholder="Father Name" value="{{ $empEdit->father_name }}">
+                                            placeholder="Father Name" value="{{ $fetchFormArr['father_name'] }}">
                                     </div>
                                 </div>
 
@@ -976,7 +975,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="nominee_details"
-                                            placeholder="Nominee Details" value="{{ $empEdit->nominee_details }}">
+                                            placeholder="Nominee Details" value="{{ $fetchFormArr['nominee_details'] }}">
                                     </div>
                                 </div>
 
@@ -985,7 +984,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="relation"
-                                            placeholder="Relation" value="{{ $empEdit->relation }}">
+                                            placeholder="Relation" value="{{ $fetchFormArr['relation'] }}">
                                     </div>
                                 </div>
 
@@ -999,7 +998,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <textarea class="form-control" name="address" rows="4" placeholder="Type something…" required=""
-                                            data-fv-field="address">{{ $empEdit->address }}</textarea>
+                                            data-fv-field="address">{{ $fetchFormArr['address'] }}</textarea>
                                         <small class="invalid-feedback" data-fv-validator="notEmpty"
                                             data-fv-for="address" data-fv-result="NOT_VALIDATED"
                                             style="display: none;">Type something…</small><small class="invalid-feedback"
@@ -1014,7 +1013,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="total_member"
-                                            placeholder="No Of Family Member" value="{{ $empEdit->total_member }}">
+                                            placeholder="No Of Family Member"
+                                            value="{{ $fetchFormArr['total_member'] }}">
                                     </div>
                                 </div>
 
@@ -1047,42 +1047,16 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <select class="form-control" name="marital_status" data-fv-notempty="true">
-                                            @if ($empEdit->marital_status == 'Married')
-                                                <option value="{{ $empEdit->marital_status }}">
-                                                    {{ $empEdit->marital_status }}</option>
-                                                <option value="Single">Single</option>
-                                                <option value="Divorced">Divorced</option>
-                                                <option value="Separated">Separated</option>
-                                                <option value="Widowed">Widowed</option>
-                                            @elseif ($empEdit->marital_status == 'Single')
-                                                <option value="{{ $empEdit->marital_status }}">
-                                                    {{ $empEdit->marital_status }}</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Divorced">Divorced</option>
-                                                <option value="Separated">Separated</option>
-                                                <option value="Widowed">Widowed</option>
-                                            @elseif ($empEdit->marital_status == 'Divorced')
-                                                <option value="{{ $empEdit->marital_status }}">
-                                                    {{ $empEdit->marital_status }}</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Single">Single</option>
-                                                <option value="Separated">Separated</option>
-                                                <option value="Widowed">Widowed</option>
-                                            @elseif ($empEdit->marital_status == 'Separated')
-                                                <option value="{{ $empEdit->marital_status }}">
-                                                    {{ $empEdit->marital_status }}</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Single">Single</option>
-                                                <option value="Divorced">Divorced</option>
-                                                <option value="Widowed">Widowed</option>
-                                            @else
-                                                <option value="{{ $empEdit->marital_status }}">
-                                                    {{ $empEdit->marital_status }}</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Single">Single</option>
-                                                <option value="Divorced">Divorced</option>
-                                                <option value="Separated">Separated</option>
-                                            @endif
+                                            <option value="Married" @if ($fetchFormArr['marital_status'] == 'Married') Selected @endif>
+                                                Married</option>
+                                            <option value="Single" @if ($fetchFormArr['marital_status'] == 'Single') Selected @endif>
+                                                Single</option>
+                                            <option value="Divorced" @if ($fetchFormArr['marital_status'] == 'Divorced') Selected @endif>
+                                                Divorced</option>
+                                            <option value="Separated" @if ($fetchFormArr['marital_status'] == 'Separated') Selected @endif>
+                                                Separated</option>
+                                            <option value="Widowed" @if ($fetchFormArr['marital_status'] == 'Widowed') Selected @endif>
+                                                Widowed</option>
                                         </select>
                                     </div>
                                 </div>
@@ -1093,7 +1067,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="dob"
-                                            placeholder="Father Name" {{ $empEdit->dob }} >
+                                            placeholder="Father Name" {{ $fetchFormArr['dob'] }}>
                                     </div>
                                 </div>
 
@@ -1107,7 +1081,8 @@
                                                 <i class="icon wb-envelope" aria-hidden="true"></i>
                                             </span>
                                             <input type="email" class="form-control" name="primary_email"
-                                                placeholder="email@email.com" required="" value="{{ $empEdit->primary_email }}">
+                                                placeholder="email@email.com" required=""
+                                                value="{{ $fetchFormArr['primary_email'] }}">
                                         </div>
                                     </div>
                                 </div>
@@ -1118,7 +1093,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="per_address_h_no"
-                                            placeholder="H.no" value="{{ $empEdit->per_address_h_no }}">
+                                            placeholder="H.no" value="{{ $fetchFormArr['per_address_h_no'] }}">
                                     </div>
                                 </div>
 
@@ -1128,7 +1103,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="per_lacality_building"
-                                            placeholder="Permanent Lacality Building" value="{{ $empEdit->per_lacality_building }}">
+                                            placeholder="Permanent Lacality Building"
+                                            value="{{ $fetchFormArr['per_lacality_building'] }}">
                                     </div>
                                 </div>
 
@@ -1138,7 +1114,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="per_area"
-                                            placeholder="Permanent Area" value="{{ $empEdit->per_area }}">
+                                            placeholder="Permanent Area" value="{{ $fetchFormArr['per_area'] }}">
                                     </div>
                                 </div>
 
@@ -1148,7 +1124,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="per_district"
-                                            placeholder="Permanent District" value="{{ $empEdit->per_district }}">
+                                            placeholder="Permanent District" value="{{ $fetchFormArr['per_district'] }}">
                                     </div>
                                 </div>
 
@@ -1158,7 +1134,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="per_state"
-                                            placeholder="Permanent State" value="{{ $empEdit->per_state }}">
+                                            placeholder="Permanent State" value="{{ $fetchFormArr['per_district'] }}">
                                     </div>
                                 </div>
 
@@ -1168,7 +1144,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="per_post_code"
-                                            placeholder="Permanent Post Code" value="{{ $empEdit->per_post_code }}">
+                                            placeholder="Permanent Post Code"
+                                            value="{{ $fetchFormArr['per_post_code'] }}">
                                     </div>
                                 </div>
 
@@ -1178,7 +1155,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="aadhaar"
-                                            placeholder="Aadhaar No" value="{{ $empEdit->aadhaar }}">
+                                            placeholder="Aadhaar No" value="{{ $fetchFormArr['aadhaar'] }}">
                                     </div>
                                 </div>
 
@@ -1187,7 +1164,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="blood_group"
-                                            placeholder="Blood Group" value="{{ $empEdit->blood_group }}">
+                                            placeholder="Blood Group" value="{{ $fetchFormArr['blood_group'] }}">
                                     </div>
                                 </div>
 
@@ -1197,7 +1174,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emy_contact_no"
-                                            placeholder="Emergency Number" value="{{ $empEdit->emy_contact_no }}">
+                                            placeholder="Emergency Number" value="{{ $fetchFormArr['emy_contact_no'] }}">
                                     </div>
                                 </div>
 
@@ -1207,7 +1184,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="emy_contact_relation"
-                                            placeholder="Emergency Contact Relation" value="{{ $empEdit->emy_contact_relation }}">
+                                            placeholder="Emergency Contact Relation"
+                                            value="{{ $fetchFormArr['emy_contact_relation'] }}">
                                     </div>
                                 </div>
 
@@ -1251,7 +1229,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="present_address_h_no"
-                                            placeholder="H.no" value="{{ $empEdit->present_address_h_no }}">
+                                            placeholder="H.no" value="{{ $fetchFormArr['present_address_h_no'] }}">
                                     </div>
                                 </div>
 
@@ -1260,7 +1238,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="lacality_building"
-                                            placeholder="Lacality Building" value="{{ $empEdit->lacality_building }}">
+                                            placeholder="Lacality Building"
+                                            value="{{ $fetchFormArr['lacality_building'] }}">
                                     </div>
                                 </div>
 
@@ -1268,7 +1247,8 @@
                                     <label class="col-xl-6 col-md-4 form-control-label">Area
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
-                                        <input type="text" class="form-control" name="area" placeholder="Area" value="{{ $empEdit->area }}">
+                                        <input type="text" class="form-control" name="area" placeholder="Area"
+                                            value="{{ $fetchFormArr['area'] }}">
                                     </div>
                                 </div>
 
@@ -1277,7 +1257,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="district"
-                                            placeholder="District" value="{{ $empEdit->district }}">
+                                            placeholder="District" value="{{ $fetchFormArr['district'] }}">
                                     </div>
                                 </div>
 
@@ -1285,7 +1265,8 @@
                                     <label class="col-xl-6 col-md-4 form-control-label">State
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
-                                        <input type="text" class="form-control" name="state" placeholder="State" value="{{ $empEdit->state }}">
+                                        <input type="text" class="form-control" name="state" placeholder="State"
+                                            value="{{ $fetchFormArr['state'] }}">
                                     </div>
                                 </div>
 
@@ -1294,7 +1275,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="post_code"
-                                            placeholder="Post Code" value="{{ $empEdit->post_code }}">
+                                            placeholder="Post Code" value="{{ $fetchFormArr['post_code'] }}">
                                     </div>
                                 </div>
 
@@ -1307,7 +1288,8 @@
                                                 <i class="icon wb-envelope" aria-hidden="true"></i>
                                             </span>
                                             <input type="email" class="form-control" name="emy_contact_email"
-                                                placeholder="email@email.com" required="" value="{{ $empEdit->emy_contact_email }}">
+                                                placeholder="email@email.com" required=""
+                                                value="{{ $fetchFormArr['emy_contact_email'] }}">
                                         </div>
                                     </div>
                                 </div>
@@ -1317,7 +1299,7 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="total_bank"
-                                            placeholder="Total Bank" value="{{ $empEdit->total_bank }}">
+                                            placeholder="Total Bank" value="{{ $fetchFormArr['total_bank'] }}">
                                     </div>
                                 </div>
 
@@ -1326,7 +1308,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" name="total_member"
-                                            placeholder="Total family Member" value="{{ $empEdit->total_member }}">
+                                            placeholder="Total family Member"
+                                            value="{{ $fetchFormArr['total_member'] }}">
                                     </div>
                                 </div>
 
@@ -1337,7 +1320,7 @@
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" id="inputlink"
                                             data-plugin="formatter" data-pattern="[[999]][[999]][[9999]]"
-                                            name="mob_link_uan_no" value="{{ $empEdit->mob_link_uan_no }}">
+                                            name="mob_link_uan_no" value="{{ $fetchFormArr['mob_link_uan_no'] }}">
                                         <p class="text-help">1231231234</p>
                                     </div>
                                 </div>
@@ -1347,7 +1330,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" id="inputPhone"
-                                            data-plugin="formatter" data-pattern="[[999]][[999]][[9999]]" name="phone" value="{{ $empEdit->phone }}">
+                                            data-plugin="formatter" data-pattern="[[999]][[999]][[9999]]" name="phone"
+                                            value="{{ $fetchFormArr['phone'] }}">
                                         <p class="text-help">1231231234</p>
                                     </div>
                                 </div>
@@ -1358,8 +1342,8 @@
                                     </label>
                                     <div class=" col-xl-6 col-md-9">
                                         <input type="text" class="form-control" id="inputMobile"
-                                            data-plugin="formatter" data-pattern="[[999]][[999]][[9999]]"
-                                            name="mobile" value="{{ $empEdit->mobile }}">
+                                            data-plugin="formatter" data-pattern="[[999]][[999]][[9999]]" name="mobile"
+                                            value="{{ $fetchFormArr['mobile'] }}">
                                         <p class="text-help">1231231234</p>
                                     </div>
                                 </div>
@@ -1410,7 +1394,8 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <input type="date" class="form-control" name="emp_exitdate"
-                                            placeholder="email@email.com" required="" value="{{ $empEdit->emp_exitdate }}">
+                                            placeholder="email@email.com" required=""
+                                            value="{{ $fetchFormArr['emp_exitdate'] }}">
                                     </div>
                                 </div>
 
@@ -1420,9 +1405,13 @@
                                     <div class="col-xl-6 col-md-9">
                                         <select class="form-control" name="exit_formalities" data-fv-notempty="true">
                                             <option value="">Please choose</option>
-                                            <option value="Processing">Processing</option>
-                                            <option value="Hold">Hold</option>
-                                            <option value="Done">Done</option>
+                                            <option value="Processing"
+                                                @if ($fetchFormArr['exit_formalities'] == 'Processing') Selected @endif>
+                                                Processing</option>
+                                            <option value="Hold" @if ($fetchFormArr['exit_formalities'] == 'Hold') Selected @endif>
+                                                Hold</option>
+                                            <option value="Done" @if ($fetchFormArr['exit_formalities'] == 'Done') Selected @endif>
+                                                Done</option>
                                         </select>
                                     </div>
                                 </div>
@@ -1432,7 +1421,7 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <textarea class="form-control" name="reason_of_leaving" rows="2" placeholder="Reason Of Leaving"
-                                            required="">{{ $empEdit->reason_of_leaving }}</textarea>
+                                            required="">{{ $fetchFormArr['reason_of_leaving'] }}</textarea>
                                     </div>
                                 </div>
 
@@ -1445,7 +1434,7 @@
                                     </label>
                                     <div class="col-xl-6 col-md-9">
                                         <textarea class="form-control" name="fnf" rows="2" placeholder="Full and Final Settlement"
-                                            required="">{{ $empEdit->fnf }}</textarea>
+                                            required="">{{ $fetchFormArr['fnf'] }}</textarea>
                                     </div>
                                 </div>
 
@@ -1453,7 +1442,7 @@
                                     <label class="col-xl-6 col-md-4 form-control-label">Description
                                     </label>
                                     <div class="col-xl-6 col-md-9">
-                                        <textarea class="form-control" name="emp_desp" rows="4" placeholder="Description" required="">{{ $empEdit->emp_desp }}</textarea>
+                                        <textarea class="form-control" name="emp_desp" rows="4" placeholder="Description" required="">{{ $fetchFormArr['emp_desp'] }}</textarea>
                                     </div>
                                 </div>
 
@@ -1470,9 +1459,9 @@
                 <div class="form-group col-xl-12 text-center padding-top-m">
                     {{-- <button type="submit" class="btn btn-primary" id="validateButton1">Submit</button> --}}
                     <button type="submit" class="btn btn-primary" id="" data-plugin="toastr"
-                    data-message="Lorem ipsum dolor sit amdfxfdsfet, consectetur adipiscing elit." data-title="Messages"
-                    data-container-id="toast-top-right" data-progress-bar="true"
-                    data-icon-class="toast-just-text toast-info" >Submit</button>
+                        data-message="Lorem ipsum dolor sit amdfxfdsfet, consectetur adipiscing elit."
+                        data-title="Messages" data-container-id="toast-top-right" data-progress-bar="true"
+                        data-icon-class="toast-just-text toast-info">Submit</button>
                 </div>
                 {{-- Submit Button --}}
 

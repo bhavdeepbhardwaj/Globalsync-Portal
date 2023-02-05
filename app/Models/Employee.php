@@ -105,6 +105,7 @@ class Employee extends Model
         'salary_slip',
         'bank_statement',
         'cancel_cheque',
+        'formdata'
     ];
 
     public function users()

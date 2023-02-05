@@ -70,15 +70,19 @@
                         <tbody>
                             @foreach ($emplist as $emp)
                                 <tr>
+                                    @php
+                                        $fetchFormArr = json_decode($emp->formdata,true);
+                                        $deptName = \App\Models\Department::where('id', $fetchFormArr['emp_dept'])->first();
+
+                                    @endphp
 
                                     <td>{{ $emp->emp_id }}</td>
-                                    <td>{{ $emp->emp_name }}</td>
-                                    <td>{{ $emp->emp_desg }}</td>
+                                    <td>{{ $fetchFormArr['emp_name'] }}</td>
+                                    <td>{{ $fetchFormArr['emp_desg'] }}</td>
                                     <td>
-                                        <?php $deptName = \App\Models\Department::where('id', $emp->emp_dept)->first(); ?>
                                         {{ $deptName->name }}
                                     </td>
-                                    <td>{{ $emp->emp_doj }}</td>
+                                    <td>{{ $fetchFormArr['emp_doj'] }}</td>
                                     <td>
                                         @if ($emp->emp_status == '1')
                                             <span class="badge badge-outline badge-success">Active</span>

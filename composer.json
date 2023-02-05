@@ -11,7 +11,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "3.x"
+        "laravel/ui": "3.x",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -53,7 +54,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/dusk"
+            ]
         }
     },
     "config": {

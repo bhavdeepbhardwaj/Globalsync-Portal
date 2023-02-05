@@ -36,8 +36,8 @@
             @include('flush.alert')
             {{-- Message  --}}
 
-            {{-- <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employee-data-save') }}" --}}
-            <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employeeDataJsonSave') }}"
+            <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employee-data-save') }}"
+            {{-- <form id="exampleFullForm" autocomplete="off" method="POST" action="{{ route('hr.employeeDataJsonSave') }}" --}}
                 enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{-- hidden Item --}}
@@ -382,7 +382,7 @@
                                         <select class="form-control" id="department" name="emp_dept" required="">
                                             <option value="">Choose a Department</option>
                                             @foreach ($departments as $department)
-                                                <option value="{{ $department->id }}">{{ $department->dep_name }}</option>
+                                                <option value="{{ $department->id }}">{{ $department->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
