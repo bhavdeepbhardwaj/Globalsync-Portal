@@ -7,6 +7,8 @@
     </div>
 @endif
 
+
+
 @if ($errors->any())
     <div class="alert alert-icon alert-danger alert-dismissible" role="alert">
         @foreach ($errors->all() as $error)
@@ -19,15 +21,5 @@
                 </li>
             </ul>
         @endforeach
-    </div>
-@endif
-
-@if (session('error'))
-    <div class="alert dark alert-icon alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <i class="icon wb-close" aria-hidden="true"></i> The daily
-        report has failed
     </div>
 @endif

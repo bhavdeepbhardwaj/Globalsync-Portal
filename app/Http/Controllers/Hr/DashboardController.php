@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Hr;
 
 use App\Http\Controllers\Controller;
+use App\Imports\EmployeeImport;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Json;
@@ -10,6 +11,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -29,7 +31,6 @@ class DashboardController extends Controller
     {
         try {
             $emplist = Employee::where('is_deleted', '0')->select('emp_id', 'emp_desg', 'formdata', 'emp_doj', 'emp_status')->get();
-
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -72,6 +73,128 @@ class DashboardController extends Controller
     {
         // dd($request->all());
         try {
+            $this->validate($request, [
+                // Employee Credentials
+                'email'                         => 'email|required|unique:users',
+                'password'                      => 'required|min:8',
+
+                // Employee Status
+                'emp_id'                        => 'required',
+                'role_id'                       => 'required',
+                'emp_status'                    => 'required',
+                'country_type'                  => 'required',
+                'user_id'                       => 'required',
+                // 'emp_id'                     => 'required',
+                // 'emp_email'                  => 'required',
+                // 'emp_status'                 => 'required',
+                // 'country_type'               => 'required',
+
+                // Allowances
+                'emp_food'                      => 'required',
+                'emp_travel'                    => 'required',
+                'emp_spl'                       => 'required',
+                'emp_meal'                      => 'required',
+                'emp_cab'                       => 'required',
+
+                // Incentives & Deductions
+                'emp_stinc'                     => 'required',
+                'emp_inc'                       => 'required',
+                'emp_other'                     => 'required',
+
+                // Employee Details
+                // file
+                // 'emp_pic'                    => 'required',
+                'emp_name'                      => 'required',
+                'emp_doj'                       => 'required',
+                'emp_desg'                      => 'required',
+                'emp_dept'                      => 'required',
+                'gender'                        => 'required',
+                'emp_pan'                       => 'required',
+                // 'emp_uan'                    => 'required',
+                // emp_esi'                     => 'required',
+                // 'nick_name'                  => 'required',
+                'joining_month'                 => 'required',
+                // 'date_of_hitting'            => 'required',
+                // 'rejoing_on'                 => 'required',
+                // 'date_of_confirmation'       => 'required',
+                // 'ageing'                     => 'required',
+                // Payment Details
+                'emp_paymode'                   => 'required',
+                'emp_bank'                      => 'required',
+                'emp_ifsc'                      => 'required',
+                // 'transport_r_a'              => 'required',
+                'emp_acc'                       => 'required',
+                'emp_gsal'                      => 'required',
+                'annual_ctc'                    => 'required',
+                'in_hand_salary_with_stack'     => 'required',
+
+                // Employee Journey
+                // 'performer_month'            => 'required',
+                'line_manager'                  => 'required',
+                // 'type_of_attrition'          => 'required',
+                // 'pip_issue_date'             => 'required',
+                // 'date_of_verbal_warning'     => 'required',
+                // 'no_verbal_warning'          => 'required',
+                // 'date_of_written_warning'    => 'required',
+                // 'no_of_warning'              => 'required',
+                // 'reason_of_verbal_warning'   => 'required',
+                // 'reason_of_warning'          => 'required',
+                // file
+                // 'appraisal_letter'           => 'required',
+                // 'appraisal_1'                => 'required',
+                // 'appraisal_2'                => 'required',
+                // 'appraisal_3'                => 'required',
+                // 'appraisal_4'                => 'required',
+                // Employee Education
+                // 'ssc'                        => 'required',
+                // 'hsc'                        => 'required',
+                // 'graduation'                 => 'required',
+                // 'experience_relieving'       => 'required',
+
+                // Employee Family Details
+                'father_name'                   => 'required',
+                'nominee_details'               => 'required',
+                'relation'                      => 'required',
+                'address'                       => 'required',
+                // 'total_member'               => 'required',
+
+                // Employee Personal Details
+                'marital_status'                => 'required',
+                'dob'                           => 'required',
+                'primary_email'                 => 'required',
+                'per_address_h_no'              => 'required',
+                'per_lacality_building'         => 'required',
+                'per_area'                      => 'required',
+                'per_district'                  => 'required',
+                'per_state'                     => 'required',
+                'per_post_code'                 => 'required',
+                // 'present_address_h_no'       => 'required',
+                // 'lacality_building'          => 'required',
+                // 'area'                       => 'required',
+                // 'district'                   => 'required',
+                // 'state'                      => 'required',
+                // 'post_code'                  => 'required',
+                'aadhaar'                       => 'required',
+                'blood_group'                   => 'required',
+                'emy_contact_no'                => 'required',
+                'emy_contact_relation'          => 'required',
+                'emy_contact_email'             => 'required',
+                // 'total_bank'                 => 'required',
+                'phone'                         => 'required',
+                'mobile'                        => 'required',
+                'mob_link_uan_no'               => 'required',
+                // file
+                // 'salary_slip'                => 'required',
+                // 'bank_statement'             => 'required',
+                // 'cancel_cheque'              => 'required',
+
+                // Exit & Description
+                // 'emp_exitdate'               => 'required',
+                // 'exit_formalities'           => 'required',
+                // 'reason_of_leaving'          => 'required',
+                // 'fnf'                        => 'required',
+                // 'emp_desp'                   => 'required',
+            ]);
 
             $user = new User();
             $user->email = $request->email;
@@ -168,30 +291,30 @@ class DashboardController extends Controller
             $json = json_encode($my_var);
             // dd($json);
             Employee::create([
-                'user_id' => $user->id,
-                'emp_id' => $user->emp_id,
-                'emp_status' => $user->emp_status,
-                'country_type' => $user->country_type,
-                'emp_email' => $user->email,
-                'formdata' => $json,
-                'emp_pic' => $emp_pic,
-                'appraisal_letter' => $appraisal_letter,
-                'appraisal_1' => $appraisal_1,
-                'appraisal_2' => $appraisal_2,
-                'appraisal_3' => $appraisal_3,
-                'appraisal_4' => $appraisal_4,
-                'ssc' => $ssc,
-                'hsc' => $hsc,
-                'graduation' => $graduation,
-                'salary_slip' => $salary_slip,
-                'bank_statement' => $bank_statement,
-                'cancel_cheque' => $cancel_cheque,
-                'experience_relieving' => $experience_relieving,
+                'user_id'                   => $user->id,
+                'emp_id'                    => $user->emp_id,
+                'emp_status'                => $user->emp_status,
+                'country_type'              => $user->country_type,
+                'emp_email'                 => $user->email,
+                'formdata'                  => $json,
+                'emp_pic'                   => $emp_pic,
+                'appraisal_letter'          => $appraisal_letter,
+                'appraisal_1'               => $appraisal_1,
+                'appraisal_2'               => $appraisal_2,
+                'appraisal_3'               => $appraisal_3,
+                'appraisal_4'               => $appraisal_4,
+                'ssc'                       => $ssc,
+                'hsc'                       => $hsc,
+                'graduation'                => $graduation,
+                'salary_slip'               => $salary_slip,
+                'bank_statement'            => $bank_statement,
+                'cancel_cheque'             => $cancel_cheque,
+                'experience_relieving'      => $experience_relieving,
 
             ]);
             // Json::create($input);
 
-            return redirect()->back()->with("success", "Admin detail is updated !");
+            return redirect()->back()->with("success", "Employee is Now Add Successfully  !");
             // dd($user);
 
         } catch (ModelNotFoundException $exception) {
@@ -248,11 +371,11 @@ class DashboardController extends Controller
     // Employee Data Update
     public function employeeUpdate(Request $request)
     {
-        // dd($request->all());
+        // dd($request->emp_meal);
         try {
 
             $this->validate($request, [
-                'email' => 'required',
+                // 'email' => 'required',
                 // 'password'                          => 'required',
                 'emp_id' => 'required',
                 'role_id' => 'required',
@@ -262,7 +385,7 @@ class DashboardController extends Controller
             ]);
 
             User::where('id', $request->user_id)->update([
-                'email' => $request->email,
+                // 'email' => $request->email,
                 // 'password'                  => bcrypt($request->password),
                 'role_id' => $request->role_id,
                 'emp_id' => $request->emp_id,
@@ -278,96 +401,96 @@ class DashboardController extends Controller
 
             $my_var = json_decode($input['data'], true); // convert it to an array.
 
-            $fetchEmpData = Employee::where('user_id',$request->user_id)->first();
+            $fetchEmpData = Employee::where('user_id', $request->user_id)->first();
 
             if ($request->emp_pic) {
                 $emp_pic = time() . '-' . $request->emp_pic->getClientOriginalName();
                 $request->emp_pic->move(public_path('Web/Images/Employee-Images/'), $emp_pic);
-            }else{
+            } else {
                 $emp_pic = $fetchEmpData->emp_pic;
             }
 
             if ($request->appraisal_letter) {
                 $appraisal_letter = time() . '-' . $request->appraisal_letter->getClientOriginalName();
                 $request->appraisal_letter->move(public_path('Web/PDF/Appraisal/'), $appraisal_letter);
-            }else{
+            } else {
                 $appraisal_letter = $fetchEmpData->appraisal_letter;
             }
 
             if ($request->appraisal_1) {
                 $appraisal_1 = time() . '-' . $request->appraisal_1->getClientOriginalName();
                 $request->appraisal_1->move(public_path('Web/PDF/Appraisal-1/'), $appraisal_1);
-            }else{
+            } else {
                 $appraisal_1 = $fetchEmpData->appraisal_1;
             }
 
             if ($request->appraisal_2) {
                 $appraisal_2 = time() . '-' . $request->appraisal_2->getClientOriginalName();
                 $request->appraisal_2->move(public_path('Web/PDF/Appraisal-2/'), $appraisal_2);
-            }else{
+            } else {
                 $appraisal_2 = $fetchEmpData->appraisal_2;
             }
 
             if ($request->appraisal_3) {
                 $appraisal_3 = time() . '-' . $request->appraisal_3->getClientOriginalName();
                 $request->appraisal_3->move(public_path('Web/PDF/Appraisal-3/'), $appraisal_3);
-            }else{
+            } else {
                 $appraisal_3 = $fetchEmpData->appraisal_3;
             }
 
             if ($request->appraisal_4) {
                 $appraisal_4 = time() . '-' . $request->appraisal_4->getClientOriginalName();
                 $request->appraisal_4->move(public_path('Web/PDF/Appraisal-4/'), $appraisal_4);
-            }else{
+            } else {
                 $appraisal_4 = $fetchEmpData->appraisal_4;
             }
 
             if ($request->ssc) {
                 $ssc = time() . '-' . $request->ssc->getClientOriginalName();
                 $request->ssc->move(public_path('Web/PDF/SSS/'), $ssc);
-            }else{
+            } else {
                 $ssc = $fetchEmpData->ssc;
             }
 
             if ($request->hsc) {
                 $hsc = time() . '-' . $request->hsc->getClientOriginalName();
                 $request->hsc->move(public_path('Web/PDF/HSC/'), $hsc);
-            }else{
+            } else {
                 $hsc = $fetchEmpData->hsc;
             }
 
             if ($request->graduation) {
                 $graduation = time() . '-' . $request->graduation->getClientOriginalName();
                 $request->graduation->move(public_path('Web/PDF/Graduation/'), $graduation);
-            }else{
+            } else {
                 $graduation = $fetchEmpData->graduation;
             }
 
             if ($request->salary_slip) {
                 $salary_slip = time() . '-' . $request->salary_slip->getClientOriginalName();
                 $request->salary_slip->move(public_path('Web/PDF/Salay-Slip/'), $salary_slip);
-            }else{
+            } else {
                 $salary_slip = $fetchEmpData->salary_slip;
             }
 
             if ($request->bank_statement) {
                 $bank_statement = time() . '-' . $request->bank_statement->getClientOriginalName();
                 $request->bank_statement->move(public_path('Web/PDF/Bank-Statement/'), $bank_statement);
-            }else{
+            } else {
                 $bank_statement = $fetchEmpData->bank_statement;
             }
 
             if ($request->cancel_cheque) {
                 $cancel_cheque = time() . '-' . $request->cancel_cheque->getClientOriginalName();
                 $request->cancel_cheque->move(public_path('Web/PDF/Cancel-Cheque/'), $cancel_cheque);
-            }else{
+            } else {
                 $cancel_cheque = $fetchEmpData->cancel_cheque;
             }
 
             if ($request->experience_relieving) {
                 $experience_relieving = time() . '-' . $request->experience_relieving->getClientOriginalName();
                 $request->experience_relieving->move(public_path('Web/PDF/Experience-Relieving/'), $experience_relieving);
-            }else{
+            } else {
                 $experience_relieving = $fetchEmpData->experience_relieving;
             }
 
@@ -376,7 +499,7 @@ class DashboardController extends Controller
 
             $json = json_encode($my_var);
             // dd($json);
-            Employee::where('user_id',$request->user_id)->update([
+            Employee::where('user_id', $request->user_id)->update([
                 'user_id' => $request->user_id,
                 'emp_id' => $request->emp_id,
                 'emp_name' => $request->emp_name,
@@ -399,7 +522,7 @@ class DashboardController extends Controller
                 'experience_relieving' => $experience_relieving,
 
             ]);
-
+            return redirect()->back()->with("success", "Employee detail is updated !");
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -408,7 +531,7 @@ class DashboardController extends Controller
     // Bulk Employee Upload
     public function importEmployee()
     {
-        Excel::import(new EmployeeImport,request()->file('file'));
+        Excel::import(new EmployeeImport, request()->file('file'));
 
         return back();
     }

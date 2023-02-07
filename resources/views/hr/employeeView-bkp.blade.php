@@ -48,15 +48,15 @@
                     <!-- End Page Widget -->
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <!-- Panel -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Employee Status</h3>
+                            <h3 class="panel-title">Employee Details</h3>
                         </div>
                         <div class="panel-body">
 
-                            {{-- Employee Status --}}
+                            {{-- Employee Details --}}
                             <div class="row row-lg">
 
                                 <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
@@ -73,19 +73,25 @@
                                 <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
                                     <div class="row">
                                         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Employee Status</h5>
+                                            <h5>Date Of Join</h5>
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{-- @php
+                                            {{ $fetchFormArr['emp_doj'] }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                            <h5>Employee Department</h5>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                            @php
                                                 // $fetchFormArr = json_decode($empView->formdata, true);
                                                 $deptName = \App\Models\Department::where('id', $fetchFormArr['emp_dept'])->first();
                                             @endphp
-                                            {{ $deptName->name }} --}}
-                                            @if ($empView->emp_status == 1)
-                                                <span class="badge badge-outline badge-success">Active</span>
-                                            @else
-                                                <span class="badge badge-outline badge-warning">Inactive</span>
-                                            @endif
+                                            {{ $deptName->name }}
                                         </div>
                                     </div>
                                 </div>
@@ -286,13 +292,12 @@
                                 </div>
 
                             </div>
-                            {{-- Employee Status --}}
+                            {{-- Employee Details --}}
 
                         </div>
                     </div>
                     <!-- End Panel -->
                 </div>
-
 
             </div>
         </div>

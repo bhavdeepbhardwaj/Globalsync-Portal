@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="{{ asset('global/vendor/slidepanel/slidePanel.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/flag-icon-css/flag-icon.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/waves/waves.css ') }}">
-    <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
-    <link rel="stylesheet" href="../../assets/examples/css/forms/validation.css">
-    <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
+    <link rel="stylesheet" href="{{ asset('global/vendor/formvalidation/formValidation.css ') }}">
+    <link rel="stylesheet" href="{{ asset('assets/examples/css/forms/validation.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/jquery-wizard/jquery-wizard.css ') }}">
 
 
 
@@ -37,11 +37,11 @@
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css ') }}">
     <link rel="stylesheet" href="{{ asset('assets/examples/css/dashboard/v1.css ') }}">
 
-    <link rel="stylesheet" href="../../../global/vendor/blueimp-file-upload/jquery.fileupload.css">
-        <link rel="stylesheet" href="../../../global/vendor/dropify/dropify.css">
-  <link rel="stylesheet" href="../../assets/examples/css/pages/profile.css">
-  <link rel="stylesheet" href="../../../global/vendor/toastr/toastr.css">
-  <link rel="stylesheet" href="../../assets/examples/css/advanced/toastr.css">
+    <link rel="stylesheet" href="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/dropify/dropify.css ') }}">
+    <link rel="stylesheet" href="{{ asset('assets/examples/css/pages/profile.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/toastr/toastr.css ') }}">
+    <link rel="stylesheet" href="{{ asset('assets/examples/css/advanced/toastr.css ') }}">
 
 
 
@@ -74,7 +74,8 @@
 
 {{-- <body class="animsition page-profile"> --}}
 {{-- <body class="animsition dashboard"> --}}
-    <body class="animsition page-profile">
+
+<body class="animsition page-profile">
 
     {{--  Navbar  --}}
     @include('layouts.component.navbar')
@@ -133,20 +134,20 @@
     <script src="{{ asset('global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.js ') }}"></script>
     <script src="{{ asset('global/vendor/asrange/jquery-asRange.min.js ') }}"></script>
     <script src="{{ asset('global/vendor/bootbox/bootbox.js ') }}"></script>
-    <script src="../../../global/vendor/slidepanel/jquery-slidePanel.js"></script>
-    <script src="../../../global/vendor/jquery-ui/jquery-ui.js"></script>
-    <script src="../../../global/vendor/blueimp-tmpl/tmpl.js"></script>
-    <script src="../../../global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
-    <script src="../../../global/vendor/blueimp-load-image/load-image.all.min.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
-    <script src="../../../global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
-    <script src="../../../global/vendor/dropify/dropify.min.js"></script>
-    <script src="../../../global/vendor/formatter/jquery.formatter.js"></script>
+    <script src="{{ asset('global/vendor/slidepanel/jquery-slidePanel.js ') }}"></script>
+    <script src="{{ asset('global/vendor/jquery-ui/jquery-ui.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-tmpl/tmpl.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-load-image/load-image.all.min.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-process.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-image.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-audio.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-video.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-validate.js ') }}"></script>
+    <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-ui.js ') }}"></script>
+    <script src="{{ asset('global/vendor/dropify/dropify.min.js ') }}"></script>
+    <script src="{{ asset('global/vendor/formatter/jquery.formatter.js ') }}"></script>
 
 
 
@@ -180,16 +181,16 @@
     <script src="{{ asset('assets/examples/js/tables/datatable.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/uikit/icon.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/tabs.js ') }}"></script>
-    <script src="../../../global/js/Plugin/dropify.js"></script>
+    <script src{{ asset('global/js/Plugin/dropify.js ') }}"></script>
 
-    <script src="../../assets/examples/js/forms/uploads.js"></script>
-    <script src="../../../global/js/Plugin/formatter.js"></script>
-    <script src="../../../global/js/Plugin/jquery-wizard.js"></script>
+    <script src="{{ asset('assets/examples/js/forms/uploads.js ') }}"></script>
+    <script src{{ asset('global/js/Plugin/formatter.js ') }}"></script>
+    <script src{{ asset('global/js/Plugin/jquery-wizard.js ') }}"></script>
 
-        <script src="../../assets/examples/js/forms/wizard.js"></script>
-  <script src="../../../global/js/Plugin/responsive-tabs.js"></script>
-  <script src="../../../global/js/Plugin/toastr.js"></script>
-  <script src="../../../global/vendor/toastr/toastr.js"></script>
+    <script src="{{ asset('assets/examples/js/forms/wizard.js ') }}"></script>
+    <script src{{ asset('global/js/Plugin/responsive-tabs.js ') }}"></script>
+    <script src{{ asset('global/js/Plugin/toastr.js ') }}"></script>
+    <script src{{ asset('global/vendor/toastr/toastr.js ') }}"></script>
 
 
 
