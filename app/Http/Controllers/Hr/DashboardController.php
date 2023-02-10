@@ -535,4 +535,16 @@ class DashboardController extends Controller
 
         return back();
     }
+
+    // Employee Attendance
+    public function empAttendance()
+    {
+        try {
+            $getEmp = Employee::where('is_deleted', 0)->select('emp_id')->get();
+            // dd($getEmp);
+            return view('hr.attendance');
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+    }
 }

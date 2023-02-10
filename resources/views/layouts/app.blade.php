@@ -43,8 +43,12 @@
     <link rel="stylesheet" href="{{ asset('global/vendor/toastr/toastr.css ') }}">
     <link rel="stylesheet" href="{{ asset('assets/examples/css/advanced/toastr.css ') }}">
 
+    <link rel="stylesheet" href="{{ asset('global/vendor/jsgrid/jsgrid.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/bootstrap-datepicker/bootstrap-datepicker.css ') }}">
+    <link rel="stylesheet" href="{{ asset('assets/examples/css/tables/jsgrid.css ') }}">
 
 
+    <link rel="stylesheet" href="{{ asset('global/vendor/bootstrap-table/bootstrap-table.css ') }}">
 
 
     <!-- Fonts -->
@@ -134,7 +138,6 @@
     <script src="{{ asset('global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.js ') }}"></script>
     <script src="{{ asset('global/vendor/asrange/jquery-asRange.min.js ') }}"></script>
     <script src="{{ asset('global/vendor/bootbox/bootbox.js ') }}"></script>
-    <script src="{{ asset('global/vendor/slidepanel/jquery-slidePanel.js ') }}"></script>
     <script src="{{ asset('global/vendor/jquery-ui/jquery-ui.js ') }}"></script>
     <script src="{{ asset('global/vendor/blueimp-tmpl/tmpl.js ') }}"></script>
     <script src="{{ asset('global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js ') }}"></script>
@@ -148,6 +151,11 @@
     <script src="{{ asset('global/vendor/blueimp-file-upload/jquery.fileupload-ui.js ') }}"></script>
     <script src="{{ asset('global/vendor/dropify/dropify.min.js ') }}"></script>
     <script src="{{ asset('global/vendor/formatter/jquery.formatter.js ') }}"></script>
+    <script src="{{ asset('global/vendor/jsgrid/jsgrid.js ') }}"></script>
+    <script src="{{ asset('global/vendor/bootstrap-datepicker/bootstrap-datepicker.js ') }}"></script>
+
+    <script src="{{ asset('global/vendor/bootstrap-table/bootstrap-table.min.js ') }}"></script>
+    <script src="{{ asset('global/vendor/bootstrap-table/extensions/mobile/bootstrap-table-mobile.js ') }}"></script>
 
 
 
@@ -169,6 +177,9 @@
     </script>
 
     <!-- Page -->
+
+    <script src="{{ asset('global/js/Plugin/jquery-placeholder.js ') }}"></script>
+    <script src="{{ asset('global/js/Plugin/input-group-file.js ') }}"></script>
     <script src="{{ asset('assets/js/Site.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/asscrollable.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/slidepanel.js ') }}"></script>
@@ -193,6 +204,16 @@
     <script src{{ asset('global/vendor/toastr/toastr.js ') }}"></script>
 
 
+    <script>
+        (function(document, window, $) {
+            'use strict';
+
+            var Site = window.Site;
+            $(document).ready(function() {
+                Site.run();
+            });
+        })(document, window, jQuery);
+    </script>
 
 
 

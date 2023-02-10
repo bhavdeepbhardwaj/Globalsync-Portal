@@ -69,6 +69,12 @@
                                 <span class="site-menu-title">Add Emp</span>
                             </a>
                         </li>
+                        <li class="site-menu-item ">
+                            <a class="animsition-link" href="{{ route('hr.attendance') }}">
+                                <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
+                                <span class="site-menu-title">Employee Attendance</span>
+                            </a>
+                        </li>
                     @endif
 
 
