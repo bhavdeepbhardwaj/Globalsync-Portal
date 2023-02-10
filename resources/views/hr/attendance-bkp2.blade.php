@@ -119,12 +119,42 @@
                                     <label class="col-lg-12 col-md-12 form-control-label">Attendance Month<span
                                             class="required">*</span></label>
                                     <div class="col-lg-12 col-md-12">
+                                        <!-- Example Large Columns -->
+                                        {{-- <div class="example-wrap">
+                                            <h4 class="example-title">Large Columns</h4>
+                                            <p>Bootstrap table support large columns, it will auto to show the
+                                                horizontal scroll bar.</p>
+                                            <div class="example">
+                                                <table id="exampleTableLargeColumns" data-show-columns="true"
+                                                    data-height="400" data-mobile-responsive="true"></table>
+                                            </div>
+                                        </div> --}}
+                                        <!-- End Example Large Columns -->
+                                        <!-- Panel Custom Grid Field -->
+                                        {{-- <div class="panel">
+                                            <header class="panel-heading">
+                                                <h3 class="panel-title">Custom Grid Field</h3>
+                                            </header>
+                                            <div class="panel-body">
+                                                <div id="exampleCustomGridField"></div>
+                                            </div>
+                                        </div> --}}
+                                        <!-- End Panel Custom Grid Field -->
                                         <div class="panel">
-                                            <table class="table table-bordered table-striped">
-                                                <tbody id="dynamic_field"></tbody>
+                                            <button type="button" onclick="addNewRow()" class="btn btn-primary">Add New
+                                                Row
+                                            </button>
+                                            <button type="button" onclick="deleteRow()" class="btn btn-danger">Delete
+                                                Row
+                                            </button>
+                                            <br>
+                                            <br>
+                                            <table id="employee-table" class="table table-bordered table-striped">
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
                                             </table>
-                                            <input type='button' class="form-control" value='Add Task' id='addRow'
-                                                name='addRow' />
                                         </div>
                                     </div>
                                 </div>
@@ -209,36 +239,41 @@
     {{-- <script src="{{ asset('assets/examples/js/tables/jsgrid.js ') }}"></script> --}}
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            var i = 64;
-            var j = 0;
-            var date = new Date();
-
-            $('#addRow').click(function() {
-                i++;
-                j++;
-                $('#dynamic_field').append('<tr><td class="form-control" id="row_num_' + String
-                    .fromCharCode(i) + '">' + String.fromCharCode(i) +
-                    '<input type="hidden" name="' + String.fromCharCode(i) +
-                    '" class="form-control" value=' + j +
-                    '></td>' +
-                    '<td><select class="form-control" name="status[]" id="status" data-fv-notempty="true"> <option value="">Please choose</option> <option value="WFO-P">WFO-P</option> <option value="WFH-P">WFH-P</option> <option value="LATE">LATE</option> <option value="AB">AB</option> <option value="WFO-HD">WFO-HD</option> <option value="WFH-HD">WFH-HD</option> <option value="UPL">UPL</option> <option value="PH">PH</option> <option value="BL">BL</option> </select>' +
-                    '<td><button type="button" name="remove" class="btn btn-danger">X</button></td></tr>'
-                );
-            });
-            $(document).on('click', '.btn_remove', function() {
-                $(this).closest("tr").remove(); //use closest here
-                $('tbody tr').each(function(index) {
-                    //change id of first tr
-                    $(this).find("td:eq(0)").attr("id", "row_num" + (index + 1))
-                    //change hidden input value
-                    $(this).find("td:eq(0)").html((index + 1) +
-                        '<input type="hidden" name="task_number[]" value=' + (index + 1) + '>')
-                });
-                i--;
-                j--;
-            });
-        });
+        /* This method will add a new row */
+        function addNewRow() {
+            var table = document.getElementById("employee-table");
+            var rowCount = table.rows.length;
+            // alert(rowCount);
+            var cellCount = table.rows[0].cells.length;
+            var row = table.insertRow(rowCount);
+            for (var i = 0; i < cellCount; i++) {
+                var cell = row.insertCell(i);
+                if (i < cellCount - 1) {
+                    // cell.innerHTML = '<input type="text" class="form-control" />';
+                    cell.innerHTML =
+                        '<select class="form-control" name="status[]" data-fv-notempty="true"> <option value="">Please choose</option> <option value="WFO-P">WFO-P</option> <option value="WFH-P">WFH-P</option> <option value="LATE">LATE</option> <option value="AB">AB</option> <option value="WFO-HD">WFO-HD</option> <option value="WFH-HD">WFH-HD</option> <option value="UPL">UPL</option> <option value="PH">PH</option>  <option value="BL">BL</option></select>';
+                } else {
+                    cell.innerHTML = '<input class="btn btn-danger" ' +
+                        ' type="button" value="delete" onclick="deleteRow(this)" />';
+                }
+            }
+        }
+        /* This method will delete a row */
+        function deleteRow(ele) {
+            var table = document.getElementById('employee-table');
+            var rowCount = table.rows.length;
+            if (rowCount <= 1) {
+                alert("There is no row available to delete!");
+                return;
+            }
+            if (ele) {
+                //delete specific row
+                ele.parentNode.parentNode.remove();
+            } else {
+                //delete last row
+                table.deleteRow(rowCount - 1);
+            }
+        }
     </script>
 
     {{-- <script>
