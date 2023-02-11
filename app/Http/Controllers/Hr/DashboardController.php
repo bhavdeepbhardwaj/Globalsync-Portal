@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Hr;
 
 use App\Http\Controllers\Controller;
 use App\Imports\EmployeeImport;
+use App\Models\Attendance;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Json;
@@ -532,7 +533,6 @@ class DashboardController extends Controller
     public function importEmployee()
     {
         Excel::import(new EmployeeImport, request()->file('file'));
-
         return back();
     }
 
@@ -540,9 +540,78 @@ class DashboardController extends Controller
     public function empAttendance()
     {
         try {
-            $getEmp = Employee::where('is_deleted', 0)->select('emp_id')->get();
-            // dd($getEmp);
+            $getEmpAtte = Attendance::where('is_deleted', 0)->select('emp_id', 'att_month', 'data')->get();
+            foreach ($getEmpAtte as $emp)
+            {
+                $fetchFormArr = json_decode($emp->data,true);
+            dd($fetchFormArr['B']);
+
+            }
+            // $fetchFormArr = json_decode($getEmpAtte->data,true);
+            dd('sds');
             return view('hr.attendance');
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+    }
+
+    // Manual Attendance
+    public function manualAttendance()
+    {
+        try {
+            $getdata = User::where('is_deleted', 0)->where('emp_status', 1)->where('role_id', 6)->select('emp_id')->get();
+            // dd($getdata);
+            return view('hr.manualattendance', ['getdata' => $getdata]);
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+    }
+
+    // Manual Attendance
+    public function manualAttendanceSave(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $input['token'] = date('Y-m-d H:i:s');
+            $input['data'] = json_encode($data);
+
+            $json = json_decode($input['data'], true);
+
+            // dd($json, count($json));
+
+            unset($json["att_month"], $json["emp_id"]);
+
+            // dd(json_encode($json['status']));
+
+            Attendance::create([
+                'emp_id'                    => $request->emp_id,
+                'att_month'                 => $request->att_month,
+                // 'data'                      => $json,
+                'data'                      => json_encode($json['status']),
+
+            ]);
+            // 
+            // $data = $request->all();
+
+            // $result = Attendance::create([
+            //     'emp_id'                    => $request->emp_id,
+            //     'att_month'                 => $request->att_month,
+            //     'data'                      => json_encode($data['status']),
+            // ]);
+
+            dd("Insert Attendance is Now Add Successfully  !");
+
+            return redirect()->back()->with("success", "Employee is Now Add Successfully  !");
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+    }
+
+    // Bulk Attendance
+    public function bulkAttendance()
+    {
+        try {
+            return view('hr.bulkAttendance');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }

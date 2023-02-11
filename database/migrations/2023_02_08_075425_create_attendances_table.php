@@ -15,10 +15,9 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
             $table->text('emp_id');
-            $table->text('pay_month')->nullable();
-            $table->text('formdata')->nullable();
+            $table->text('att_month')->nullable();
+            $table->text('data')->nullable();
             $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });

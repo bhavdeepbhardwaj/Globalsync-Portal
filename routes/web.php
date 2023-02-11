@@ -36,22 +36,21 @@ Route::group(['middleware' => 'PreventBackHistory'], function () {
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // ********************************************* SuperAdmin Routes Start ********************************************* //
-Route::group(['as'=>'superadmin.','prefix' => 'SuperAdmin','middleware'=>['superAdmin','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'superadmin.', 'prefix' => 'SuperAdmin', 'middleware' => ['superAdmin', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[SuperAdminDashboardController::class, 'index']);
+    Route::get('/', [SuperAdminDashboardController::class, 'index']);
     Route::get('dashboard', [SuperAdminDashboardController::class, 'index'])->name('dashboard');
-
 });
 // ********************************************* SuperAdmin Routes End ********************************************* //
 
 
 
 // ********************************************* Admin Routes Start ********************************************* //
-Route::group(['as'=>'admin.','prefix' => 'Admin','middleware'=>['admin','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'admin.', 'prefix' => 'Admin', 'middleware' => ['admin', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[AdminDashboardController::class, 'index']);
+    Route::get('/', [AdminDashboardController::class, 'index']);
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });
 // ********************************************* Admin Route End ********************************************* //
@@ -59,10 +58,10 @@ Route::group(['as'=>'admin.','prefix' => 'Admin','middleware'=>['admin','auth','
 
 
 // ********************************************* HR Routes Start ********************************************* //
-Route::group(['as'=>'hr.','prefix' => 'HR','middleware'=>['hr','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'hr.', 'prefix' => 'HR', 'middleware' => ['hr', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[HrDashboardController::class, 'index']);
+    Route::get('/', [HrDashboardController::class, 'index']);
     Route::get('dashboard', [HrDashboardController::class, 'index'])->name('dashboard');
 
     // Employe List
@@ -80,7 +79,13 @@ Route::group(['as'=>'hr.','prefix' => 'HR','middleware'=>['hr','auth','PreventBa
     // Bulk Employee Upload
     Route::post('emp-import', [HrDashboardController::class, 'importEmployee'])->name('importEmployee');
     // Employee Attendance 
-    Route::get('emp-attendance', [HrDashboardController::class,'empAttendance'])->name('attendance');
+    Route::get('emp-attendance', [HrDashboardController::class, 'empAttendance'])->name('attendance');
+    // Manual Attendance
+    Route::get('manual-attendance', [HrDashboardController::class, 'manualAttendance'])->name('manual-attendance');
+    // Manual Attendance Save
+    Route::post('manual-attendance-save', [HrDashboardController::class, 'manualAttendanceSave'])->name('manual-attendance-save');
+    // Bulk Attendance
+    Route::get('bulk-attendance', [HrDashboardController::class, 'bulkAttendance'])->name('bulk-attendance');
 
 
     // JSON Formated save data
@@ -91,15 +96,13 @@ Route::group(['as'=>'hr.','prefix' => 'HR','middleware'=>['hr','auth','PreventBa
 
 
 // ********************************************* Finance Routes Start ********************************************* //
-Route::group(['as'=>'finance.','prefix' => 'Finance','middleware'=>['finance','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'finance.', 'prefix' => 'Finance', 'middleware' => ['finance', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[FinanceDashboardController::class, 'index']);
+    Route::get('/', [FinanceDashboardController::class, 'index']);
     Route::get('dashboard', [FinanceDashboardController::class, 'index'])->name('dashboard');
 
-    Route::group(['prefix' => 'PayRoll'], function() {
-
-
+    Route::group(['prefix' => 'PayRoll'], function () {
     });
 
     // Create Salary Structure Route
@@ -109,24 +112,23 @@ Route::group(['as'=>'finance.','prefix' => 'Finance','middleware'=>['finance','a
     // create Employee PaySlip
     Route::get('createPayslip', [FinanceDashboardController::class, 'createPayslip'])->name('createPayslip');
     // PaySlip View
-    Route::post('paySlipView',[FinanceDashboardController::class, 'paySlipView'])->name('paySlipView');
+    Route::post('paySlipView', [FinanceDashboardController::class, 'paySlipView'])->name('paySlipView');
     // Employess
-    Route::get('allEmployess', [FinanceDashboardController:: class, 'allEmployess'])->name('allEmployess');
+    Route::get('allEmployess', [FinanceDashboardController::class, 'allEmployess'])->name('allEmployess');
     // View Details Employee
-    Route::get('view-details', [FinanceDashboardController:: class, 'viewDetails'])->name('viewDetails');
+    Route::get('view-details', [FinanceDashboardController::class, 'viewDetails'])->name('viewDetails');
     // Download PaySlip
-    Route::get('Download-PaySlip', [FinanceDashboardController:: class, 'downloadPayslip'])->name('downloadPayslip');
-
+    Route::get('Download-PaySlip', [FinanceDashboardController::class, 'downloadPayslip'])->name('downloadPayslip');
 });
 // ********************************************* Finance Route End ********************************************* //
 
 
 
 // ********************************************* Manager Routes Start ********************************************* //
-Route::group(['as'=>'manager.','prefix' => 'Manager','middleware'=>['manager','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'manager.', 'prefix' => 'Manager', 'middleware' => ['manager', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[ManagerDashboardController::class, 'index']);
+    Route::get('/', [ManagerDashboardController::class, 'index']);
     Route::get('dashboard', [ManagerDashboardController::class, 'index'])->name('dashboard');
 });
 // ********************************************* Manager Route End ********************************************* //
@@ -134,20 +136,20 @@ Route::group(['as'=>'manager.','prefix' => 'Manager','middleware'=>['manager','a
 
 
 // ********************************************* Employee Routes Start ********************************************* //
-Route::group(['as'=>'employee.','prefix' => 'Employee','middleware'=>['employee','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'employee.', 'prefix' => 'Employee', 'middleware' => ['employee', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[EmployeeDashboardController::class, 'index']);
+    Route::get('/', [EmployeeDashboardController::class, 'index']);
     Route::get('dashboard', [EmployeeDashboardController::class, 'index'])->name('dashboard');
 });
 // ********************************************* Employee Route End ********************************************* //
 
 
 // ********************************************* Demo Routes Start ********************************************* //
-Route::group(['as'=>'demo.','prefix' => 'Demo','middleware'=>['demo','auth','PreventBackHistory']], function () {
+Route::group(['as' => 'demo.', 'prefix' => 'Demo', 'middleware' => ['demo', 'auth', 'PreventBackHistory']], function () {
 
     // Dashboard
-    Route::get('/',[DemoDashboardController::class, 'index']);
+    Route::get('/', [DemoDashboardController::class, 'index']);
     Route::get('dashboard', [DemoDashboardController::class, 'index'])->name('dashboard');
 });
 // ********************************************* Demo Route End ********************************************* //
@@ -155,5 +157,3 @@ Route::group(['as'=>'demo.','prefix' => 'Demo','middleware'=>['demo','auth','Pre
 // ********************************************* Pages Route Start ********************************************* //
 Route::get('approval', [HomeController::class, 'approvalEmployee'])->name('approval');
 // ********************************************* Pages Route End ********************************************* //
-
-
