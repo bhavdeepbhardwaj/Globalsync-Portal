@@ -82,9 +82,9 @@
                                                         <div class="panel-body  table-responsive">
                                                             <table
                                                                 class="table table-bordered table-striped table-hover w-full"
-                                                                data-plugin="">
+                                                                data-plugin="" id="tableremovefield">
                                                                 <thead class="text-center">
-                                                                    <tr >
+                                                                    <tr>
                                                                         <th class="">Day</th>
                                                                         <th class="">Status</th>
                                                                     </tr>
@@ -122,73 +122,50 @@
 @endsection
 
 @section('js')
-    {{-- <script src="{{ asset('assets/examples/js/tables/bootstrap.js ') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/examples/js/tables/jsgrid-db.js ') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/examples/js/tables/jsgrid.js ') }}"></script> --}}
     <!-- jQuery library -->
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var i = 64;
-            var j = 0;
-            // const dString = "01.02.2023";
-            // const days = 30;
-
-            // let [day, month, year] = dString.split('.');
-
-            // // month - 1 as month in the Date constructor is zero indexed
-            // const now = new Date(year, month - 1, day);
-
-            // let loopDay = now;
-            // for (let i = 0; i <= days; i++) {
-            //     loopDay.setDate(loopDay.getDate() + 1);
-            //     // console.log("Day: " + loopDay);
-            // }
-
-
-
-
-
-
             $('#addRow').click(function() {
-                const dSt = $('#att_month').val();
-                let [year, month] = dSt.split('-');
-                var getDaysArray = function(year, month) {
-                    var monthIndex = month - 1; // 0..11 instead of 1..12
-                    var names = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-                    var date = new Date(year, monthIndex, 1);
-                    var result = [];
-                    while (date.getMonth() == monthIndex) {
-                        result.push(date.getDate() + '-' + names[date.getDay()]);
-                        date.setDate(date.getDate() + 1);
-                    }
-                    return result;
+                $("#tableremovefield").find("tr.bhavdeep").remove();
+                var fulldetail = $('#att_month').val();
+                if (fulldetail == '') {
+                    alert('Please seelct the month');
+                    window.location.reload();
+                } else {
+                    var yeardetail = fulldetail.slice(0, 4);
+                    var monthdetail = fulldetail.slice(5);
 
+                    function daysInMonth(month, year) {
+                        return new Date(year, month, 0).getDate();
+                    }
+                    var l = 0;
+                    var dayInMonth = daysInMonth(monthdetail, yeardetail);
+                    for (let i = 0; i < dayInMonth; i++) {
+                        l = l + 1;
+                        var fullMonthDetail = fulldetail + '-' + l;
+                        $('#dynamic_field').append('<tr class="text-center bhavdeep"><td  id="row_num_' +
+                            fullMonthDetail + '">' + fullMonthDetail +
+                            '<td ><select class="form-control" name="status[' + fullMonthDetail +
+                            ']" id="status" data-fv-notempty="true"> <option value="">Please choose</option> <option value="WFO-P">WFO-P</option> <option value="WFH-P">WFH-P</option> <option value="LATE">LATE</option> <option value="AB">AB</option> <option value="WFO-HD">WFO-HD</option> <option value="WFH-HD">WFH-HD</option> <option value="UPL">UPL</option> <option value="PH">PH</option> <option value="BL">BL</option> </select>' +
+                            '<td hidden><button type="button"  name="remove" class="btn btn-danger btn_remove">X</button></td></tr>'
+                        );
+
+                        $(document).on('click', '.btn_remove', function() {
+                            $(this).closest("tr").remove(); //use closest here
+                            $('tbody tr').each(function(index) {
+                                //change id of first tr
+                                $(this).find("td:eq(0)").attr("id", "row_num" + (index + 1))
+                                //change hidden input value
+                                $(this).find("td:eq(0)").html((index + 1) +
+                                    '<input type="hidden" name="task_number[]" value=' +
+                                    (
+                                        index + 1) +
+                                    '>')
+                            });
+                        });
+                    }
                 }
-                i++;
-                // j++;
-                $('#dynamic_field').append('<tr class="text-center"><td  id="row_num_' +
-                    String
-                    .fromCharCode(i) + '">' + String.fromCharCode(i) +
-                    // '<input type="hidden" name="' + String.fromCharCode(i) +
-                    // '" class="form-control" value=' + j +'></td>' +
-                    '<td ><select class="form-control" name="status[' + String
-                    .fromCharCode(i) +
-                    ']" id="status" data-fv-notempty="true"> <option value="">Please choose</option> <option value="WFO-P">WFO-P</option> <option value="WFH-P">WFH-P</option> <option value="LATE">LATE</option> <option value="AB">AB</option> <option value="WFO-HD">WFO-HD</option> <option value="WFH-HD">WFH-HD</option> <option value="UPL">UPL</option> <option value="PH">PH</option> <option value="BL">BL</option> </select>' +
-                    '<td hidden><button type="button"  name="remove" class="btn btn-danger btn_remove">X</button></td></tr>'
-                );
-            });
-            $(document).on('click', '.btn_remove', function() {
-                $(this).closest("tr").remove(); //use closest here
-                $('tbody tr').each(function(index) {
-                    //change id of first tr
-                    $(this).find("td:eq(0)").attr("id", "row_num" + (index + 1))
-                    //change hidden input value
-                    $(this).find("td:eq(0)").html((index + 1) +
-                        '<input type="hidden" name="task_number[]" value=' + (index + 1) + '>')
-                });
-                i--;
-                // j--;
             });
         });
     </script>

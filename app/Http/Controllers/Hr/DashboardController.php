@@ -76,62 +76,62 @@ class DashboardController extends Controller
         try {
             $this->validate($request, [
                 // Employee Credentials
-                'email'                         => 'email|required|unique:users',
-                'password'                      => 'required|min:8',
+                'email' => 'email|required|unique:users',
+                'password' => 'required|min:8',
 
                 // Employee Status
-                'emp_id'                        => 'required',
-                'role_id'                       => 'required',
-                'emp_status'                    => 'required',
-                'country_type'                  => 'required',
-                'user_id'                       => 'required',
+                'emp_id' => 'required',
+                'role_id' => 'required',
+                'emp_status' => 'required',
+                'country_type' => 'required',
+                'user_id' => 'required',
                 // 'emp_id'                     => 'required',
                 // 'emp_email'                  => 'required',
                 // 'emp_status'                 => 'required',
                 // 'country_type'               => 'required',
 
                 // Allowances
-                'emp_food'                      => 'required',
-                'emp_travel'                    => 'required',
-                'emp_spl'                       => 'required',
-                'emp_meal'                      => 'required',
-                'emp_cab'                       => 'required',
+                'emp_food' => 'required',
+                'emp_travel' => 'required',
+                'emp_spl' => 'required',
+                'emp_meal' => 'required',
+                'emp_cab' => 'required',
 
                 // Incentives & Deductions
-                'emp_stinc'                     => 'required',
-                'emp_inc'                       => 'required',
-                'emp_other'                     => 'required',
+                'emp_stinc' => 'required',
+                'emp_inc' => 'required',
+                'emp_other' => 'required',
 
                 // Employee Details
                 // file
                 // 'emp_pic'                    => 'required',
-                'emp_name'                      => 'required',
-                'emp_doj'                       => 'required',
-                'emp_desg'                      => 'required',
-                'emp_dept'                      => 'required',
-                'gender'                        => 'required',
-                'emp_pan'                       => 'required',
+                'emp_name' => 'required',
+                'emp_doj' => 'required',
+                'emp_desg' => 'required',
+                'emp_dept' => 'required',
+                'gender' => 'required',
+                'emp_pan' => 'required',
                 // 'emp_uan'                    => 'required',
                 // emp_esi'                     => 'required',
                 // 'nick_name'                  => 'required',
-                'joining_month'                 => 'required',
+                'joining_month' => 'required',
                 // 'date_of_hitting'            => 'required',
                 // 'rejoing_on'                 => 'required',
                 // 'date_of_confirmation'       => 'required',
                 // 'ageing'                     => 'required',
                 // Payment Details
-                'emp_paymode'                   => 'required',
-                'emp_bank'                      => 'required',
-                'emp_ifsc'                      => 'required',
+                'emp_paymode' => 'required',
+                'emp_bank' => 'required',
+                'emp_ifsc' => 'required',
                 // 'transport_r_a'              => 'required',
-                'emp_acc'                       => 'required',
-                'emp_gsal'                      => 'required',
-                'annual_ctc'                    => 'required',
-                'in_hand_salary_with_stack'     => 'required',
+                'emp_acc' => 'required',
+                'emp_gsal' => 'required',
+                'annual_ctc' => 'required',
+                'in_hand_salary_with_stack' => 'required',
 
                 // Employee Journey
                 // 'performer_month'            => 'required',
-                'line_manager'                  => 'required',
+                'line_manager' => 'required',
                 // 'type_of_attrition'          => 'required',
                 // 'pip_issue_date'             => 'required',
                 // 'date_of_verbal_warning'     => 'required',
@@ -153,37 +153,37 @@ class DashboardController extends Controller
                 // 'experience_relieving'       => 'required',
 
                 // Employee Family Details
-                'father_name'                   => 'required',
-                'nominee_details'               => 'required',
-                'relation'                      => 'required',
-                'address'                       => 'required',
+                'father_name' => 'required',
+                'nominee_details' => 'required',
+                'relation' => 'required',
+                'address' => 'required',
                 // 'total_member'               => 'required',
 
                 // Employee Personal Details
-                'marital_status'                => 'required',
-                'dob'                           => 'required',
-                'primary_email'                 => 'required',
-                'per_address_h_no'              => 'required',
-                'per_lacality_building'         => 'required',
-                'per_area'                      => 'required',
-                'per_district'                  => 'required',
-                'per_state'                     => 'required',
-                'per_post_code'                 => 'required',
+                'marital_status' => 'required',
+                'dob' => 'required',
+                'primary_email' => 'required',
+                'per_address_h_no' => 'required',
+                'per_lacality_building' => 'required',
+                'per_area' => 'required',
+                'per_district' => 'required',
+                'per_state' => 'required',
+                'per_post_code' => 'required',
                 // 'present_address_h_no'       => 'required',
                 // 'lacality_building'          => 'required',
                 // 'area'                       => 'required',
                 // 'district'                   => 'required',
                 // 'state'                      => 'required',
                 // 'post_code'                  => 'required',
-                'aadhaar'                       => 'required',
-                'blood_group'                   => 'required',
-                'emy_contact_no'                => 'required',
-                'emy_contact_relation'          => 'required',
-                'emy_contact_email'             => 'required',
+                'aadhaar' => 'required',
+                'blood_group' => 'required',
+                'emy_contact_no' => 'required',
+                'emy_contact_relation' => 'required',
+                'emy_contact_email' => 'required',
                 // 'total_bank'                 => 'required',
-                'phone'                         => 'required',
-                'mobile'                        => 'required',
-                'mob_link_uan_no'               => 'required',
+                'phone' => 'required',
+                'mobile' => 'required',
+                'mob_link_uan_no' => 'required',
                 // file
                 // 'salary_slip'                => 'required',
                 // 'bank_statement'             => 'required',
@@ -292,25 +292,25 @@ class DashboardController extends Controller
             $json = json_encode($my_var);
             // dd($json);
             Employee::create([
-                'user_id'                   => $user->id,
-                'emp_id'                    => $user->emp_id,
-                'emp_status'                => $user->emp_status,
-                'country_type'              => $user->country_type,
-                'emp_email'                 => $user->email,
-                'formdata'                  => $json,
-                'emp_pic'                   => $emp_pic,
-                'appraisal_letter'          => $appraisal_letter,
-                'appraisal_1'               => $appraisal_1,
-                'appraisal_2'               => $appraisal_2,
-                'appraisal_3'               => $appraisal_3,
-                'appraisal_4'               => $appraisal_4,
-                'ssc'                       => $ssc,
-                'hsc'                       => $hsc,
-                'graduation'                => $graduation,
-                'salary_slip'               => $salary_slip,
-                'bank_statement'            => $bank_statement,
-                'cancel_cheque'             => $cancel_cheque,
-                'experience_relieving'      => $experience_relieving,
+                'user_id' => $user->id,
+                'emp_id' => $user->emp_id,
+                'emp_status' => $user->emp_status,
+                'country_type' => $user->country_type,
+                'emp_email' => $user->email,
+                'formdata' => $json,
+                'emp_pic' => $emp_pic,
+                'appraisal_letter' => $appraisal_letter,
+                'appraisal_1' => $appraisal_1,
+                'appraisal_2' => $appraisal_2,
+                'appraisal_3' => $appraisal_3,
+                'appraisal_4' => $appraisal_4,
+                'ssc' => $ssc,
+                'hsc' => $hsc,
+                'graduation' => $graduation,
+                'salary_slip' => $salary_slip,
+                'bank_statement' => $bank_statement,
+                'cancel_cheque' => $cancel_cheque,
+                'experience_relieving' => $experience_relieving,
 
             ]);
             // Json::create($input);
@@ -393,7 +393,6 @@ class DashboardController extends Controller
                 'emp_status' => $request->emp_status,
                 'country_type' => $request->country_type,
             ]);
-
 
             $data = $request->all();
 
@@ -495,8 +494,7 @@ class DashboardController extends Controller
                 $experience_relieving = $fetchEmpData->experience_relieving;
             }
 
-
-            unset($my_var["email"], $my_var["password"], $my_var["role_id"], $my_var["emp_id"], $my_var["emp_status"], $my_var["country_type"], $my_var["emp_pic"], $my_var["appraisal_letter"], $my_var["appraisal_1"], $my_var["appraisal_2"], $my_var["appraisal_3"], $my_var["appraisal_4"], $my_var["ssc"], $my_var["hsc"], $my_var["graduation"], $my_var["salary_slip"], $my_var["bank_statement"], $my_var["cancel_cheque"], $my_var["experience_relieving"],  $my_var["user_id"]);
+            unset($my_var["email"], $my_var["password"], $my_var["role_id"], $my_var["emp_id"], $my_var["emp_status"], $my_var["country_type"], $my_var["emp_pic"], $my_var["appraisal_letter"], $my_var["appraisal_1"], $my_var["appraisal_2"], $my_var["appraisal_3"], $my_var["appraisal_4"], $my_var["ssc"], $my_var["hsc"], $my_var["graduation"], $my_var["salary_slip"], $my_var["bank_statement"], $my_var["cancel_cheque"], $my_var["experience_relieving"], $my_var["user_id"]);
 
             $json = json_encode($my_var);
             // dd($json);
@@ -541,14 +539,8 @@ class DashboardController extends Controller
     {
         try {
             $getEmpAtte = Attendance::where('is_deleted', 0)->select('emp_id', 'att_month', 'data')->get();
-            foreach ($getEmpAtte as $emp)
-            {
-                $fetchFormArr = json_decode($emp->data,true);
-            dd($fetchFormArr['B']);
-
-            }
             // $fetchFormArr = json_decode($getEmpAtte->data,true);
-            dd('sds');
+            // dd('sds');
             return view('hr.attendance');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -576,28 +568,85 @@ class DashboardController extends Controller
             $input['data'] = json_encode($data);
 
             $json = json_decode($input['data'], true);
+            $totalDay = 0;
 
-            // dd($json, count($json));
+            // foreach ($json['status'] as $jsonvalue) {
+            //     if ($jsonvalue != null) {
+            //         $totalDay++;
+            //     }
+            // }
+
+            $presentDay = 0;
+            $ab = 0;
+            $late = 0;
+            $wfoP = 0;
+            $wfhP = 0;
+            $wfoHD = 0;
+            $wfhHD = 0;
+            $upl = 0;
+            $ph = 0;
+            $pbl = 0;
+            $bl = 0;
+
+            foreach ($json['status'] as $jsonvalue) {
+                if ($jsonvalue != null && ($jsonvalue == 'WFO-P' || $jsonvalue == 'WFH-P' || $jsonvalue == 'WFO-HD' || $jsonvalue == 'WFH-HD' || $jsonvalue == 'PH' || $jsonvalue == 'LATE' || $jsonvalue == 'BL')) {
+                    $presentDay++;
+                }
+                if($jsonvalue == 'WFO-P') {
+                    $wfoP++;
+                }
+                if($jsonvalue == 'WFH-P') {
+                    $wfhP++;
+                }
+                if($jsonvalue == 'LATE') {
+                    $late++;
+                }
+                if ($jsonvalue == 'AB') {
+                    $ab++;
+                }
+                if($jsonvalue == 'WFO-HD') {
+                    $wfoHD++;
+                }
+                if($jsonvalue == 'WFH-HD') {
+                    $wfhHD++;
+                }
+                if($jsonvalue == 'UPL') {
+                    $upl++;
+                }
+                if($jsonvalue == 'PH') {
+                    $ph++;
+                }
+                if($jsonvalue == 'BL') {
+                    $bl++;
+                }
+
+            }
+
+            // $totalDay = count(array_values($json['status']));
+            dd($json, $totalDay, $presentDay, $wfoP, $wfhP, $late, $ab, $wfoHD, $wfhHD, $upl, $ph, $bl);
+
+            // $totalPresent
 
             unset($json["att_month"], $json["emp_id"]);
 
-            // dd(json_encode($json['status']));
+            $data = json_encode($json['status']);
 
             Attendance::create([
-                'emp_id'                    => $request->emp_id,
-                'att_month'                 => $request->att_month,
-                // 'data'                      => $json,
-                'data'                      => json_encode($json['status']),
-
+                'emp_id'            => $request->emp_id,
+                'att_month'         => $request->att_month,
+                'data'              => $data,
+                'totalDay'          => $totalDay,
+                'presentDay'        => $presentDay,
+                'wfoP'              => $wfoP,
+                'wfhP'              => $wfhP,
+                'late'              => $late,
+                'ab'                => $ab,
+                'wfoHD'             => $wfoHD,
+                'wfhHD'             => $wfhHD,
+                'upl'               => $upl,
+                'ph'                => $ph,
+                'bl'                => $bl,
             ]);
-            // 
-            // $data = $request->all();
-
-            // $result = Attendance::create([
-            //     'emp_id'                    => $request->emp_id,
-            //     'att_month'                 => $request->att_month,
-            //     'data'                      => json_encode($data['status']),
-            // ]);
 
             dd("Insert Attendance is Now Add Successfully  !");
 

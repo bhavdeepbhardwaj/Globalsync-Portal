@@ -18,6 +18,17 @@ class CreateAttendancesTable extends Migration
             $table->text('emp_id');
             $table->text('att_month')->nullable();
             $table->text('data')->nullable();
+            $table->text('totalDay')->nullable();
+            $table->text('presentDay')->nullable();
+            $table->text('wfoP')->nullable();
+            $table->text('wfhP')->nullable();
+            $table->text('late')->nullable();
+            $table->text('ab')->nullable();
+            $table->text('wfoHD')->nullable();
+            $table->text('wfhHD')->nullable();
+            $table->text('upl')->nullable();
+            $table->text('ph')->nullable();
+            $table->text('bl')->nullable();
             $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });

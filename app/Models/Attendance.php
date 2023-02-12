@@ -15,5 +15,16 @@ class Attendance extends Model
         'emp_id',
         'att_month',
         'data',
+        'totalDay',
+        'presentDay',
+        'wfoP',
+        'wfhP',
+        'late',
+        'ab',
+        'wfoHD',
+        'wfhHD',
+        'upl',
+        'ph',
+        'bl',
     ];
 }
