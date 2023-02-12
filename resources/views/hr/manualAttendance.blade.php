@@ -143,6 +143,8 @@
                     var dayInMonth = daysInMonth(monthdetail, yeardetail);
                     for (let i = 0; i < dayInMonth; i++) {
                         l = l + 1;
+                        // j = 65 + i
+                        // String.fromCharCode(j)
                         var fullMonthDetail = fulldetail + '-' + l;
                         $('#dynamic_field').append('<tr class="text-center bhavdeep"><td  id="row_num_' +
                             fullMonthDetail + '">' + fullMonthDetail +
