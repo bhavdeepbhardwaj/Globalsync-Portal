@@ -82,6 +82,8 @@ Route::group(['as' => 'hr.', 'prefix' => 'HR', 'middleware' => ['hr', 'auth', 'P
     Route::get('emp-attendance', [HrDashboardController::class, 'empAttendance'])->name('attendance');
     // Manual Attendance
     Route::get('manual-attendance', [HrDashboardController::class, 'manualAttendance'])->name('manual-attendance');
+    // Details Attendance Modal POPUP
+    Route::get('popUpDetailsAttendance', [HrDashboardController::class, 'popUpDetailsAttendance'])->name('popUpDetailsAttendance');
     // Manual Attendance Save
     Route::post('manual-attendance-save', [HrDashboardController::class, 'manualAttendanceSave'])->name('manual-attendance-save');
     // Bulk Attendance

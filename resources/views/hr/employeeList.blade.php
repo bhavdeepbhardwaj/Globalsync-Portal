@@ -43,7 +43,7 @@
                     <div class="panel-actions"></div>
                     <h3 class="panel-title">Basic</h3>
                 </header>
-                <div class="panel-body  table-responsive">
+                <div class="panel-body table-responsive">
                     <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                         <thead>
                             <tr>

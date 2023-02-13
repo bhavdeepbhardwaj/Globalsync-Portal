@@ -26,5 +26,7 @@ class Attendance extends Model
         'upl',
         'ph',
         'bl',
+        'wo',
+        'sd',
     ];
 }

@@ -30,6 +30,23 @@
     <link rel="stylesheet" href="{{ asset('assets/examples/css/forms/validation.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/jquery-wizard/jquery-wizard.css ') }}">
 
+    <link rel="stylesheet" href="{{ asset('global/vendor/datatables.net-bs4/dataTables.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css ') }}">
+    <link rel="stylesheet"
+        href="{{ asset('global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css ') }}">
+    <link rel="stylesheet" href="{{ asset('assets/examples/css/tables/datatable.css ') }}">
+
 
 
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist/chartist.css ') }}">
@@ -189,6 +206,7 @@
     <script src="{{ asset('global/js/Plugin/peity.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/dashboard/v1.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/forms/validation.js ') }}"></script>
+    <script src="{{ asset('global/js/Plugin/datatables.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/tables/datatable.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/uikit/icon.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/tabs.js ') }}"></script>

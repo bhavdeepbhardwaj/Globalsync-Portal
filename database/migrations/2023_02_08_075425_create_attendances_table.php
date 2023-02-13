@@ -29,6 +29,8 @@ class CreateAttendancesTable extends Migration
             $table->text('upl')->nullable();
             $table->text('ph')->nullable();
             $table->text('bl')->nullable();
+            $table->text('wo')->nullable();
+            $table->text('sd')->nullable();
             $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
         });

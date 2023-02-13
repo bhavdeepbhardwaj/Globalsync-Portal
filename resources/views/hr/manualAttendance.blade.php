@@ -149,7 +149,7 @@
                         $('#dynamic_field').append('<tr class="text-center bhavdeep"><td  id="row_num_' +
                             fullMonthDetail + '">' + fullMonthDetail +
                             '<td ><select class="form-control" name="status[' + fullMonthDetail +
-                            ']" id="status" data-fv-notempty="true"> <option value="">Please choose</option> <option value="WFO-P">WFO-P</option> <option value="WFH-P">WFH-P</option> <option value="LATE">LATE</option> <option value="AB">AB</option> <option value="WFO-HD">WFO-HD</option> <option value="WFH-HD">WFH-HD</option> <option value="UPL">UPL</option> <option value="PH">PH</option> <option value="BL">BL</option> </select>' +
+                            ']" id="status" data-fv-notempty="true"> <option value="">Please choose</option> <option value="WFO-P">WFO-P</option> <option value="WFH-P">WFH-P</option> <option value="LATE">LATE</option> <option value="AB">AB</option> <option value="WFO-HD">WFO-HD</option> <option value="WFH-HD">WFH-HD</option> <option value="UPL">UPL</option> <option value="PH">PH</option> <option value="BL">BL</option> <option value="W/O">W/O</option> <option value="SD">SD</option></select>' +
                             '<td hidden><button type="button"  name="remove" class="btn btn-danger btn_remove">X</button></td></tr>'
                         );
 

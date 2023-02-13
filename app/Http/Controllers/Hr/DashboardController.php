@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Response;
 
 class DashboardController extends Controller
 {
@@ -538,13 +539,22 @@ class DashboardController extends Controller
     public function empAttendance()
     {
         try {
-            $getEmpAtte = Attendance::where('is_deleted', 0)->select('emp_id', 'att_month', 'data')->get();
+            $getEmpAtte = Attendance::where('is_deleted', 0)->select('emp_id', 'att_month', 'data', 'totalDay', 'presentDay')->get();
             // $fetchFormArr = json_decode($getEmpAtte->data,true);
-            // dd('sds');
-            return view('hr.attendance');
+            // dd($getEmpAtte);
+            return view('hr.attendance', ['getEmpAtte' => $getEmpAtte]);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
+    }
+
+    // Details Attendance Modal POPUP
+    public function popUpDetailsAttendance(Request $request)
+    {
+        // dd($request->all());
+        $empDetail = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('emp_id', 'att_month','data')->get()->first();
+        // dd($empDetail);
+        return Response::json($empDetail);
     }
 
     // Manual Attendance
@@ -569,13 +579,6 @@ class DashboardController extends Controller
 
             $json = json_decode($input['data'], true);
             $totalDay = 0;
-
-            // foreach ($json['status'] as $jsonvalue) {
-            //     if ($jsonvalue != null) {
-            //         $totalDay++;
-            //     }
-            // }
-
             $presentDay = 0;
             $ab = 0;
             $late = 0;
@@ -585,45 +588,57 @@ class DashboardController extends Controller
             $wfhHD = 0;
             $upl = 0;
             $ph = 0;
-            $pbl = 0;
             $bl = 0;
+            $wo = 0;
+            $sd = 0;
 
             foreach ($json['status'] as $jsonvalue) {
-                if ($jsonvalue != null && ($jsonvalue == 'WFO-P' || $jsonvalue == 'WFH-P' || $jsonvalue == 'WFO-HD' || $jsonvalue == 'WFH-HD' || $jsonvalue == 'PH' || $jsonvalue == 'LATE' || $jsonvalue == 'BL')) {
+                if ($jsonvalue != null) {
+                    $totalDay++;
+                }
+            }
+
+            foreach ($json['status'] as $jsonvalue) {
+                if ($jsonvalue != null && ($jsonvalue == 'WFO-P' || $jsonvalue == 'WFH-P' || $jsonvalue == 'WFO-HD' || $jsonvalue == 'WFH-HD' || $jsonvalue == 'PH' || $jsonvalue == 'LATE' || $jsonvalue == 'BL' || $jsonvalue == 'UPL' || $jsonvalue == 'W/O' || $jsonvalue == 'SD')) {
                     $presentDay++;
                 }
-                if($jsonvalue == 'WFO-P') {
+                if ($jsonvalue == 'WFO-P') {
                     $wfoP++;
                 }
-                if($jsonvalue == 'WFH-P') {
+                if ($jsonvalue == 'WFH-P') {
                     $wfhP++;
                 }
-                if($jsonvalue == 'LATE') {
+                if ($jsonvalue == 'LATE') {
                     $late++;
                 }
                 if ($jsonvalue == 'AB') {
                     $ab++;
                 }
-                if($jsonvalue == 'WFO-HD') {
+                if ($jsonvalue == 'WFO-HD') {
                     $wfoHD++;
                 }
-                if($jsonvalue == 'WFH-HD') {
+                if ($jsonvalue == 'WFH-HD') {
                     $wfhHD++;
                 }
-                if($jsonvalue == 'UPL') {
+                if ($jsonvalue == 'UPL') {
                     $upl++;
                 }
-                if($jsonvalue == 'PH') {
+                if ($jsonvalue == 'PH') {
                     $ph++;
                 }
-                if($jsonvalue == 'BL') {
+                if ($jsonvalue == 'BL') {
                     $bl++;
                 }
-
+                if ($jsonvalue == 'W/O') {
+                    $wo++;
+                }
+                if ($jsonvalue == 'SD') {
+                    $sd++;
+                }
             }
 
             // $totalDay = count(array_values($json['status']));
-            dd($json, $totalDay, $presentDay, $wfoP, $wfhP, $late, $ab, $wfoHD, $wfhHD, $upl, $ph, $bl);
+            // dd($json, $totalDay, $presentDay, $wfoP, $wfhP, $late, $ab, $wfoHD, $wfhHD, $upl, $ph, $bl, $wo, $sd);
 
             // $totalPresent
 
@@ -646,6 +661,8 @@ class DashboardController extends Controller
                 'upl'               => $upl,
                 'ph'                => $ph,
                 'bl'                => $bl,
+                'wo'                => $wo,
+                'sd'                => $sd,
             ]);
 
             dd("Insert Attendance is Now Add Successfully  !");
