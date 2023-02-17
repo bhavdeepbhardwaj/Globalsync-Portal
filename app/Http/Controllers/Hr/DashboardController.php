@@ -540,8 +540,7 @@ class DashboardController extends Controller
     {
         try {
             $getEmpAtte = Attendance::where('is_deleted', 0)->select('emp_id', 'att_month', 'data', 'totalDay', 'presentDay')->get();
-            // $fetchFormArr = json_decode($getEmpAtte->data,true);
-            // dd($getEmpAtte);
+            // print_r($data);
             return view('hr.attendance', ['getEmpAtte' => $getEmpAtte]);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -552,7 +551,7 @@ class DashboardController extends Controller
     public function popUpDetailsAttendance(Request $request)
     {
         // dd($request->all());
-        $empDetail = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('emp_id', 'att_month','data')->get()->first();
+        $empDetail = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('emp_id', 'att_month', 'data')->get()->first();
         // dd($empDetail);
         return Response::json($empDetail);
     }
@@ -573,6 +572,11 @@ class DashboardController extends Controller
     public function manualAttendanceSave(Request $request)
     {
         try {
+            $this->validate($request, [
+                'emp_id'            => 'required',
+                'att_month'         => 'required',
+            ]);
+
             $data = $request->all();
             $input['token'] = date('Y-m-d H:i:s');
             $input['data'] = json_encode($data);

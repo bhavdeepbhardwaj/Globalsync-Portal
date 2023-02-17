@@ -29,6 +29,7 @@
         </div>
 
         <div class="page-content container-fluid">
+            @include('flush.alert')
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Panel -->
@@ -36,11 +37,9 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Employee Attendance</h3>
                         </div>
-
                         <div class="panel-body">
-
                             {{-- Employee Status --}}
-                            <div class="row row-lg">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <form autocomplete="off" method="POST"
                                         action="{{ route('hr.manual-attendance-save') }}" enctype="multipart/form-data">
@@ -96,29 +95,47 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                             {{-- Submit Button --}}
                                             <div class="form-group col-xl-12 text-center padding-top-m">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                             {{-- Submit Button --}}
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                             {{-- Employee Status --}}
-
                         </div>
                     </div>
                     <!-- End Panel -->
                 </div>
-
-
             </div>
         </div>
     </div>
     <!-- End Page -->
+
+    <!-- Modal -->
+    <div class="modal fade modal-danger" id="exampleModalDanger" aria-hidden="true" aria-labelledby="exampleModalDanger"
+        role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Modal Title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Pick Attendance Month</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
 @endsection
 
 @section('js')
@@ -130,8 +147,9 @@
                 $("#tableremovefield").find("tr.bhavdeep").remove();
                 var fulldetail = $('#att_month').val();
                 if (fulldetail == '') {
-                    alert('Please seelct the month');
-                    window.location.reload();
+                    $("#exampleModalDanger").modal('show');
+                    // alert('Please seelct the month');
+                    // window.location.reload();
                 } else {
                     var yeardetail = fulldetail.slice(0, 4);
                     var monthdetail = fulldetail.slice(5);
