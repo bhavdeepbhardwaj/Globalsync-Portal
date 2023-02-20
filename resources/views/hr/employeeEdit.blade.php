@@ -46,7 +46,7 @@
                 {{ csrf_field() }}
 
                 {{-- hidden Item --}}
-                <input type="text" name="user_id" class="form-control" value="{{ $userEdit->id }}" hidden/>
+                <input type="text" name="user_id" class="form-control" value="{{ $userEdit->id }}" hidden />
                 {{-- hidden Item --}}
 
                 {{-- ***************************************************************************************************************************************************** --}}
@@ -149,14 +149,13 @@
                                                     <span class="required">*</span>
                                                 </label>
                                                 <div class=" col-lg-12 col-md-12">
-                                                    <select class="form-control" name="emp_status" data-fv-notempty="true"
-                                                        value="{{ $userEdit->emp_status }}">
+                                                    <select class="form-control" name="emp_status" data-fv-notempty="true">
                                                         <option value="">Please choose</option>
-                                                        <option value="{{ $userEdit->emp_status }}"
+                                                        <option value="1"
                                                             @if ($userEdit->emp_status == 1) selected @endif>
                                                             Active
                                                         </option>
-                                                        <option value="{{ $userEdit->emp_status }}"
+                                                        <option value="0"
                                                             @if ($userEdit->emp_status == 0) selected @endif>Inactive
                                                         </option>
                                                     </select>
@@ -298,7 +297,7 @@
                                                                         data-fv-notempty-message="This is required"
                                                                         value="1"
                                                                         {{ $fetchFormArr['emp_cab'] == 1 ? 'checked' : '' }}>
-                                                                    
+
 
                                                                     <label for="emp_cab">Travel Service Availed</label>
                                                                 </div>
@@ -1738,10 +1737,7 @@
                 {{-- Submit Button --}}
                 <div class="form-group col-xl-12 text-center padding-top-m">
                     {{-- <button type="submit" class="btn btn-primary" id="validateButton1">Submit</button> --}}
-                    <button type="submit" class="btn btn-primary" id="exampleProgressBar" data-plugin="toastr"
-                        data-message="Lorem ipsum dolor sit amdfxfdsfet, consectetur adipiscing elit."
-                        data-title="Messages" data-container-id="toast-top-right" data-progress-bar="true"
-                        data-icon-class="toast-just-text toast-info" onclick="mySubmit(this)">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 {{-- Submit Button --}}
 
@@ -1754,4 +1750,34 @@
 
 @section('js')
     <!-- Page -->
+
+    {{-- <script>
+        $('.btn').on("click", function() {
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                type: "success",
+                showCancelButton: false,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
+        });
+    </script> --}}
+    {{-- <script>
+        $(document).on('submit', '[id^=exampleFullForm]', function(e) {
+            // e.preventDefault();
+            var data = $(this).serialize();
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                type: "success",
+                // showCancelButton: false,
+                // confirmButtonClass: "btn-success",
+                // confirmButtonText: 'OK',
+                // closeOnConfirm: false
+            });
+            // return false;
+        });
+    </script> --}}
 @endsection

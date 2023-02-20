@@ -70,9 +70,18 @@
                                 <th>MONTH </th>
                                 <th>TOTAL DAY</th>
                                 <th>PRESENT DAY</th>
-                                <th>Details</th>
+                                <th>DETAILS</th>
                             </tr>
                         </thead>
+                        <tfoot>
+                            <tr>
+                                <th>EMPLOYEE ID</th>
+                                <th>MONTH </th>
+                                <th>TOTAL DAY</th>
+                                <th>PRESENT DAY</th>
+                                <th>DETAILS</th>
+                            </tr>
+                        </tfoot>
                         <tbody>
                             @foreach ($getEmpAtte as $empAtt)
                                 <tr>
@@ -80,10 +89,13 @@
                                     <td>{{ date('F Y', strtotime($empAtt->att_month)) }}</td>
                                     <td>{!! $empAtt->totalDay !!}</td>
                                     <td>{{ $empAtt->presentDay }}</td>
-                                    <td><a href="javascript:void(0)" role="button" data-target="#exampleFormModal"
+                                    {{-- <td><a href="javascript:void(0)" role="button" data-target="#exampleFormModal"
                                             data-toggle="modal" data-dismiss="modal"><i class="icon wb-eye"
                                                 aria-hidden="true"
                                                 onClick="popupfunctioncall('{{ $empAtt->emp_id }}',' {{ $empAtt->att_month }}');"></i></a>
+                                    </td> --}}
+                                    <td><a href="{{ route('hr.viewAttendance', ['emp_id' => $empAtt->emp_id, 'att_month' => $empAtt->att_month]) }}"><i class="icon wb-eye"
+                                                aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

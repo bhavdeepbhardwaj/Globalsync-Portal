@@ -65,17 +65,17 @@ Route::group(['as' => 'hr.', 'prefix' => 'HR', 'middleware' => ['hr', 'auth', 'P
     Route::get('dashboard', [HrDashboardController::class, 'index'])->name('dashboard');
 
     // Employe List
-    Route::get('employee-list', [HrDashboardController::class, 'employeeList'])->name('employee-list');
+    Route::get('emp-list', [HrDashboardController::class, 'employeeList'])->name('employee-list');
     // Employee Add
-    Route::get('employee-add', [HrDashboardController::class, 'employeeAdd'])->name('employee-add');
+    Route::get('emp-add', [HrDashboardController::class, 'employeeAdd'])->name('employee-add');
     // Employee Data Add
-    Route::post('employee-data-save', [HrDashboardController::class, 'employeeDataSave'])->name('employee-data-save');
+    Route::post('emp-data-save', [HrDashboardController::class, 'employeeDataSave'])->name('employee-data-save');
     // Employee Data View Details
-    Route::get('view-details/{id}', [HrDashboardController::class, 'employeeView'])->name('view-details');
+    Route::get('emp-view-details/{id}', [HrDashboardController::class, 'employeeView'])->name('view-details');
     // Employee Data Edit Details
-    Route::get('edit-details/{id}', [HrDashboardController::class, 'employeeEdit'])->name('edit-details');
+    Route::get('emp-edit-details/{id}', [HrDashboardController::class, 'employeeEdit'])->name('edit-details');
     // Employee Data Update Details
-    Route::post('employee-update', [HrDashboardController::class, 'employeeUpdate'])->name('update-details');
+    Route::post('emp-update', [HrDashboardController::class, 'employeeUpdate'])->name('update-details');
     // Bulk Employee Upload
     Route::post('emp-import', [HrDashboardController::class, 'importEmployee'])->name('importEmployee');
     // Employee Attendance 
@@ -86,8 +86,10 @@ Route::group(['as' => 'hr.', 'prefix' => 'HR', 'middleware' => ['hr', 'auth', 'P
     Route::get('popUpDetailsAttendance', [HrDashboardController::class, 'popUpDetailsAttendance'])->name('popUpDetailsAttendance');
     // Manual Attendance Save
     Route::post('manual-attendance-save', [HrDashboardController::class, 'manualAttendanceSave'])->name('manual-attendance-save');
+    // View Single Attendance
+    Route::get('emp-view-attendance/{id?}/{parameter?}', [HrDashboardController::class, 'viewAttendance'])->name('viewAttendance');
     // Bulk Attendance
-    Route::get('bulk-attendance', [HrDashboardController::class, 'bulkAttendance'])->name('bulk-attendance');
+    Route::get('emp-bulk-attendance', [HrDashboardController::class, 'bulkAttendance'])->name('bulk-attendance');
 
 
     // JSON Formated save data

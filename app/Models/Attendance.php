@@ -9,6 +9,8 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    // protected $incrementing = false;
+
     protected $table = 'attendances';
 
     protected $fillable = [

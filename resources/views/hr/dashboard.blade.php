@@ -516,5 +516,8 @@
 
     <script src="{{ asset('global/vendor/chartist/chartist.min.js ') }}"></script>
     <script src="{{ asset('global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js ') }}"></script>
+    {{-- demo data --}}
+    <script src="{{ asset('assets/examples/js/dashboard/v1.js ') }}"></script>
+
 
 @endsection

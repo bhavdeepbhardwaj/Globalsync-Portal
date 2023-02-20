@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="GLOBALSYNC PORTAL">
     <meta name="author" content="">
     <title>@yield('title')</title>
@@ -49,6 +51,7 @@
 
 
 
+
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist/chartist.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/jvectormap/jquery-jvectormap.css ') }}">
     <link rel="stylesheet" href="{{ asset('global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css ') }}">
@@ -66,6 +69,12 @@
 
 
     <link rel="stylesheet" href="{{ asset('global/vendor/bootstrap-table/bootstrap-table.css ') }}">
+
+    {{-- sweetalert css --}}
+    <link rel="stylesheet" href="{{ asset('global/vendor/bootstrap-sweetalert/sweetalert.css ') }}">
+    <link rel="stylesheet" href="{{ asset('global/vendor/toastr/toastr.css ') }}">
+    {{-- sweetalert css --}}
+
 
 
     <!-- Fonts -->
@@ -194,6 +203,19 @@
     </script>
 
     <!-- Page -->
+    {{-- sweetalert JS --}}
+    <script src="{{ asset('global/js/Plugin/bootbox.js ') }}"></script>
+    <script src="{{ asset('global/js/Plugin/bootstrap-sweetalert.js ') }}"></script>
+    {{-- <script src="{{ asset('assets/examples/js/advanced/bootbox-sweetalert.js ') }}"></script> --}}
+    <script src="{{ asset('global/vendor/bootbox/bootbox.js ') }}"></script>
+    <script src="{{ asset('global/vendor/bootstrap-sweetalert/sweetalert.js ') }}"></script>
+    {{-- sweetalert JS --}}
+
+    {{-- toastr JS --}}
+    <script src="{{ asset('global/js/Plugin/toastr.js ') }}"></script>
+    <script src="{{ asset('global/vendor/toastr/toastr.js ') }}"></script>
+    {{-- toastr JS --}}
+
 
     <script src="{{ asset('global/js/Plugin/jquery-placeholder.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/input-group-file.js ') }}"></script>
@@ -204,22 +226,25 @@
     <script src="{{ asset('global/js/Plugin/matchheight.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/jvectormap.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/peity.js ') }}"></script>
-    <script src="{{ asset('assets/examples/js/dashboard/v1.js ') }}"></script>
+    {{-- <script src="{{ asset('assets/examples/js/dashboard/v1.js ') }}"></script> --}}
     <script src="{{ asset('assets/examples/js/forms/validation.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/datatables.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/tables/datatable.js ') }}"></script>
     <script src="{{ asset('assets/examples/js/uikit/icon.js ') }}"></script>
     <script src="{{ asset('global/js/Plugin/tabs.js ') }}"></script>
-    <script src{{ asset('global/js/Plugin/dropify.js ') }}"></script>
+    <script src="{{ asset('global/js/Plugin/dropify.js ') }}"></script>
 
     <script src="{{ asset('assets/examples/js/forms/uploads.js ') }}"></script>
-    <script src{{ asset('global/js/Plugin/formatter.js ') }}"></script>
-    <script src{{ asset('global/js/Plugin/jquery-wizard.js ') }}"></script>
+    {{-- <script src="{{ asset('global/js/Plugin/formatter.js ') }}"></script> --}}
+    <script src="{{ asset('global/js/Plugin/jquery-wizard.js ') }}"></script>
 
-    <script src="{{ asset('assets/examples/js/forms/wizard.js ') }}"></script>
-    <script src{{ asset('global/js/Plugin/responsive-tabs.js ') }}"></script>
-    <script src{{ asset('global/js/Plugin/toastr.js ') }}"></script>
-    <script src{{ asset('global/vendor/toastr/toastr.js ') }}"></script>
+    {{-- <script src="{{ asset('assets/examples/js/forms/wizard.js ') }}"></script> --}}
+    <script src="{{ asset('global/js/Plugin/responsive-tabs.js ') }}"></script>
+
+
+
+
+
 
 
     <script>

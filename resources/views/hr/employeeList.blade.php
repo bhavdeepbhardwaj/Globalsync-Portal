@@ -44,6 +44,9 @@
                     <h3 class="panel-title">Basic</h3>
                 </header>
                 <div class="panel-body table-responsive">
+                    {{-- Message  --}}
+                    @include('flush.alert')
+                    {{-- Message  --}}
                     <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                         <thead>
                             <tr>
@@ -71,9 +74,9 @@
                             @foreach ($emplist as $emp)
                                 <tr>
                                     @php
-                                        $fetchFormArr = json_decode($emp->formdata,true);
+                                        $fetchFormArr = json_decode($emp->formdata, true);
                                         $deptName = \App\Models\Department::where('id', $fetchFormArr['emp_dept'])->first();
-
+                                        
                                     @endphp
 
                                     <td>{{ $emp->emp_id }}</td>
@@ -93,13 +96,13 @@
                                     <td>
                                         <a href="{{ route('hr.edit-details', [$emp->emp_id]) }}" class="">
                                             <div class="icondemo vertical-align-middle">
-                                                <i class="icon wb-edit" aria-hidden="true" style="font-size: 24px;"></i>
+                                                <i class="icon wb-edit" aria-hidden="true"></i>
                                             </div>
                                         </a>
-                                        &nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="{{ route('hr.view-details', [$emp->emp_id]) }}" class="">
                                             <div class="icondemo vertical-align-middle">
-                                                <i class="icon wb-eye" aria-hidden="true" style="font-size: 24px;"></i>
+                                                <i class="icon wb-eye" aria-hidden="true"></i>
                                             </div>
                                         </a>
                                     </td>

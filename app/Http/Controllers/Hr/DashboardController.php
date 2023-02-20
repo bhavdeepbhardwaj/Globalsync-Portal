@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Crypt;
 
 class DashboardController extends Controller
 {
@@ -373,26 +374,26 @@ class DashboardController extends Controller
     // Employee Data Update
     public function employeeUpdate(Request $request)
     {
-        // dd($request->emp_meal);
+        // dd($request->all());
         try {
 
             $this->validate($request, [
-                // 'email' => 'required',
-                // 'password'                          => 'required',
-                'emp_id' => 'required',
-                'role_id' => 'required',
-                'emp_status' => 'required',
-                'country_type' => 'required',
-                'user_id' => 'required',
+                // 'email'          => 'required',
+                // 'password'       => 'required',
+                'emp_id'            => 'required',
+                'role_id'           => 'required',
+                'emp_status'        => 'required',
+                'country_type'      => 'required',
+                'user_id'           => 'required',
             ]);
 
             User::where('id', $request->user_id)->update([
-                // 'email' => $request->email,
-                // 'password'                  => bcrypt($request->password),
-                'role_id' => $request->role_id,
-                'emp_id' => $request->emp_id,
-                'emp_status' => $request->emp_status,
-                'country_type' => $request->country_type,
+                // 'email'          => $request->email,
+                // 'password'       => bcrypt($request->password),
+                'role_id'           => $request->role_id,
+                'emp_id'            => $request->emp_id,
+                'emp_status'        => $request->emp_status,
+                'country_type'      => $request->country_type,
             ]);
 
             $data = $request->all();
@@ -522,7 +523,11 @@ class DashboardController extends Controller
                 'experience_relieving' => $experience_relieving,
 
             ]);
-            return redirect()->back()->with("success", "Employee detail is updated !");
+            // Alert::message('Location data entered successfully!');
+
+
+            // return redirect()->route('hr.employee-list')->with("success", "Employee detail is updated !"); 
+            return redirect()->back()->with("info", "Employee detail is updated !");
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -554,6 +559,20 @@ class DashboardController extends Controller
         $empDetail = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('emp_id', 'att_month', 'data')->get()->first();
         // dd($empDetail);
         return Response::json($empDetail);
+    }
+
+    // View Details Attendance 
+    public function viewAttendance(Request $request)
+    {
+        // dd($request->all());
+        try {
+            $empDetail = Employee::where('is_deleted', 0)->where('emp_id', $request->emp_id)->select('emp_name')->get()->first();
+            $getEmpAtte = Attendance::where('is_deleted', 0)->where('emp_id', $request->emp_id)->where('att_month', $request->att_month)->select('emp_id', 'att_month', 'data', 'totalDay', 'presentDay', 'wfoP', 'wfhP', 'late', 'ab', 'wfoHD', 'wfhHD', 'upl', 'ph', 'bl', 'wo', 'sd')->get()->first();
+            // dd($empDetail, $getEmpAtte);
+            return view('hr.viewAttendance', ['empDetail' => $empDetail, 'getEmpAtte' => $getEmpAtte]);
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
     }
 
     // Manual Attendance
