@@ -91,6 +91,8 @@ Route::group(['as' => 'hr.', 'prefix' => 'HR', 'middleware' => ['hr', 'auth', 'P
     // Bulk Attendance
     Route::get('emp-bulk-attendance', [HrDashboardController::class, 'bulkAttendance'])->name('bulk-attendance');
 
+    Route::get('apiAttendance', [HrDashboardController::class, 'apiAttendance']);
+
 
     // JSON Formated save data
     Route::post('employeeDataJsonSave', [HrDashboardController::class, 'employeeDataJsonSave'])->name('employeeDataJsonSave');
