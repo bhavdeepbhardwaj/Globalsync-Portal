@@ -68,7 +68,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($emplist as $emp)
+                            {{-- @foreach ($emplist as $emp)
                                 <tr>
 
                                     <td>{{ $emp->emp_id }}</td>
@@ -93,10 +93,46 @@
                                             </div>
                                         </a>
                                         &nbsp;&nbsp;
-                                        {{-- <a href="{{ route('hr.view-details', [$emp->emp_id]) }}" class=""> --}}
                                         <a href="{{ route('finance.viewDetails')}}" class="">
                                             <div class="icondemo vertical-align-middle">
                                                 <i class="icon wb-eye" aria-hidden="true" style="font-size: 24px;"></i>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach --}}
+                            @foreach ($emplist as $emp)
+                                <tr>
+                                    @php
+                                        $fetchFormArr = json_decode($emp->formdata, true);
+                                        $deptName = \App\Models\Department::where('id', $fetchFormArr['emp_dept'])->first();
+                                        
+                                    @endphp
+
+                                    <td>{{ $emp->emp_id }}</td>
+                                    <td>{{ $fetchFormArr['emp_name'] }}</td>
+                                    <td>{{ $fetchFormArr['emp_desg'] }}</td>
+                                    <td>
+                                        {{ $deptName->name }}
+                                    </td>
+                                    <td>{{ $fetchFormArr['emp_doj'] }}</td>
+                                    <td>
+                                        @if ($emp->emp_status == '1')
+                                            <span class="badge badge-outline badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-outline badge-warning">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('finance.editDetails', [$emp->emp_id]) }}" class="">
+                                            <div class="icondemo vertical-align-middle">
+                                                <i class="icon wb-edit" aria-hidden="true"></i>
+                                            </div>
+                                        </a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="{{ route('finance.viewDetails', [$emp->emp_id]) }}" class="">
+                                            <div class="icondemo vertical-align-middle">
+                                                <i class="icon wb-eye" aria-hidden="true"></i>
                                             </div>
                                         </a>
                                     </td>

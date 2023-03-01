@@ -119,20 +119,23 @@
         <div class="page-content container-fluid">
 
             <div class="row">
-                {{-- Chart View Data --}}
-                <div class="col-lg-12">
-                    <div class="panel">
-                        <div class="table-responsive">
-                            <table class="table table-hover dataTable table-striped w-full" data-plugin="">
-                                <thead>
-                                    <tr id="resultskey" class="">
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr id="results">
-                                    </tr>
-                                </tbody>
-                            </table>
+                {{-- Attendance Sheet View Data --}}
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="panel-title">{{ date('F Y',strtotime($getEmpAtte->att_month)); }} - Attendance Sheet</h3>
+                            <div class="table-responsive">
+                                <table class="table table-vcenter card-table">
+                                    <thead>
+                                        <tr id="resultskey" class="">
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="results">
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -341,8 +344,8 @@
             year = dt.getFullYear();
             month = (dt.getMonth() + 1).toString().padStart(2, "0");
             day = dt.getDate().toString().padStart(2, "0");
-            $('#resultskey').append('<th>' + day + '</th>');
-            $('#results').append('<td>' + value + '</td>');
+            $('#resultskey').append('<th style="font-size: .775rem;">' + day + '</th>');
+            $('#results').append('<td style="font-size: .775rem;">' + value + '</td>');
         });
     </script>
 @endsection

@@ -39,9 +39,7 @@
             <div class="panel">
                 <header class="panel-heading">
                     <div class="panel-actions"></div>
-                    <h3 class="panel-title">
-
-                    </h3>
+                    <h3 class="panel-title"></h3>
                 </header>
                 <div class="panel-body">
                     <div class="col-md-6 col-xl-4 ">

@@ -48,7 +48,7 @@
                     <!-- End Page Widget -->
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <!-- Panel -->
                     <div class="panel">
                         <div class="panel-heading">
@@ -59,231 +59,326 @@
                             {{-- Employee Status --}}
                             <div class="row row-lg">
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Employee ID</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $empView->emp_id }}
+                                {{-- Employee ID --}}
+                                @if ($empView->emp_id != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Employee ID</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $empView->emp_id }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Employee Status</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{-- @php
+                                {{-- Employee Status --}}
+                                @if ($empView->emp_status != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Employee Status</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{-- @php
                                                 // $fetchFormArr = json_decode($empView->formdata, true);
                                                 $deptName = \App\Models\Department::where('id', $fetchFormArr['emp_dept'])->first();
                                             @endphp
                                             {{ $deptName->name }} --}}
-                                            @if ($empView->emp_status == 1)
-                                                <span class="badge badge-outline badge-success">Active</span>
-                                            @else
-                                                <span class="badge badge-outline badge-warning">Inactive</span>
-                                            @endif
+                                                @if ($empView->emp_status == 1)
+                                                    <span class="badge badge-outline badge-success">Active</span>
+                                                @else
+                                                    <span class="badge badge-outline badge-warning">Inactive</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>PAN No</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_pan'] }}
+                                {{-- PAN No --}}
+                                @if ($fetchFormArr['emp_pan'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>PAN No</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_pan'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Employee UAN No</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_uan'] }}
+                                {{-- Employee UAN No --}}
+                                @if ($fetchFormArr['emp_uan'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Employee UAN No</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_uan'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>ESI No</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_esi'] }}
+                                {{-- ESI No --}}
+                                @if ($fetchFormArr['emp_esi'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>ESI No</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_esi'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Payment Mode</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_paymode'] }}
+                                {{-- Payment Mode --}}
+                                @if ($fetchFormArr['emp_paymode'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Payment Mode</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_paymode'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Bank</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_bank'] }}
+                                {{-- Bank --}}
+                                @if ($fetchFormArr['emp_bank'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Bank</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_bank'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>IFS Code</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_ifsc'] }}
+                                {{-- IFS Code --}}
+                                @if ($fetchFormArr['emp_ifsc'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>IFS Code</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_ifsc'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Account No</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_acc'] }}
+                                {{-- Account No --}}
+                                @if ($fetchFormArr['emp_acc'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Account No</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_acc'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Gross Salary</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_gsal'] }}
+                                {{-- Gross Salary --}}
+                                @if ($fetchFormArr['emp_gsal'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Gross Salary</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_gsal'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Food Allowance</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_food'] }}
+                                {{-- Food Allowance --}}
+                                @if ($fetchFormArr['emp_food'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Food Allowance</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_food'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Travel Allowance</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_travel'] }}
+                                {{-- Travel Allowance --}}
+                                @if ($fetchFormArr['emp_travel'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Travel Allowance</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_travel'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Special Allowance</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_spl'] }}
+                                {{-- Special Allowance --}}
+                                @if ($fetchFormArr['emp_spl'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Special Allowance</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_spl'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Meal Service Availed</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            @if ($fetchFormArr['emp_meal'] == 1)
-                                                Yes
-                                            @else
-                                                No
-                                            @endif
+                                {{-- Meal Service Availed --}}
+                                @if ($fetchFormArr['emp_meal'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Meal Service Availed</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                @if ($fetchFormArr['emp_meal'] == 1)
+                                                    Yes
+                                                @else
+                                                    No
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Travel Service Availed</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            @if ($fetchFormArr['emp_cab'] == 1)
-                                                Yes
-                                            @else
-                                                No
-                                            @endif
+                                {{-- Travel Service Availed --}}
+                                @if ($fetchFormArr['emp_cab'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Travel Service Availed</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                @if ($fetchFormArr['emp_cab'] == 1)
+                                                    Yes
+                                                @else
+                                                    No
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Stack Incentive</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_stinc'] }}
+                                {{-- Stack Incentive --}}
+                                @if ($fetchFormArr['emp_stinc'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Stack Incentive</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_stinc'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Incentive</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_inc'] }}
+                                {{-- Incentive --}}
+                                @if ($fetchFormArr['emp_inc'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Incentive</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_inc'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Others</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_other'] }}
+                                {{-- Others --}}
+                                @if ($fetchFormArr['emp_other'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Others</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_other'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
-                                <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            <h5>Exit Date</h5>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
-                                            {{ $fetchFormArr['emp_exitdate'] }}
+                                {{-- Exit Date --}}
+                                @if ($fetchFormArr['emp_exitdate'] != null)
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                <h5>Exit Date</h5>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6">
+                                                {{ $fetchFormArr['emp_exitdate'] }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-xl-6 col-sm-6 col-md-6 col-lg-6 pt-3" hidden></div>
+                                @endif
 
                             </div>
                             {{-- Employee Status --}}
@@ -292,7 +387,6 @@
                     </div>
                     <!-- End Panel -->
                 </div>
-
 
             </div>
         </div>

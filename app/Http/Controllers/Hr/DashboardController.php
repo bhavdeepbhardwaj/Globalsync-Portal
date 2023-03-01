@@ -345,7 +345,6 @@ class DashboardController extends Controller
     {
         try {
             $empView = Employee::where('emp_id', $empID)->first();
-
             $fetchFormArr = json_decode($empView->formdata, true);
             $empRoles = User::where('emp_id', $empView->emp_id)->first();
             $roleName = Role::where('id', $empRoles->role_id)->select('role_name')->first();

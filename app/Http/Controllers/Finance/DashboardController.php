@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Employee;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -24,7 +28,6 @@ class DashboardController extends Controller
     public function createSalaryStructure()
     {
         try {
-
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -35,7 +38,6 @@ class DashboardController extends Controller
     public function createPayslip()
     {
         try {
-
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -93,30 +95,61 @@ class DashboardController extends Controller
     public function allEmployess()
     {
         try {
-            $emplist = Employee::where('is_deleted', '0')->select('emp_id', 'emp_name', 'emp_desg', 'emp_dept', 'emp_doj', 'emp_status')->get();
+            $emplist = Employee::where('is_deleted', '0')->select('emp_id', 'emp_desg', 'formdata', 'emp_doj', 'emp_status')->get();
             // dd($empList);
 
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong !");
         }
-        return view('finance.allEmployess',['emplist' => $emplist]);
+        return view('finance.allEmployess', ['emplist' => $emplist]);
     }
     // View Details Employess
-    public function viewDetails()
+    public function viewDetails($empID)
     {
         try {
-            $tmpCount = 0;
+            $empView = Employee::where('emp_id', $empID)->first();
+            $fetchFormArr = json_decode($empView->formdata, true);
+            $empRoles = User::where('emp_id', $empView->emp_id)->first();
+            $roleName = Role::where('id', $empRoles->role_id)->select('role_name')->first();
+
+            $month = Attendance::where('is_deleted', 0)->where('emp_id', $empID)->orderBy('att_month')->get();
+            // dd($month);
 
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong !");
         }
-        return view('finance.view_details', ['tmpCount' => $tmpCount]);
+        return view('finance.viewDetails', ['empView' => $empView, 'roleName' => $roleName, 'fetchFormArr' => $fetchFormArr, 'month' => $month]);
     }
+
+    // 
+    public function attendanceSheet(Request $request)
+    {
+        // dd($request->all());
+        $empAttSheet = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('data')->get()->first();
+        // dd($empAttSheet);
+        return Response::json($empAttSheet);
+    }
+
+    // Employee Data Edit
+    public function salaryEdit($empID)
+    {
+        try {
+            $empEdit = Employee::where('emp_id', $empID)->first();
+            $userEdit = User::where('id', $empEdit->user_id)->first();
+            $fetchFormArr = json_decode($empEdit->formdata, true);
+            $roleName = Role::where('id', $userEdit->role_id)->select('role_name')->first();
+            $deptData = \App\Models\Department::where('is_deleted', 0)->get();
+            // dd($userEdit);
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('finance.employeeEdit', ['empEdit' => $empEdit, 'userEdit' => $userEdit, 'fetchFormArr' => $fetchFormArr, 'roleName' => $roleName, 'deptData' => $deptData]);
+    }
+
     // Download Payslip Employess
     public function downloadPayslip()
     {
         try {
-
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong !");
         }
