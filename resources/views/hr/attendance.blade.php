@@ -25,13 +25,6 @@
                     Attendance
                     Excel</a>
             </div>
-            <div class="page-header-actions">
-                <a href="{{ route('hr.manual-attendance') }}" class="btn btn-primary text-white">Manual Attendance
-                    Insert</a>
-                <a href="{{ route('hr.bulk-attendance') }}" class="btn btn-primary text-white">Generate Bulk
-                    Attendance
-                    Excel</a>
-            </div>
         </div>
 
         <div class="page-content">
@@ -41,25 +34,35 @@
                     <div class="panel-actions"></div>
                     <h3 class="panel-title"></h3>
                 </header>
-                <div class="panel-body">
-                    <div class="col-md-6 col-xl-4 ">
-                        <!-- Example Date Range -->
-                        <div class="input-daterange" data-plugin="datepicker">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="icon wb-calendar" aria-hidden="true"></i>
-                                </span>
-                                <input type="text" class="form-control" name="start" />
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">to</span>
-                                <input type="text" class="form-control" name="end" />
-                            </div>
 
+                <div class="panel-body">
+                    <form class="row" method="" accept="" enctype="">
+                        <div class="col-lg-6 ">
+                            <h4 class="example-title">Employee ID</h4>
+                            <div class="form-group">
+                                <select class="form-control" name="empid">
+                                    <option></option>
+                                    @foreach ($user as $emp)
+                                        <option value="{{ $emp->emp_id }}"
+                                            @if ($empid == $emp->emp_id) selected @endif>{{ $emp->emp_id }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <!-- End Example Date Range -->
-                    </div>
+
+                        <div class="col-lg-6">
+                            <h4 class="example-title">Select Month</h4>
+                            <div class="form-group">
+                                <input type="month" class="form-control" name="month_year" placeholder="Select Month">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-xl-12 text-center padding-top-m">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
                 </div>
+
                 <div class="panel-body table-responsive">
                     <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
                         <thead>
@@ -87,13 +90,9 @@
                                     <td>{{ date('F Y', strtotime($empAtt->att_month)) }}</td>
                                     <td>{!! $empAtt->totalDay !!}</td>
                                     <td>{{ $empAtt->presentDay }}</td>
-                                    {{-- <td><a href="javascript:void(0)" role="button" data-target="#exampleFormModal"
-                                            data-toggle="modal" data-dismiss="modal"><i class="icon wb-eye"
-                                                aria-hidden="true"
-                                                onClick="popupfunctioncall('{{ $empAtt->emp_id }}',' {{ $empAtt->att_month }}');"></i></a>
-                                    </td> --}}
-                                    <td><a href="{{ route('hr.viewAttendance', ['emp_id' => $empAtt->emp_id, 'att_month' => $empAtt->att_month]) }}"><i class="icon wb-eye"
-                                                aria-hidden="true"></i></a>
+                                    <td><a
+                                            href="{{ route('hr.viewAttendance', ['emp_id' => $empAtt->emp_id, 'att_month' => $empAtt->att_month]) }}"><i
+                                                class="icon wb-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -119,20 +118,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="panel-body">
-                        {{-- <table class="table table-hover dataTable table-striped w-full" data-plugin="">
-                            <thead>
-                                <tr>
-                                    <th>DATE</th>
-                                    <th>STATUS</th>
-                                </tr>
-                            </thead>
-                            <tbody id="results">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table> --}}
                         <table class="table table-hover table-vcenter" data-plugin="">
                             <thead>
                                 <tr id="resultskey">

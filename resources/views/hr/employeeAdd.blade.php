@@ -28,7 +28,7 @@
         <div class="page-header">
             <h1 class="page-title">Employee</h1>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Employee</a></li>
                 <li class="breadcrumb-item active">Add</li>
             </ol>
@@ -1351,7 +1351,7 @@
                                                             <i class="icon wb-mobile" aria-hidden="true"></i>
                                                         </span>
                                                         <input type="text" class="form-control" id="inputlink"
-                                                            data-plugin="formatter" data-pattern="[[999]][[999]][[9999]]"
+                                                            data-plugin="formatter" data-pattern="([[999]]) [[999]]-[[9999]]"
                                                             name="mob_link_uan_no" value="{{old('mob_link_uan_no')}}">
                                                     </div>
                                                     <p class="text-help">1231231234</p>
@@ -1646,10 +1646,7 @@
                 {{-- Submit Button --}}
                 <div class="form-group col-xl-12 text-center padding-top-m">
                     {{-- <button type="submit" class="btn btn-primary" id="validateButton1">Submit</button> --}}
-                    <button type="submit" class="btn btn-primary" id="exampleProgressBar" data-plugin="toastr"
-                        data-message="Lorem ipsum dolor sit amdfxfdsfet, consectetur adipiscing elit."
-                        data-title="Messages" data-container-id="toast-top-right" data-progress-bar="true"
-                        data-icon-class="toast-just-text toast-info" onclick="mySubmit(this)">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 {{-- Submit Button --}}
 

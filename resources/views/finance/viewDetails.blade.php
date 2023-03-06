@@ -429,8 +429,7 @@
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link " data-toggle="tab" href="#{{ $monName->att_month }}"
                                             aria-controls="exampleTabsAnimateSlideBottomOne" role="tab"
-                                            aria-expanded="true"
-                                            onClick="popupfunctioncall('{{ $monName->emp_id }}',' {{ $monName->att_month }}');">
+                                            aria-expanded="true" onClick="popupfunctioncall('{{ $monName->emp_id }}',' {{ $monName->att_month }}');">
                                             {{ date('F Y', strtotime($monName->att_month)) }}
                                         </a>
                                     </li>
@@ -449,6 +448,7 @@
                                                         <p class="text-muted">
                                                             {{ date('F Y', strtotime($monName->att_month)) }} - Attendance
                                                             Sheet</p>
+                                                            <div>{{ $monName->data }}</div>
                                                         <div class="table-responsive">
                                                             <table class="table table-vcenter card-table">
                                                                 <thead>
@@ -736,7 +736,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         {{-- Salary Details --}}
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -1180,37 +1179,11 @@
     <!-- End Page -->
 @endsection
 
+
 @section('js')
     <script type="text/javascript">
-        // Details Attendance Modal POPUP
-        function popupfunctioncall(empID, month) {
-            // alert(empID);
-            $.ajax({
-                type: "GET",
-                dataType: 'json',
-                url: '{{ route('finance.attendanceSheet') }}',
-                data: {
-                    'empID': empID,
-                    'month': month
-                },
-                success: function(result) {
-                    console.log(result);
-                    // var array = json(result);
-                    // alert(array);
-                    var obj = $.parseJSON(result.data);
-                    // var obj = $.parseJSON(result.data);
-                    Object.keys(obj).forEach(function(key) {
-                        var value = obj[key];
-                        // console.log(key + ' => ' + value);
-                        // $('#results').append('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
-                        $('#resultskey').append('<th>' + key + '</th>');
-                        $('#results').append('<td>' + value + '</td>');
-                    });
-                },
-                error: function() {
-                    alert("json not found");
-                }
-            });
-        }
+        // Details Attendance Modal
+       
+        
     </script>
 @endsection

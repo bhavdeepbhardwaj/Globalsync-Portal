@@ -125,9 +125,11 @@ class DashboardController extends Controller
     public function attendanceSheet(Request $request)
     {
         // dd($request->all());
-        $empAttSheet = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('data')->get()->first();
+        $empAttSheet = Attendance::where('emp_id', $request->empID)->where('att_month', $request->month)->select('data')->first();
         // dd($empAttSheet);
-        return Response::json($empAttSheet);
+        $data = $empAttSheet->data;
+        // dd($data);
+        return Response::json($data);
     }
 
     // Employee Data Edit
