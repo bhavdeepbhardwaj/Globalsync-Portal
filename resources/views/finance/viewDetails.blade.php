@@ -429,7 +429,8 @@
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link " data-toggle="tab" href="#{{ $monName->att_month }}"
                                             aria-controls="exampleTabsAnimateSlideBottomOne" role="tab"
-                                            aria-expanded="true" onClick="popupfunctioncall('{{ $monName->emp_id }}',' {{ $monName->att_month }}');">
+                                            aria-expanded="true"
+                                            onClick="popupfunctioncall('{{ $monName->emp_id }}',' {{ $monName->att_month }}');">
                                             {{ date('F Y', strtotime($monName->att_month)) }}
                                         </a>
                                     </li>
@@ -448,8 +449,52 @@
                                                         <p class="text-muted">
                                                             {{ date('F Y', strtotime($monName->att_month)) }} - Attendance
                                                             Sheet</p>
-                                                            <div>{{ $monName->data }}</div>
+                                                        @php
+                                                            $monthData = json_decode($monName->data, true);
+                                                        @endphp
+
+                                                        {{-- @foreach ($monthData as $key => $value)
+                                                                <div class='key'>
+                                                                    {{ $key }}
+                                                                </div>
+                                                                <div class="value">
+                                                                    {{ $value }}
+                                                                </div>
+                                                            @endforeach --}}
+                                                        @php
+                                                            $keyarr = [];
+                                                            $keyvalarr = [];
+                                                        @endphp
+                                                        @foreach ($monthData as $key => $value)
+                                                            @php
+                                                                $keyarr[] = $key;
+                                                                $keyvalarr[] = $value;
+                                                            @endphp
+                                                        @endforeach
                                                         <div class="table-responsive">
+                                                            <table class="table table-vcenter card-table">
+                                                                <thead>
+                                                                    <tr class="">
+                                                                        @foreach ($keyarr as $keyVal)
+                                                                            <th style="font-size: .775rem;">
+                                                                                {{ \Carbon\Carbon::parse($keyVal)->format('d')}}
+                                                                                </th>
+                                                                        @endforeach
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        @foreach ($keyvalarr as $valueKey)
+                                                                            <td style="font-size: .775rem;">{{ $valueKey }}</td>
+                                                                        @endforeach
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        {{-- <div>{{ $monName->data }}</div> --}}
+
+                                                        {{-- <div class="table-responsive">
                                                             <table class="table table-vcenter card-table">
                                                                 <thead>
                                                                     <tr id="resultskey" class="">
@@ -460,7 +505,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -1183,7 +1228,6 @@
 @section('js')
     <script type="text/javascript">
         // Details Attendance Modal
-       
-        
+
     </script>
 @endsection

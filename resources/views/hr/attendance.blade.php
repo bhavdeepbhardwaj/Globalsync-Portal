@@ -41,7 +41,7 @@
                             <h4 class="example-title">Employee ID</h4>
                             <div class="form-group">
                                 <select class="form-control" name="empid">
-                                    <option></option>
+                                    <option value="0">All</option>
                                     @foreach ($user as $emp)
                                         <option value="{{ $emp->emp_id }}"
                                             @if ($empid == $emp->emp_id) selected @endif>{{ $emp->emp_id }}</option>

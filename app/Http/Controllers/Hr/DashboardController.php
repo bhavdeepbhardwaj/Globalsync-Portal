@@ -544,14 +544,16 @@ class DashboardController extends Controller
     public function empAttendance(Request $request)
     {
         try {
-            if (isset($request->empid) && $request->empid) {
+            // dd($request->all());
+            if (isset($request->empid) && ($request->empid && $request->empid != '0')) {
                 $user = DB::table('users')
                     ->join('roles', 'roles.id', '=', 'users.role_id')
-                    ->orWhere('roles.id', 2)
-                    ->orWhere('roles.id', 3)
-                    ->orWhere('roles.id', 4)
-                    ->orWhere('roles.id', 5)
-                    ->orWhere('roles.id', 6)
+                    ->whereIn('roles.id',[2,3,4,5,6])
+                    // ->orWhere('roles.id', 2)
+                    // ->orWhere('roles.id', 3)
+                    // ->orWhere('roles.id', 4)
+                    // ->orWhere('roles.id', 5)
+                    // ->orWhere('roles.id', 6)
                     ->select('emp_id', 'emp_status')
                     ->get();
 
@@ -559,28 +561,43 @@ class DashboardController extends Controller
 
                 $month_year = isset($request->month_year) ? $request->month_year : "";
 
-                if ($month_year == '') {
-                    return redirect()->back()->with("error", "Something is wrong...!");
-                }
+                // if ($month_year == '') {
+                //     return redirect()->back()->with("error", "Something is wrong...!");
+                // }
 
                 $getEmpAtte = Attendance::where('is_deleted', '0')->where('emp_id', $request->empid)
-                    ->where('att_month', $month_year)->get();
+
+                    ->where(function($query) use($month_year){
+                        if($month_year != ''){
+                            $query->where('att_month', $month_year);
+                        }
+                    })
+
+                    ->orderBy('created_at','DESC')->get();
 
                 // dd($getEmpAtte);
 
             } else {
                 $user = DB::table('users')
                     ->join('roles', 'roles.id', '=', 'users.role_id')
-                    ->orWhere('roles.id', 2)
-                    ->orWhere('roles.id', 3)
-                    ->orWhere('roles.id', 4)
-                    ->orWhere('roles.id', 5)
-                    ->orWhere('roles.id', 6)
+                    ->whereIn('roles.id',[2,3,4,5,6])
+
+                    // ->orWhere('roles.id', 2)
+                    // ->orWhere('roles.id', 3)
+                    // ->orWhere('roles.id', 4)
+                    // ->orWhere('roles.id', 5)
+                    // ->orWhere('roles.id', 6)
                     ->select('emp_id', 'emp_status')
                     ->get();
                 // dd($user);
+                $month_year = isset($request->month_year) ? $request->month_year : "";
 
                 $getEmpAtte = Attendance::where('is_deleted', 0)
+                    ->where(function($query) use($month_year){
+                        if($month_year != ''){
+                            $query->where('att_month', $month_year);
+                        }
+                    })
                     ->select('emp_id', 'att_month', 'data', 'totalDay', 'presentDay')
                     ->get();
             }
@@ -600,8 +617,6 @@ class DashboardController extends Controller
         // dd($empDetail);
         return Response::json($empDetail);
     }
-
-
 
     // View Details Attendance
     public function viewAttendance(Request $request)
@@ -635,12 +650,21 @@ class DashboardController extends Controller
     public function manualAttendanceSave(Request $request)
     {
         try {
+            // dd($request->all());
             $this->validate($request, [
                 'emp_id'            => 'required',
                 'att_month'         => 'required',
             ]);
 
             $data = $request->all();
+            // dd($data);
+            $checkData = Attendance::where('emp_id',$data['emp_id'])->where('att_month',$data['att_month'])->count();
+
+            if($checkData > 0) {
+                return redirect()->back()->with("error", "MOnth already exist for this user...!");
+            }
+            // dd($checkData);
+
             $input['token'] = date('Y-m-d H:i:s');
             $input['data'] = json_encode($data);
 
