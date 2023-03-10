@@ -121,7 +121,7 @@ class DashboardController extends Controller
         return view('finance.viewDetails', ['empView' => $empView, 'roleName' => $roleName, 'fetchFormArr' => $fetchFormArr, 'month' => $month]);
     }
 
-    // 
+    //
     public function attendanceSheet(Request $request)
     {
         // dd($request->all());

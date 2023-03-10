@@ -826,7 +826,7 @@
                                                         class="required">*</span></label>
                                                 <div class="col-lg-12 col-md-9">
                                                     <input type="month" class="form-control" name="joining_month"
-                                                        placeholder="Joining Month" value="{{old('joining_month')}}"> 
+                                                        placeholder="Joining Month" value="{{old('joining_month')}}">
                                                 </div>
                                             </div>
                                         </div>

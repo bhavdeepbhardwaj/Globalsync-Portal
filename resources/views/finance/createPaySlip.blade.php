@@ -30,213 +30,245 @@
 
             <form action="{{ route('finance.paySlipView') }}" method="POST">
                 {{ csrf_field() }}
-                <!-- Panel Employee Details -->
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Employee Details</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Pay Slip Month -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Pay Slip Month</h4>
-                                    <input type="month" class="form-control focus" name="pay_month" id="pay_slip_month"
-                                        value="<?php echo date('Y-m', strtotime('-1 month')); ?>" onchange="monthHandler(event);">
-                                </div>
-                                <!-- End Example Pay Slip Month -->
+                <div class="row">
+                    <!-- Panel Employee Details -->
+                    <div class="col-lg-6">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Employee Details</h3>
                             </div>
+                            <div class="panel-body">
+                                <div class="row row-lg">
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Pay Slip Month -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Pay Slip Month</h4>
+                                            <input type="month" class="form-control focus" name="pay_month"
+                                                id="pay_slip_month" value="<?php echo date('Y-m', strtotime('-1 month')); ?>"
+                                                onchange="monthHandler(event);">
+                                        </div>
+                                        <!-- End Example Pay Slip Month -->
+                                    </div>
 
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Employee Id -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Employee Id</h4>
-                                    <input type="text" class="form-control focus" name="emp_id" id="emp_id">
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Employee Id -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Employee Id</h4>
+                                            <input type="text" class="form-control focus" name="emp_id" id="emp_id">
+                                        </div>
+                                        <!-- End Example Employee Id -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Full Name -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Full Name</h4>
+                                            <input type="text" class="form-control focus" name="full_name"
+                                                id="full_name">
+                                        </div>
+                                        <!-- End Example Full Name -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Date of Join -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Date of Join</h4>
+                                            <input type="date" class="form-control focus" name="doj" id="doj">
+                                        </div>
+                                        <!-- End Example Date of Join -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Department -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Department</h4>
+                                            <input type="text" class="form-control focus" name="department"
+                                                id="department">
+                                        </div>
+                                        <!-- End Example Department -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Payment Mode -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Payment Mode</h4>
+                                            <select class="form-control" name="payment_mode">
+                                                <option value="Bank Transfer">Bank Transfer</option>
+                                                <option value="Wire Transfer">Wire Transfer</option>
+                                                <option value="Cash">Cash</option>
+                                                <option value="Cheque">Cheque</option>
+                                            </select>
+                                        </div>
+                                        <!-- End Example Payment Mode -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Bank -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Bank</h4>
+                                            <input type="text" class="form-control focus" name="bank" id="bank">
+                                        </div>
+                                        <!-- End Example Bank -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example IFSC -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">IFSC</h4>
+                                            <input type="text" class="form-control focus" name="ifsc" id="ifsc">
+                                        </div>
+                                        <!-- End Example IFSC -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Account No. -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Account No.</h4>
+                                            <input type="text" class="form-control focus" name="ac_no" id="ac_no">
+                                        </div>
+                                        <!-- End Example Account No. -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example PAN No. -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">PAN No.</h4>
+                                            <input type="text" class="form-control focus" name="pan" id="pan">
+                                        </div>
+                                        <!-- End Example PAN No. -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example UAN NO. -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">UAN NO.</h4>
+                                            <input type="text" class="form-control focus" name="uan"
+                                                id="uan">
+                                        </div>
+                                        <!-- End Example UAN NO. -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Gross Salary -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Gross Salary</h4>
+                                            <input type="text" class="form-control focus" name="gross"
+                                                id="gross">
+                                        </div>
+                                        <!-- End Example Gross Salary -->
+                                    </div>
+
                                 </div>
-                                <!-- End Example Employee Id -->
                             </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Full Name -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Full Name</h4>
-                                    <input type="text" class="form-control focus" name="full_name" id="full_name">
-                                </div>
-                                <!-- End Example Full Name -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Date of Join -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Date of Join</h4>
-                                    <input type="date" class="form-control focus" name="doj" id="doj">
-                                </div>
-                                <!-- End Example Date of Join -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Department -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Department</h4>
-                                    <input type="text" class="form-control focus" name="department" id="department">
-                                </div>
-                                <!-- End Example Department -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Payment Mode -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Payment Mode</h4>
-                                    <select class="form-control" name="payment_mode">
-                                        <option value="Bank Transfer">Bank Transfer</option>
-                                        <option value="Wire Transfer">Wire Transfer</option>
-                                        <option value="Cash">Cash</option>
-                                        <option value="Cheque">Cheque</option>
-                                    </select>
-                                </div>
-                                <!-- End Example Payment Mode -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Bank -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Bank</h4>
-                                    <input type="text" class="form-control focus" name="bank" id="bank">
-                                </div>
-                                <!-- End Example Bank -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example IFSC -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">IFSC</h4>
-                                    <input type="text" class="form-control focus" name="ifsc" id="ifsc">
-                                </div>
-                                <!-- End Example IFSC -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Account No. -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Account No.</h4>
-                                    <input type="text" class="form-control focus" name="ac_no" id="ac_no">
-                                </div>
-                                <!-- End Example Account No. -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example PAN No. -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">PAN No.</h4>
-                                    <input type="text" class="form-control focus" name="pan" id="pan">
-                                </div>
-                                <!-- End Example PAN No. -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example UAN NO. -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">UAN NO.</h4>
-                                    <input type="text" class="form-control focus" name="uan" id="uan">
-                                </div>
-                                <!-- End Example UAN NO. -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Gross Salary -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Gross Salary</h4>
-                                    <input type="text" class="form-control focus" name="gross" id="gross">
-                                </div>
-                                <!-- End Example Gross Salary -->
-                            </div>
-
                         </div>
                     </div>
-                </div>
-                <!-- End Panel Employee Details -->
+                    <!-- End Panel Employee Details -->
 
-                <!-- Panel Leaves & Pay Days -->
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Leaves & Pay Days</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Calendar Days -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Calendar Days</h4>
-                                    <input type="text" class="form-control focus" name="cal_days" id="calendar_days">
-                                </div>
-                                <!-- End Example Calendar Days -->
+                    <!-- Panel Leaves & Pay Days -->
+                    <div class="col-lg-6">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Leaves & Pay Days</h3>
                             </div>
+                            <div class="panel-body">
+                                <div class="row row-lg">
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Calendar Days -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Calendar Days</h4>
+                                            <input type="text" class="form-control focus" name="cal_days"
+                                                id="calendar_days">
+                                        </div>
+                                        <!-- End Example Calendar Days -->
+                                    </div>
 
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Present Days -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Present Days</h4>
-                                    <input type="text" class="form-control focus" name="present_days" id="pst_days"
-                                        onchange="update_payable_pst();">
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Present Days -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Present Days</h4>
+                                            <input type="text" class="form-control focus" name="present_days"
+                                                id="pst_days" onchange="update_payable_pst();">
+                                        </div>
+                                        <!-- End Example Present Days -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Leaves Adjusted -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Leaves Adjusted</h4>
+                                            <input type="text" class="form-control focus" name="lv_adj"
+                                                value="0" id="leave_adj" onchange="update_payable_lvad();">
+                                        </div>
+                                        <!-- End Example Leaves Adjusted -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Total Payable Days -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Total Payable Days</h4>
+                                            <input type="text" class="form-control focus" name="pay_days"
+                                                value="0" id="payable_day">
+                                        </div>
+                                        <!-- End Example Total Payable Days -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Loss of Pay -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Loss of Pay</h4>
+                                            <input type="text" class="form-control focus" name="lop"
+                                                id="lossofpay">
+                                        </div>
+                                        <!-- End Example Loss of Pay -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Sandwich Leaves Deduction -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Sandwich Leaves Deduction</h4>
+                                            <input type="text" class="form-control focus" name="sandwich"
+                                                id="sndwch_lv" value="0">
+                                        </div>
+                                        <!-- End Example Sandwich Leaves Deduction -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+                                        <!-- Example Leaves Balance -->
+                                        <div class="example-wrap">
+                                            <h4 class="example-title">Leaves Balance</h4>
+                                            <input type="text" class="form-control focus" name="lv_bal"
+                                                id="leave_bal" value="0">
+                                        </div>
+                                        <!-- End Example Leaves Balance -->
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+
+                                    </div>
+
+                                    <div class="col-lg-6 form-horizontal">
+
+                                    </div>
+
                                 </div>
-                                <!-- End Example Present Days -->
                             </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Leaves Adjusted -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Leaves Adjusted</h4>
-                                    <input type="text" class="form-control focus" name="lv_adj" value="0"
-                                        id="leave_adj" onchange="update_payable_lvad();">
-                                </div>
-                                <!-- End Example Leaves Adjusted -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Total Payable Days -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Total Payable Days</h4>
-                                    <input type="text" class="form-control focus" name="pay_days" value="0"
-                                        id="payable_day">
-                                </div>
-                                <!-- End Example Total Payable Days -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Loss of Pay -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Loss of Pay</h4>
-                                    <input type="text" class="form-control focus" name="lop" id="lossofpay">
-                                </div>
-                                <!-- End Example Loss of Pay -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Sandwich Leaves Deduction -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Sandwich Leaves Deduction</h4>
-                                    <input type="text" class="form-control focus" name="sandwich" id="sndwch_lv"
-                                        value="0">
-                                </div>
-                                <!-- End Example Sandwich Leaves Deduction -->
-                            </div>
-
-                            <div class="col-md-6 col-lg-3 ">
-                                <!-- Example Leaves Balance -->
-                                <div class="example-wrap">
-                                    <h4 class="example-title">Leaves Balance</h4>
-                                    <input type="text" class="form-control focus" name="lv_bal" id="leave_bal"
-                                        value="0">
-                                </div>
-                                <!-- End Example Leaves Balance -->
-                            </div>
-
                         </div>
                     </div>
+                    <!-- Panel Leaves & Pay Days -->
+
                 </div>
-                <!-- End Panel Leaves & Pay Days -->
 
                 <!-- Panel Allowances -->
                 <div class="panel">
