@@ -37,6 +37,7 @@ class CreateEmployeesTable extends Migration
             $table->text('cancel_cheque')->nullable();
             $table->tinyInteger('is_deleted')->default('0');
             $table->timestamps();
+
             $table->text('emp_desg')->nullable();
             $table->text('emp_doj')->nullable();
             $table->text('emp_dept')->nullable();

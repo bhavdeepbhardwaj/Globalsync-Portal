@@ -19,10 +19,7 @@
                 <li class="breadcrumb-item active">Create Pay Slip</li>
             </ol>
             <div class="page-header-actions">
-                <a class="btn btn-sm btn-primary btn-round" href="http://globalsync.com.au" target="_blank">
-                    <i class="icon md-link" aria-hidden="true"></i>
-                    <span class="hidden-sm-down">Official Website</span>
-                </a>
+                <a class="btn btn-primary" href="{{ route('finance.bulkPayslipSalary')}}">Bulk Pay Slip</a>
             </div>
         </div>
 

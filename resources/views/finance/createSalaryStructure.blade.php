@@ -25,7 +25,7 @@
             </ol>
             <div class="page-header-actions">
                 <a href="{{ route('finance.createPayslip') }}" class="btn btn-primary text-white">Create Pay Slip</a>
-                <a href="" class="btn btn-primary text-white">Create Salary Pay</a>
+                {{-- <a href="" class="btn btn-primary text-white">Create Salary Pay</a> --}}
             </div>
         </div>
 

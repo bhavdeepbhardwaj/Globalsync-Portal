@@ -132,6 +132,16 @@ class DashboardController extends Controller
         return Response::json($data);
     }
 
+    // Bulk Pay Slip Salary
+    public function bulkPaySlipSalary()
+    {
+        try {
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('finance.bulkPayslipSalary');
+    }
+
     // Employee Data Edit
     public function salaryEdit($empID)
     {

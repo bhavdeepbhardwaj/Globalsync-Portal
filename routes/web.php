@@ -78,7 +78,7 @@ Route::group(['as' => 'hr.', 'prefix' => 'HR', 'middleware' => ['hr', 'auth', 'P
     Route::post('emp-update', [HrDashboardController::class, 'employeeUpdate'])->name('update-details');
     // Bulk Employee Upload
     Route::post('emp-import', [HrDashboardController::class, 'importEmployee'])->name('importEmployee');
-    // Employee Attendance 
+    // Employee Attendance
     Route::get('emp-attendance', [HrDashboardController::class, 'empAttendance'])->name('attendance');
     // Manual Attendance
     Route::get('manual-attendance', [HrDashboardController::class, 'manualAttendance'])->name('manual-attendance');
@@ -126,6 +126,8 @@ Route::group(['as' => 'finance.', 'prefix' => 'Finance', 'middleware' => ['finan
      Route::get('editDetails/{id}', [FinanceDashboardController::class, 'salaryEdit'])->name('editDetails');
     // Download PaySlip
     Route::get('Download-PaySlip', [FinanceDashboardController::class, 'downloadPayslip'])->name('downloadPayslip');
+    // Bulk Pay Slip Salary
+    Route::get('bulkPayslipSalary', [FinanceDashboardController::class, 'bulkPayslipSalary'])->name('bulkPayslipSalary');
 });
 // ********************************************* Finance Route End ********************************************* //
 
