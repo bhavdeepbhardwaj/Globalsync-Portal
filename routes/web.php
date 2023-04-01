@@ -111,23 +111,23 @@ Route::group(['as' => 'finance.', 'prefix' => 'Finance', 'middleware' => ['finan
     // Create Salary Structure Route
     Route::get('/', [FinanceDashboardController::class, 'createSalaryStructure']);
     // Create Salary Structure Route
-    Route::get('createSalaryStructure', [FinanceDashboardController::class, 'createSalaryStructure'])->name('createSalaryStructure');
+    Route::get('Create-Salary-Structure', [FinanceDashboardController::class, 'createSalaryStructure'])->name('createSalaryStructure');
     // create Employee PaySlip
-    Route::get('createPayslip', [FinanceDashboardController::class, 'createPayslip'])->name('createPayslip');
+    Route::get('Create-Payslip', [FinanceDashboardController::class, 'createPayslip'])->name('createPayslip');
     // PaySlip View
-    Route::post('paySlipView', [FinanceDashboardController::class, 'paySlipView'])->name('paySlipView');
+    Route::post('Payslip-View', [FinanceDashboardController::class, 'paySlipView'])->name('paySlipView');
     // Employess
-    Route::get('allEmployess', [FinanceDashboardController::class, 'allEmployess'])->name('allEmployess');
+    Route::get('All-Emp', [FinanceDashboardController::class, 'allEmployess'])->name('allEmployess');
     // View Details Employee
-    Route::get('viewDetails/{id}', [FinanceDashboardController::class, 'viewDetails'])->name('viewDetails');
+    Route::get('View-Details/{id}', [FinanceDashboardController::class, 'viewDetails'])->name('viewDetails');
     // Month's Attendance Sheet
-    Route::get('attendanceSheet', [FinanceDashboardController::class, 'attendanceSheet'])->name('attendanceSheet');
+    Route::get('Attendance-Sheet', [FinanceDashboardController::class, 'attendanceSheet'])->name('attendanceSheet');
     // Employee Data Edit Details
-     Route::get('editDetails/{id}', [FinanceDashboardController::class, 'salaryEdit'])->name('editDetails');
+     Route::get('Edit-Details/{id}', [FinanceDashboardController::class, 'salaryEdit'])->name('editDetails');
     // Download PaySlip
     Route::get('Download-PaySlip', [FinanceDashboardController::class, 'downloadPayslip'])->name('downloadPayslip');
     // Bulk Pay Slip Salary
-    Route::get('bulkPayslipSalary', [FinanceDashboardController::class, 'bulkPayslipSalary'])->name('bulkPayslipSalary');
+    Route::get('Bulk-PayslipSalary', [FinanceDashboardController::class, 'bulkPayslipSalary'])->name('bulkPayslipSalary');
 });
 // ********************************************* Finance Route End ********************************************* //
 

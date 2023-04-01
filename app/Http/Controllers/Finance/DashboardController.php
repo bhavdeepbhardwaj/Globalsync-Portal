@@ -101,7 +101,7 @@ class DashboardController extends Controller
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong !");
         }
-        return view('finance.allEmployess', ['emplist' => $emplist]);
+        return view('finance.allEmp', ['emplist' => $emplist]);
     }
     // View Details Employess
     public function viewDetails($empID)

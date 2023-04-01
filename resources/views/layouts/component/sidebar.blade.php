@@ -12,17 +12,17 @@
                                 <span class="site-menu-title">Dashboard</span>
                             </a>
                         </li>
+                        <li class="site-menu-item has-sub">
+                            <a class="animsition-link" href="{{ route('finance.allEmployess') }}">
+                                <i class="site-menu-icon icon wb-users md-view-compact" aria-hidden="true"></i>
+                                <span class="site-menu-title">All Employess</span>
+                            </a>
+                        </li>
                         {{-- <li class="site-menu-category">Payroll</li> --}}
                         <li class="site-menu-item ">
                             <a class="animsition-link" href="{{ route('finance.createSalaryStructure') }}">
                                 <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
                                 <span class="site-menu-title">Payroll</span>
-                            </a>
-                        </li>
-                        <li class="site-menu-item has-sub">
-                            <a class="animsition-link" href="{{ route('finance.allEmployess') }}">
-                                <i class="site-menu-icon icon wb-users md-view-compact" aria-hidden="true"></i>
-                                <span class="site-menu-title">All Employess</span>
                             </a>
                         </li>
                     @endif
